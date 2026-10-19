@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Orniflora - Habitat Dashboard</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="style.css">
+  <script src="app.js" defer></script>
+</head>
+<body data-page="dashboard">
+
+  <!-- Navigation Bar -->
+  <header class="navbar">
+    <div class="logo">
+      <h1>🌱 Orniflora</h1>
+    </div>
+    <nav>
+      <a href="dashboard.html" class="active">Dashboard</a>
+      <a href="actions.html">Log Actions</a>
+      <a href="leaderboard.html">Leaderboard</a>
+      
+      <!-- Profile Menu -->
+      <div class="profile-menu-container">
+        <button onclick="toggleProfileMenu(event)" class="profile-btn">
+          👤 <span id="nav-username">User</span> ▾
+        </button>
+        <div id="profile-dropdown" class="profile-dropdown">
+          <a href="accounts.html">Your Account</a>
+          <button onclick="logoutApp()" class="dropdown-logout-btn">Log Out</button>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Main Container -->
+  <main class="container">
+    
+    <!-- Hero Banner -->
+    <section class="welcome-banner hero-card">
+      <div class="welcome-text">
+        <span class="location-chip">📍 <span id="user-location-label">Wake County</span></span>
+        <h2>Local Biodiversity Dashboard</h2>
+        <p>Welcome back, <strong id="dashUser">Naturalist</strong>! Explore native species and protect local bird migration corridors.</p>
+      </div>
+    </section>
+
+    <!-- Town Spotlight Card -->
+    <section class="stats-card spotlight-card">
+      <div class="spotlight-content">
+        <h3 id="spotlight-title">📍 Town Habitat Spotlight</h3>
+        <p id="spotlight-desc">Loading local conservation corridor insights...</p>
+      </div>
+    </section>
+
+    <!-- Colorful Impact Score Card -->
+    <section class="stats-card score-card">
+      <div class="score-header">
+        <h3>Your Oasis Impact Score</h3>
+        <span class="streak-badge">🔥 <span id="user-streak">0</span> Day Streak</span>
+      </div>
+      <div class="score-display">
+        <span id="user-points" class="points-val">0</span>
+        <span class="score-unit">Eco-Points Earned</span>
+      </div>
+    </section>
+
+    <!-- Colorful Migration Index Card -->
+    <section class="activity-section corridor-card">
+      <div class="corridor-header">
+        <div>
+          <h3 id="flyway-title">🦅 Local Bird Migration Status</h3>
+          <p class="section-subtitle">How urgently migrating birds need food & water in your town today</p>
+        </div>
+        <span id="migration-badge" class="status-pill status-high">🔥 Peak Migration Month</span>
+      </div>
+
+      <!-- Vivid Multi-Color Meter Bar -->
+      <div class="meter-wrapper">
+        <div class="meter-labels">
+          <span>Migration Intensity</span>
+          <strong id="flyway-density">🔥 Peak Migration Month (89%)</strong>
+        </div>
+        <div class="meter-bar">
+          <div id="meter-fill" class="meter-fill-bar" style="width: 89%;"></div>
+        </div>
+      </div>
+
+      <!-- Styled Colored Box Grid -->
+      <div class="corridor-grid">
+        <div class="corridor-stat stat-loss">
+          <span class="stat-icon">🏙️</span>
+          <div>
+            <span class="stat-label">Town Habitat Loss</span>
+            <span class="stat-val" id="corridor-stress">Moderate Need</span>
+          </div>
+        </div>
+        <div class="corridor-stat stat-yard">
+          <span class="stat-icon">🏡</span>
+          <div>
+            <span class="stat-label">Your Yard's Help Level</span>
+            <span class="stat-val" id="yard-refuge-level">Seedling Spot 🌱</span>
+          </div>
+        </div>
+        <div class="corridor-stat stat-action">
+          <span class="stat-icon">💧</span>
+          <div>
+            <span class="stat-label">Top Action Today</span>
+            <span class="stat-val" id="top-recommended-action">Clean Water Bath</span>
+          </div>
+        </div>
+      </div>
+
+      <div id="corridor-tip" class="corridor-tip-box">
+        💡 <strong>Citizen Science Insight:</strong> Refilling birdbaths and leaving native seed heads intact provides vital energy reserves!
+      </div>
+    </section>
+
+    <!-- Town Species Grid -->
+    <section class="species-section">
+      <div class="section-title-group">
+        <h3>Birds of <span id="town-birds-label">Your Town</span></h3>
+        <p class="click-hint">💡 Click any bird card to view ecosystem interactions!</p>
+      </div>
+      <div id="regional-birds-list" class="species-grid"></div>
+
+      <div class="section-title-group" style="margin-top: 2.5rem;">
+        <h3>Native Plants of <span id="town-plants-label">Your Town</span></h3>
+        <p class="click-hint">💡 Click any plant card to view attracted wildlife!</p>
+      </div>
+      <div id="regional-plants-list" class="species-grid"></div>
+    </section>
+
+  </main>
+
+  <!-- Interactive Ecosystem Matchmaker Modal -->
+  <div id="ecosystem-modal" class="modal-overlay" style="display: none;">
+    <div class="modal-card matchmaker-modal">
+      <div class="modal-header-banner">
+        <span class="modal-category-chip" id="eco-modal-chip">🌿 Native Species Insights</span>
+        <h3 id="eco-modal-title">Species Name</h3>
+      </div>
+
+      <div class="modal-body-content">
+        <!-- Relationship Overview Box -->
+        <div class="eco-summary-box">
+          <p id="eco-modal-desc">Loading detailed ecological interaction data...</p>
+        </div>
+
+        <!-- Dynamic Pairings Container -->
+        <div class="eco-pairings-container">
+          <h4 id="eco-pairings-heading">✨ Key Ecological Links</h4>
+          <div id="eco-pairings-list" class="pairings-chip-grid"></div>
+        </div>
+
+        <!-- Citizen Science Action Tip -->
+        <div class="eco-action-tip" id="eco-modal-tip">
+          💡 <strong>Yard Conservation Action:</strong> Planting native species in small clusters maximizes foraging efficiency for visiting wildlife!
+        </div>
+      </div>
+
+      <button onclick="closeEcoModal()" class="btn-primary" style="margin-top: 1.25rem; width: 100%;">Close Insights</button>
+    </div>
+  </div>
+
+</body>
+</html>

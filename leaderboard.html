@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Orniflora - Community Leaderboard</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="app.js" defer></script>
+</head>
+<body data-page="leaderboard">
+
+  <!-- Navigation Bar -->
+  <header class="navbar">
+    <div class="logo">
+      <h1>🌱 Orniflora</h1>
+    </div>
+    <nav>
+      <a href="dashboard.html">Dashboard</a>
+      <a href="actions.html">Log Actions</a>
+      <a href="leaderboard.html" class="active">Leaderboard</a>
+      
+      <!-- Interactive Profile Dropdown -->
+      <div class="profile-menu-container">
+        <button onclick="toggleProfileMenu(event)" class="profile-btn">
+          👤 <span id="nav-username">User</span> ▾
+        </button>
+        <div id="profile-dropdown" class="profile-dropdown">
+          <a href="accounts.html">Your Account</a>
+          <button onclick="logoutApp()" class="dropdown-logout-btn">Log Out</button>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Main Container -->
+  <main class="container">
+    
+    <section class="welcome-banner">
+      <h2>🏆 Community Standings</h2>
+      <p>See how your Oasis Impact Score stacks up against other local naturalists in North Carolina.</p>
+    </section>
+
+    <!-- Leaderboard Container -->
+    <section class="activity-section">
+      <h3>Top Biodiversity Contributors</h3>
+      <div id="leaderboard-list" class="leaderboard-container"></div>
+    </section>
+
+  </main>
+
+</body>
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Orniflora - Your Account</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="app.js" defer></script>
+</head>
+<body data-page="account">
+
+  <!-- Navigation Bar -->
+  <header class="navbar">
+    <div class="logo">
+      <h1>🌱 Orniflora</h1>
+    </div>
+    <nav>
+      <a href="dashboard.html">Dashboard</a>
+      <a href="actions.html">Log Actions</a>
+      <a href="leaderboard.html">Leaderboard</a>
+      
+      <!-- Interactive Profile Dropdown -->
+      <div class="profile-menu-container">
+        <button onclick="toggleProfileMenu(event)" class="profile-btn">
+          👤 <span id="nav-username">User</span> ▾
+        </button>
+        <div id="profile-dropdown" class="profile-dropdown">
+          <a href="accounts.html" class="active">Your Account</a>
+          <button onclick="logoutApp()" class="dropdown-logout-btn">Log Out</button>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Main Container -->
+  <main class="container">
+    
+    <section class="welcome-banner">
+      <h2>👤 Profile Overview</h2>
+      <p>Manage your naturalist account stats and impact achievements.</p>
+    </section>
+
+    <!-- Account Details Card -->
+    <section class="stats-card">
+      <div class="account-header">
+        <h3 id="account-username" class="account-username-title">Username</h3>
+        <p class="account-joined-text">Member since: <span id="account-created">--</span> | Location: <span id="account-location">--</span></p>
+      </div>
+
+      <div class="account-stats-row">
+        <div class="stat-box">
+          <span class="stat-number" id="account-points">0</span>
+          <span class="stat-label">Total Points</span>
+        </div>
+        <div class="stat-box">
+          <span class="stat-number" id="account-streak">0</span>
+          <span class="stat-label">Day Streak</span>
+        </div>
+      </div>
+
+      <button onclick="window.print()" class="btn-primary" style="margin-top: 1.5rem; width: auto; padding: 0.6rem 1.2rem; display: inline-flex; align-items: center; gap: 0.5rem;">
+        📄 Export Naturalist Impact Summary (PDF)
+      </button>
+    </section>
+
+    <!-- Recent Earned Points History -->
+    <section class="activity-section">
+      <h3>Impact Points Activity Log</h3>
+      <ul id="account-history-list" class="history-list"></ul>
+    </section>
+
+  </main>
+
+</body>
+</html>

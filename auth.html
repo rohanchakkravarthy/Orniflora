@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Orniflora - Welcome</title>
+
+  <!-- Modern Typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+  <script src="landing.js" defer></script>
+  <script src="app.js" defer></script>
+</head>
+<body class="login-page" data-page="auth">
+
+  <div class="login-card">
+    <div class="brand-header">
+      <h2>🌱 Orniflora</h2>
+      <p>Track local biodiversity, earn impact points, and protect native habitats.</p>
+    </div>
+
+    <!-- Tabs Header -->
+    <div class="auth-tabs">
+      <button type="button" id="tab-login" class="auth-tab-btn active" onclick="switchAuthMode('login')">Log In</button>
+      <button type="button" id="tab-signup" class="auth-tab-btn" onclick="switchAuthMode('signup')">Sign Up</button>
+    </div>
+
+    <!-- Login Form -->
+    <form id="login-form" class="auth-form" onsubmit="handleLoginSubmit(event)">
+      <div class="form-group">
+        <label for="login-username">Username</label>
+        <input type="text" id="login-username" placeholder="Enter your username" required>
+      </div>
+      <div class="form-group">
+        <label for="login-password">Password</label>
+        <div class="password-wrapper">
+          <input type="password" id="login-password" placeholder="Enter your password" required>
+          <button type="button" class="password-toggle-btn" onclick="togglePasswordVisibility('login-password', this)">👁️</button>
+        </div>
+      </div>
+      <button type="submit" id="loginBtn" class="btn-primary">Log In & Launch</button>
+    </form>
+
+    <!-- Sign Up Form -->
+    <form id="signup-form" class="auth-form" style="display: none;" onsubmit="handleSignupSubmit(event)">
+      <div class="form-group">
+        <label for="signup-username">Create Username</label>
+        <input type="text" id="signup-username" placeholder="Choose a handle" required>
+      </div>
+      <div class="form-group">
+        <label for="signup-password">Create Password</label>
+        <div class="password-wrapper">
+          <input type="password" id="signup-password" placeholder="Choose a password" required>
+          <button type="button" class="password-toggle-btn" onclick="togglePasswordVisibility('signup-password', this)">👁️</button>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="countySelect">County (CD-13 Region)</label>
+        <select id="countySelect" class="form-control" required>
+          <option value="">-- Choose County --</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="citySelect">City / Town</label>
+        <select id="citySelect" class="form-control" disabled required>
+          <option value="">-- Choose County First --</option>
+        </select>
+      </div>
+      <button type="submit" id="signupBtn" class="btn-primary">Create Account & Launch</button>
+    </form>
+  </div>
+
+  <script>
+    function switchAuthMode(mode) {
+      const loginForm = document.getElementById("login-form");
+      const signupForm = document.getElementById("signup-form");
+      const tabLogin = document.getElementById("tab-login");
+      const tabSignup = document.getElementById("tab-signup");
+
+      if (mode === "login") {
+        loginForm.style.display = "block";
+        signupForm.style.display = "none";
+        tabLogin.classList.add("active");
+        tabSignup.classList.remove("active");
+      } else {
+        loginForm.style.display = "none";
+        signupForm.style.display = "block";
+        tabSignup.classList.add("active");
+        tabLogin.classList.remove("active");
+      }
+    }
+
+    function togglePasswordVisibility(inputId, btn) {
+      const input = document.getElementById(inputId);
+      if (!input) return;
+      if (input.type === "password") {
+        input.type = "text";
+        btn.textContent = "🙈";
+      } else {
+        input.type = "password";
+        btn.textContent = "👁️";
+      }
+    }
+  </script>
+</body>
+</html>
