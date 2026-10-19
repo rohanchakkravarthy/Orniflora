@@ -1,0 +1,23 @@
+{
+  "name": "orniflora",
+  "version": "1.0.0",
+  "description": "Track local biodiversity, earn impact points, and protect native habitats",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rohanchakkravarthy/Orniflora.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rohanchakkravarthy/Orniflora/issues"
+  },
+  "homepage": "https://github.com/rohanchakkravarthy/Orniflora#readme",
+  "dependencies": {
+    "@vercel/analytics": "^2.0.1"
+  }
+}
