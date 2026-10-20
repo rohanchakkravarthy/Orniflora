@@ -759,11 +759,11 @@ function handleLoginSubmit(event) {
   window.location.href = "dashboard.html";
 }
 
-// Unified Device Signup Handler
 function handleSignupSubmit(event) {
   if (event) event.preventDefault();
   const usernameInput = document.getElementById("signup-username");
   const passwordInput = document.getElementById("signup-password");
+  const confirmPasswordInput = document.getElementById("signup-confirm-password");
   const countySelect = document.getElementById("countySelect");
   const citySelect = document.getElementById("citySelect");
 
@@ -771,11 +771,17 @@ function handleSignupSubmit(event) {
 
   const username = usernameInput.value.trim();
   const pass = passwordInput.value;
+  const confirmPass = confirmPasswordInput ? confirmPasswordInput.value : pass;
   const county = countySelect && countySelect.value ? countySelect.value : "Wake";
   const city = citySelect && citySelect.value ? citySelect.value : "Holly Springs";
 
   if (!username || !pass) {
-    alert("Please fill in both a username and password.");
+    alert("Please fill in all required fields.");
+    return;
+  }
+
+  if (pass !== confirmPass) {
+    alert("Passwords do not match! Please verify your password entry.");
     return;
   }
 
