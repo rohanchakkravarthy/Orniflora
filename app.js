@@ -27,6 +27,37 @@ function getRefugeTierInfo(points) {
   }
 }
 
+// Global Shared Demo Account Sync Seed
+function seedSharedAccounts() {
+  let accounts = JSON.parse(localStorage.getItem("orniflora_accounts") || "{}");
+  let users = JSON.parse(localStorage.getItem("orniflora_users") || "[]");
+
+  const defaultAccounts = {
+    "Rohan": "birdwatching123",
+    "EcoTracker99": "pass123",
+    "NC_BirdWatcher": "pass123",
+    "StudentJudge": "appchallenge2026"
+  };
+
+  let updated = false;
+  for (const [user, pass] of Object.entries(defaultAccounts)) {
+    if (!accounts[user]) {
+      accounts[user] = { password: pass };
+      if (!users.includes(user)) users.push(user);
+      localStorage.setItem(`orniflora_pass_${user}`, pass);
+      localStorage.setItem(`orniflora_location_${user}`, "Holly Springs, Wake Co.");
+      updated = true;
+    }
+  }
+
+  if (updated) {
+    localStorage.setItem("orniflora_accounts", JSON.stringify(accounts));
+    localStorage.setItem("orniflora_users", JSON.stringify(users));
+  }
+}
+
+seedSharedAccounts();
+
 // Comprehensive NC-13 Ecosystem Matchmaker Database
 const ECOSYSTEM_MATCHMAKER = {
   "Eastern Bluebird": {
@@ -699,7 +730,7 @@ function renderBioCorridorIndex() {
   }
 }
 
-// Bulletproof Unified Unified Registry Login Handler
+// Unified Device Login Handler
 function handleLoginSubmit(event) {
   if (event) event.preventDefault();
   const usernameInput = document.getElementById("login-username");
@@ -714,11 +745,13 @@ function handleLoginSubmit(event) {
     return;
   }
 
-  // Load unified accounts directory
   const accounts = JSON.parse(localStorage.getItem("orniflora_accounts") || "{}");
+  const fallbackPass = localStorage.getItem(`orniflora_pass_${username}`);
 
-  if (!accounts[username] || accounts[username].password !== pass) {
-    alert("Incorrect username or password. Please check your credentials or switch to Sign Up to create a new account.");
+  const isValidAccount = (accounts[username] && accounts[username].password === pass) || (fallbackPass === pass);
+
+  if (!isValidAccount) {
+    alert("Incorrect username or password. Try logging in with a default demo account like Rohan / birdwatching123, or sign up to register on this device.");
     return;
   }
 
@@ -726,7 +759,7 @@ function handleLoginSubmit(event) {
   window.location.href = "dashboard.html";
 }
 
-// Bulletproof Unified Unified Registry Signup Handler
+// Unified Device Signup Handler
 function handleSignupSubmit(event) {
   if (event) event.preventDefault();
   const usernameInput = document.getElementById("signup-username");
@@ -749,15 +782,13 @@ function handleSignupSubmit(event) {
   let accounts = JSON.parse(localStorage.getItem("orniflora_accounts") || "{}");
 
   if (accounts[username]) {
-    alert("This username is already registered! Please log in or choose a different handle.");
+    alert("This username is already registered on this device. Please log in or choose a unique handle.");
     return;
   }
 
-  // Save in unified registry
   accounts[username] = { password: pass };
   localStorage.setItem("orniflora_accounts", JSON.stringify(accounts));
 
-  // Also maintain backwards-compatible lists for leaderboards
   let users = JSON.parse(localStorage.getItem("orniflora_users") || "[]");
   if (!users.includes(username)) {
     users.push(username);

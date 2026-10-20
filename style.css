@@ -842,3 +842,27 @@ body {
   }
 }
 
+/* Prevent task badges from wrapping onto a second line on mobile */
+.task-badge {
+  white-space: nowrap !important;
+  display: inline-block;
+  font-size: 0.85rem;
+  padding: 0.2rem 0.5rem;
+}
+
+/* Soft Opaque Leaf Pattern Overlay */
+body {
+  background-color: #f4f8f5;
+  background-image: radial-gradient(#2d5a27 0.75px, transparent 0.75px), radial-gradient(#2d5a27 0.75px, #f4f8f5 0.75px);
+  background-size: 30px 30px;
+  background-position: 0 0, 15px 15px;
+  background-attachment: fixed;
+}
+
+/* Give main container cards a clean backdrop blur to keep content readable */
+.login-card, .dashboard-card, .task-card, .leaderboard-row, .modal-content {
+  background: rgba(255, 255, 255, 0.94) !important;
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(45, 90, 39, 0.12);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.05);
+}
