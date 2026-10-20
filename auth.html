@@ -3,107 +3,181 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Orniflora - Welcome</title>
-
-  <!-- Modern Typography -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-
+  <title>Orniflora - Sign In / Register</title>
   <link rel="stylesheet" href="style.css">
-  <script src="landing.js" defer></script>
-  <script src="app.js" defer></script>
+  <script defer src="app.js"></script>
+
+  <!-- Vercel Web Analytics -->
+  <script>
+    window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
+  </script>
+  <script defer src="/_vercel/insights/script.js"></script>
 </head>
-<body class="login-page" data-page="auth">
+<body data-page="auth">
 
-  <div class="login-card">
-    <div class="brand-header">
-      <h2>🌱 Orniflora</h2>
-      <p>Track local biodiversity, earn impact points, and protect native habitats.</p>
+  <nav>
+    <a href="auth.html" class="logo">🌿 Orniflora NC-13</a>
+    <div class="nav-links">
+      <span style="font-size: 0.85rem; opacity: 0.9;">Congressional App Challenge</span>
     </div>
+  </nav>
 
-    <!-- Tabs Header -->
-    <div class="auth-tabs">
-      <button type="button" id="tab-login" class="auth-tab-btn active" onclick="switchAuthMode('login')">Log In</button>
-      <button type="button" id="tab-signup" class="auth-tab-btn" onclick="switchAuthMode('signup')">Sign Up</button>
+  <div class="container" style="display: flex; justify-content: center; align-items: center; min-height: 80vh;">
+    <div class="login-card" style="width: 100%; max-width: 440px; padding: 2.2rem; margin: auto;">
+      
+      <!-- Brand Header -->
+      <div style="text-align: center; margin-bottom: 1.5rem;">
+        <h2 style="color: var(--primary); font-size: 1.75rem; margin-bottom: 0.3rem;">Welcome to Orniflora</h2>
+        <p style="color: var(--text-muted); font-size: 0.9rem;">NC Congressional District 13 Ecological Refuge Network</p>
+      </div>
+
+      <!-- Auth Mode Switcher Tabs -->
+      <div style="display: flex; border-bottom: 2px solid var(--border-color); margin-bottom: 1.5rem;">
+        <button type="button" id="tab-login" onclick="switchAuthTab('login')" style="flex: 1; background: none; color: var(--primary); border-bottom: 3px solid var(--primary); border-radius: 0; padding: 0.6rem 0; font-weight: 700;">
+          Log In
+        </button>
+        <button type="button" id="tab-signup" onclick="switchAuthTab('signup')" style="flex: 1; background: none; color: var(--text-muted); border-bottom: 3px solid transparent; border-radius: 0; padding: 0.6rem 0; font-weight: 600;">
+          Sign Up
+        </button>
+      </div>
+
+      <!-- LOGIN FORM -->
+      <form id="login-form" onsubmit="handleLoginSubmit(event)">
+        <div style="margin-bottom: 1.2rem;">
+          <label for="login-username" style="display: block; font-weight: 600; font-size: 0.85rem; margin-bottom: 0.4rem; color: var(--primary);">Username</label>
+          <input type="text" id="login-username" placeholder="Enter your handle..." required style="width: 100%; padding: 0.75rem; border: 1px solid var(--border-color); border-radius: 8px; font-size: 0.95rem;">
+        </div>
+
+        <div style="margin-bottom: 1.5rem; position: relative;">
+          <label for="login-password" style="display: block; font-weight: 600; font-size: 0.85rem; margin-bottom: 0.4rem; color: var(--primary);">Password</label>
+          <div style="position: relative;">
+            <input type="password" id="login-password" placeholder="Enter password..." required style="width: 100%; padding: 0.75rem 2.5rem 0.75rem 0.75rem; border: 1px solid var(--border-color); border-radius: 8px; font-size: 0.95rem;">
+            <span onclick="togglePasswordVisibility('login-password', this)" style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); cursor: pointer; font-size: 1.1rem; user-select: none;">👁️</span>
+          </div>
+        </div>
+
+        <button type="submit" style="width: 100%; padding: 0.85rem; font-size: 1rem; font-weight: 700; margin-bottom: 1rem;">
+          Log In to Dashboard
+        </button>
+
+        <!-- Judge Demo Helper Button -->
+        <div style="text-align: center; border-top: 1px solid var(--border-color); pt: 1rem; margin-top: 1rem; padding-top: 1rem;">
+          <button type="button" onclick="quickJudgeLogin()" style="background: #2d6a4f; font-size: 0.85rem; padding: 0.55rem 1rem; width: 100%;">
+            ⭐ Quick Login as App Challenge Judge
+          </button>
+        </div>
+      </form>
+
+      <!-- SIGNUP FORM (Hidden by Default) -->
+      <form id="signup-form" onsubmit="handleSignupSubmit(event)" style="display: none;">
+        <div style="margin-bottom: 1.1rem;">
+          <label for="signup-username" style="display: block; font-weight: 600; font-size: 0.85rem; margin-bottom: 0.4rem; color: var(--primary);">Choose Username</label>
+          <input type="text" id="signup-username" placeholder="Choose a unique handle..." required style="width: 100%; padding: 0.75rem; border: 1px solid var(--border-color); border-radius: 8px; font-size: 0.95rem;">
+        </div>
+
+        <div style="margin-bottom: 1.1rem;">
+          <label for="signup-password" style="display: block; font-weight: 600; font-size: 0.85rem; margin-bottom: 0.4rem; color: var(--primary);">Create Password</label>
+          <div style="position: relative;">
+            <input type="password" id="signup-password" placeholder="Create password..." required style="width: 100%; padding: 0.75rem 2.5rem 0.75rem 0.75rem; border: 1px solid var(--border-color); border-radius: 8px; font-size: 0.95rem;">
+            <span onclick="togglePasswordVisibility('signup-password', this)" style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); cursor: pointer; font-size: 1.1rem; user-select: none;">👁️</span>
+          </div>
+        </div>
+
+        <div style="margin-bottom: 1.1rem;">
+          <label for="countySelect" style="display: block; font-weight: 600; font-size: 0.85rem; margin-bottom: 0.4rem; color: var(--primary);">NC-13 County Location</label>
+          <select id="countySelect" onchange="updateCityOptions()" style="width: 100%; padding: 0.75rem; border: 1px solid var(--border-color); border-radius: 8px; font-size: 0.95rem; background: white;">
+            <option value="Wake">Wake County</option>
+            <option value="Johnston">Johnston County</option>
+            <option value="Harnett">Harnett County</option>
+            <option value="Lee">Lee County</option>
+            <option value="Person">Person County</option>
+            <option value="Granville">Granville County</option>
+            <option value="Franklin">Franklin County</option>
+            <option value="Caswell">Caswell County</option>
+          </select>
+        </div>
+
+        <div style="margin-bottom: 1.5rem;">
+          <label for="citySelect" style="display: block; font-weight: 600; font-size: 0.85rem; margin-bottom: 0.4rem; color: var(--primary);">Town Community</label>
+          <select id="citySelect" style="width: 100%; padding: 0.75rem; border: 1px solid var(--border-color); border-radius: 8px; font-size: 0.95rem; background: white;">
+            <!-- Populate dynamically via updateCityOptions() -->
+          </select>
+        </div>
+
+        <button type="submit" style="width: 100%; padding: 0.85rem; font-size: 1rem; font-weight: 700;">
+          Create Account & Start Conservation
+        </button>
+      </form>
+
     </div>
-
-    <!-- Login Form -->
-    <form id="login-form" class="auth-form" onsubmit="handleLoginSubmit(event)">
-      <div class="form-group">
-        <label for="login-username">Username</label>
-        <input type="text" id="login-username" placeholder="Enter your username" required>
-      </div>
-      <div class="form-group">
-        <label for="login-password">Password</label>
-        <div class="password-wrapper">
-          <input type="password" id="login-password" placeholder="Enter your password" required>
-          <button type="button" class="password-toggle-btn" onclick="togglePasswordVisibility('login-password', this)">👁️</button>
-        </div>
-      </div>
-      <button type="submit" id="loginBtn" class="btn-primary">Log In & Launch</button>
-    </form>
-
-    <!-- Sign Up Form -->
-    <form id="signup-form" class="auth-form" style="display: none;" onsubmit="handleSignupSubmit(event)">
-      <div class="form-group">
-        <label for="signup-username">Create Username</label>
-        <input type="text" id="signup-username" placeholder="Choose a handle" required>
-      </div>
-      <div class="form-group">
-        <label for="signup-password">Create Password</label>
-        <div class="password-wrapper">
-          <input type="password" id="signup-password" placeholder="Choose a password" required>
-          <button type="button" class="password-toggle-btn" onclick="togglePasswordVisibility('signup-password', this)">👁️</button>
-        </div>
-      </div>
-      <div class="form-group">
-        <label for="countySelect">County (CD-13 Region)</label>
-        <select id="countySelect" class="form-control" required>
-          <option value="">-- Choose County --</option>
-        </select>
-      </div>
-      <div class="form-group">
-        <label for="citySelect">City / Town</label>
-        <select id="citySelect" class="form-control" disabled required>
-          <option value="">-- Choose County First --</option>
-        </select>
-      </div>
-      <button type="submit" id="signupBtn" class="btn-primary">Create Account & Launch</button>
-    </form>
   </div>
 
   <script>
-    function switchAuthMode(mode) {
+    const COUNTY_TOWNS = {
+      "Wake": ["Holly Springs", "Fuquay-Varina", "Apex", "Cary", "Raleigh"],
+      "Johnston": ["Clayton", "Smithfield"],
+      "Harnett": ["Lillington"],
+      "Lee": ["Sanford"],
+      "Person": ["Roxboro"],
+      "Granville": ["Oxford"],
+      "Franklin": ["Louisburg"],
+      "Caswell": ["Yanceyville"]
+    };
+
+    function updateCityOptions() {
+      const countySelect = document.getElementById("countySelect");
+      const citySelect = document.getElementById("citySelect");
+      if (!countySelect || !citySelect) return;
+
+      const selectedCounty = countySelect.value || "Wake";
+      const towns = COUNTY_TOWNS[selectedCounty] || ["Holly Springs"];
+
+      citySelect.innerHTML = towns.map(town => `<option value="${town}">${town}</option>`).join("");
+    }
+
+    function switchAuthTab(tab) {
       const loginForm = document.getElementById("login-form");
       const signupForm = document.getElementById("signup-form");
       const tabLogin = document.getElementById("tab-login");
       const tabSignup = document.getElementById("tab-signup");
 
-      if (mode === "login") {
+      if (tab === "login") {
         loginForm.style.display = "block";
         signupForm.style.display = "none";
-        tabLogin.classList.add("active");
-        tabSignup.classList.remove("active");
+        tabLogin.style.borderBottom = "3px solid var(--primary)";
+        tabLogin.style.color = "var(--primary)";
+        tabLogin.style.fontWeight = "700";
+        tabSignup.style.borderBottom = "3px solid transparent";
+        tabSignup.style.color = "var(--text-muted)";
+        tabSignup.style.fontWeight = "600";
       } else {
         loginForm.style.display = "none";
         signupForm.style.display = "block";
-        tabSignup.classList.add("active");
-        tabLogin.classList.remove("active");
+        tabSignup.style.borderBottom = "3px solid var(--primary)";
+        tabSignup.style.color = "var(--primary)";
+        tabSignup.style.fontWeight = "700";
+        tabLogin.style.borderBottom = "3px solid transparent";
+        tabLogin.style.color = "var(--text-muted)";
+        tabLogin.style.fontWeight = "600";
+        updateCityOptions();
       }
     }
 
-    function togglePasswordVisibility(inputId, btn) {
+    function togglePasswordVisibility(inputId, toggleIcon) {
       const input = document.getElementById(inputId);
       if (!input) return;
       if (input.type === "password") {
         input.type = "text";
-        btn.textContent = "🙈";
+        toggleIcon.textContent = "🙈";
       } else {
         input.type = "password";
-        btn.textContent = "👁️";
+        toggleIcon.textContent = "👁️";
       }
     }
+
+    document.addEventListener("DOMContentLoaded", () => {
+      updateCityOptions();
+    });
   </script>
 </body>
 </html>

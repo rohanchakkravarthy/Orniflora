@@ -1070,3 +1070,16 @@ document.addEventListener("DOMContentLoaded", () => {
     initPage(currentPage);
   }
 });
+
+function quickJudgeLogin() {
+  const accounts = JSON.parse(localStorage.getItem("orniflora_accounts") || "{}");
+  accounts["StudentJudge"] = { password: "appchallenge2026" };
+  localStorage.setItem("orniflora_accounts", JSON.stringify(accounts));
+  localStorage.setItem("orniflora_pass_StudentJudge", "appchallenge2026");
+  localStorage.setItem("orniflora_points_StudentJudge", "750");
+  localStorage.setItem("orniflora_streak_StudentJudge", "14");
+  localStorage.setItem("orniflora_location_StudentJudge", "Holly Springs, Wake Co.");
+  
+  sessionStorage.setItem("current_logged_user", "StudentJudge");
+  window.location.href = "dashboard.html";
+}
