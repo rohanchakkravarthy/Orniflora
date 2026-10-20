@@ -29,7 +29,6 @@ function getRefugeTierInfo(points) {
 
 // Comprehensive NC-13 Ecosystem Matchmaker Database
 const ECOSYSTEM_MATCHMAKER = {
-  // --- BIRDS ---
   "Eastern Bluebird": {
     type: "bird",
     desc: "Eastern Bluebirds rely heavily on insects during summer breeding, foraging caterpillars off native leaves. In fall and winter, they switch to energy-rich native berries to survive freezing weather.",
@@ -180,8 +179,6 @@ const ECOSYSTEM_MATCHMAKER = {
     pairings: ["Wiregrass", "Wild Indigo", "Black-eyed Susan"],
     tip: "Creating wild field borders with native bunchgrasses gives quail vital nesting cover!"
   },
-
-  // --- PLANTS ---
   "American Beautyberry": {
     type: "plant",
     desc: "Produces vibrant purple autumn berries packed with moisture and nutrients, serving as a critical energy stopover for migrating songbirds.",
@@ -343,12 +340,6 @@ const ECOSYSTEM_MATCHMAKER = {
     desc: "Aromatic evergreen shrub producing waxy berries eagerly consumed by tree swallows and warblers.",
     pairings: ["Pine Warbler", "Yellow-rumped Warbler", "Eastern Bluebird"],
     tip: "Acts as an exceptional privacy screen that doubles as a bird sanctuary!"
-  },
-  "Elderberry": {
-    type: "plant",
-    desc: "Fast-growing shrub producing massive clusters of dark berries in late summer, providing a feast for fruit-eating songbirds.",
-    pairings: ["American Robin", "Whip-poor-will", "Cedar Waxwing"],
-    tip: "Elderberries love moist ground—great for natural wetland borders!"
   },
   "Wild Geranium": {
     type: "plant",
@@ -605,7 +596,6 @@ function renderTownSpecies() {
   }
 }
 
-// Fixed Dynamic Species Interaction Handler with Robust Fallbacks
 function inspectSpeciesInteraction(speciesName) {
   const modal = document.getElementById("ecosystem-modal");
   const titleEl = document.getElementById("eco-modal-title");
@@ -709,7 +699,7 @@ function renderBioCorridorIndex() {
   }
 }
 
-// Secure Login Handler
+// Bulletproof Unified Unified Registry Login Handler
 function handleLoginSubmit(event) {
   if (event) event.preventDefault();
   const usernameInput = document.getElementById("login-username");
@@ -724,11 +714,10 @@ function handleLoginSubmit(event) {
     return;
   }
 
-  let registeredUsers = JSON.parse(localStorage.getItem("orniflora_users") || "[]");
-  const storedPass = localStorage.getItem(`orniflora_pass_${username}`);
+  // Load unified accounts directory
+  const accounts = JSON.parse(localStorage.getItem("orniflora_accounts") || "{}");
 
-  // If user does not exist or password doesn't match
-  if (!registeredUsers.includes(username) || !storedPass || storedPass !== pass) {
+  if (!accounts[username] || accounts[username].password !== pass) {
     alert("Incorrect username or password. Please check your credentials or switch to Sign Up to create a new account.");
     return;
   }
@@ -737,7 +726,7 @@ function handleLoginSubmit(event) {
   window.location.href = "dashboard.html";
 }
 
-// Secure Signup Handler
+// Bulletproof Unified Unified Registry Signup Handler
 function handleSignupSubmit(event) {
   if (event) event.preventDefault();
   const usernameInput = document.getElementById("signup-username");
@@ -757,15 +746,24 @@ function handleSignupSubmit(event) {
     return;
   }
 
-  let users = JSON.parse(localStorage.getItem("orniflora_users") || "[]");
+  let accounts = JSON.parse(localStorage.getItem("orniflora_accounts") || "{}");
 
-  if (users.includes(username)) {
+  if (accounts[username]) {
     alert("This username is already registered! Please log in or choose a different handle.");
     return;
   }
 
-  users.push(username);
-  localStorage.setItem("orniflora_users", JSON.stringify(users));
+  // Save in unified registry
+  accounts[username] = { password: pass };
+  localStorage.setItem("orniflora_accounts", JSON.stringify(accounts));
+
+  // Also maintain backwards-compatible lists for leaderboards
+  let users = JSON.parse(localStorage.getItem("orniflora_users") || "[]");
+  if (!users.includes(username)) {
+    users.push(username);
+    localStorage.setItem("orniflora_users", JSON.stringify(users));
+  }
+
   localStorage.setItem(`orniflora_pass_${username}`, pass);
   localStorage.setItem(`orniflora_location_${username}`, `${city}, ${county} Co.`);
   
@@ -918,7 +916,7 @@ function renderLeaderboard() {
     return { name: username, score: uPoints, streak: uStreak, tier: uTier };
   });
 
-  if (userList.length < 3) {
+  if (userList.length === 0) {
     userList.push({ name: "EcoTracker99", score: 850, streak: 18, tier: getRefugeTierInfo(850) });
     userList.push({ name: "NC_BirdWatcher", score: 420, streak: 9, tier: getRefugeTierInfo(420) });
   }

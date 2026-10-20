@@ -792,34 +792,53 @@ body {
   line-height: 1.4;
 }
 
-/* Password Toggle Eye Button Wrapper */
-.password-wrapper {
-  position: relative;
-  display: flex;
-  align-items: center;
-  width: 100%;
+/* --- Responsive Mobile & Tablet Layout Fixes --- */
+* {
+  box-sizing: border-box;
 }
 
-.password-wrapper input {
-  padding-right: 2.75rem !important; /* Make room for eye button */
+body {
+  max-width: 100vw;
+  overflow-x: hidden;
+  margin: 0;
+  padding: 0;
 }
 
-.password-toggle-btn {
-  position: absolute;
-  right: 0.6rem;
-  background: transparent;
-  border: none;
-  font-size: 1.1rem;
-  cursor: pointer;
-  padding: 0.3rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  user-select: none;
-  opacity: 0.7;
-  transition: opacity 0.2s;
+.dashboard-container, 
+.container, 
+.main-content, 
+.card-grid, 
+.species-grid {
+  max-width: 100%;
+  overflow-x: hidden;
 }
 
-.password-toggle-btn:hover {
-  opacity: 1;
+/* Make grid cards responsive on smaller screens */
+@media screen and (max-width: 1024px) {
+  .species-grid, .grid-container {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
 }
+
+@media screen and (max-width: 768px) {
+  body {
+    padding: 0.5rem;
+  }
+
+  .species-grid, .grid-container {
+    grid-template-columns: 1fr !important;
+  }
+
+  .login-card {
+    width: 90% !important;
+    margin: 1rem auto !important;
+    padding: 1.5rem !important;
+  }
+
+  header, nav {
+    flex-direction: column;
+    gap: 0.75rem;
+    text-align: center;
+  }
+}
+
