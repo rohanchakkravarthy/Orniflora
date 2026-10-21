@@ -1089,3 +1089,46 @@ function quickJudgeLogin() {
   sessionStorage.setItem("current_logged_user", "StudentJudge");
   window.location.href = "dashboard.html";
 }
+
+// --- Two-Step Delete Account Functions ---
+
+function openDeleteAccountModal() {
+  const modal = document.getElementById("delete-account-modal");
+  if (modal) {
+    modal.style.display = "flex";
+  }
+}
+
+function closeDeleteAccountModal() {
+  const modal = document.getElementById("delete-account-modal");
+  if (modal) {
+    modal.style.display = "none";
+  }
+}
+
+function confirmDeleteAccount() {
+  const currentUser = sessionStorage.getItem("current_logged_user");
+  if (!currentUser) return;
+
+  // 1. Remove user from global account registry
+  let accounts = JSON.parse(localStorage.getItem("orniflora_accounts") || "{}");
+  delete accounts[currentUser];
+  localStorage.setItem("orniflora_accounts", JSON.stringify(accounts));
+
+  // 2. Remove user from user list array
+  let users = JSON.parse(localStorage.getItem("orniflora_users") || "[]");
+  users = users.filter(user => user !== currentUser);
+  localStorage.setItem("orniflora_users", JSON.stringify(users));
+
+  // 3. Purge all user-specific localStorage data
+  localStorage.removeItem(`orniflora_pass_${currentUser}`);
+  localStorage.removeItem(`orniflora_points_${currentUser}`);
+  localStorage.removeItem(`orniflora_streak_${currentUser}`);
+  localStorage.removeItem(`orniflora_location_${currentUser}`);
+  localStorage.removeItem(`orniflora_created_${currentUser}`);
+
+  // 4. Clear session and redirect to login
+  sessionStorage.removeItem("current_logged_user");
+  alert("Your account has been permanently deleted.");
+  window.location.href = "auth.html";
+}
