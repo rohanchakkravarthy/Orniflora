@@ -1090,7 +1090,7 @@ function quickJudgeLogin() {
   window.location.href = "dashboard.html";
 }
 
-// --- Two-Step Delete Account Functions ---
+// --- Two-Step Delete Account Modal Controls ---
 
 function openDeleteAccountModal() {
   const modal = document.getElementById("delete-account-modal");
@@ -1120,15 +1120,16 @@ function confirmDeleteAccount() {
   users = users.filter(user => user !== currentUser);
   localStorage.setItem("orniflora_users", JSON.stringify(users));
 
-  // 3. Purge all user-specific localStorage data
+  // 3. Purge all user-specific localStorage entries
   localStorage.removeItem(`orniflora_pass_${currentUser}`);
   localStorage.removeItem(`orniflora_points_${currentUser}`);
   localStorage.removeItem(`orniflora_streak_${currentUser}`);
   localStorage.removeItem(`orniflora_location_${currentUser}`);
   localStorage.removeItem(`orniflora_created_${currentUser}`);
 
-  // 4. Clear session and redirect to login
+  // 4. Clear active session and redirect to auth screen
   sessionStorage.removeItem("current_logged_user");
   alert("Your account has been permanently deleted.");
   window.location.href = "auth.html";
 }
+
