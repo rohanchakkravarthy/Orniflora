@@ -29,28 +29,13 @@
         <button onclick="toggleProfileMenu(event)" class="profile-btn">
           👤 <span id="nav-username">User</span> ▾
         </button>
-        <div id="profile-dropdown" class="profile-dropdown" style="min-width: 230px; padding: 0.8rem;">
-          <div style="margin-bottom: 0.6rem;">
-            <strong style="color: #1b4332; font-size: 0.95rem;">Your Account</strong>
-            <div style="font-size: 0.82rem; color: #4a5568; margin-top: 0.4rem; display: flex; flex-direction: column; gap: 0.25rem;">
-              <p style="margin: 0;"><strong>Username:</strong> <span id="acc-username">User</span></p>
-              <p style="margin: 0;"><strong>NC-13 Location:</strong> <span id="acc-location">Wake County</span></p>
-              <p style="margin: 0;"><strong>Account Created:</strong> <span id="acc-created">Today</span></p>
-            </div>
-          </div>
+        <div id="profile-dropdown" class="profile-dropdown">
+          <a href="#account-section">Your Account</a>
           
           <!-- Divider Line -->
-          <hr style="border: none; border-top: 1px solid #e0e8e2; margin: 0.5rem 0;">
+          <hr style="border: none; border-top: 1px solid #e0e8e2; margin: 0.3rem 0;">
           
-          <button onclick="logoutApp()" class="dropdown-logout-btn" style="width: 100%; text-align: left; background: none; border: none; padding: 0.4rem 0; font-weight: 600; cursor: pointer;">Log Out</button>
-
-          <!-- Divider Line -->
-          <hr style="border: none; border-top: 1px solid #e0e8e2; margin: 0.5rem 0;">
-
-          <!-- Delete Account Button (Inside Top Right Account Menu) -->
-          <button type="button" onclick="openDeleteAccountModal()" style="width: 100%; text-align: left; background: none; border: none; color: #d90429; padding: 0.4rem 0; font-weight: 700; cursor: pointer; font-size: 0.85rem;">
-            🗑️ Delete Account
-          </button>
+          <button onclick="logoutApp()" class="dropdown-logout-btn">Log Out</button>
         </div>
       </div>
     </nav>
@@ -154,6 +139,24 @@
       <div id="regional-plants-list" class="species-grid"></div>
     </section>
 
+    <!-- DEDICATED YOUR ACCOUNT SECTION CARD -->
+    <section class="stats-card" id="account-section" style="margin-top: 2.5rem; background: white; border-radius: 12px; padding: 1.8rem; border: 1px solid #e0e8e2; box-shadow: 0 2px 8px rgba(0,0,0,0.04);">
+      <h3 style="color: #1b4332; margin-bottom: 1rem; font-size: 1.35rem; font-weight: 800;">Your Account</h3>
+      
+      <div id="account-details" style="display: flex; flex-direction: column; gap: 0.6rem; font-size: 0.95rem; color: #333;">
+        <p><strong>Username:</strong> <span id="acc-username">User</span></p>
+        <p><strong>NC-13 Location:</strong> <span id="acc-location">Wake County</span></p>
+        <p><strong>Account Created:</strong> <span id="acc-created">Today</span></p>
+      </div>
+
+      <!-- Delete Account Danger Zone -->
+      <div style="margin-top: 1.8rem; padding-top: 1.25rem; border-top: 1px solid #edf2ee; display: flex; justify-content: flex-end;">
+        <button type="button" onclick="openDeleteAccountModal()" style="background-color: #d90429; color: white; border: none; padding: 0.65rem 1.2rem; font-weight: 700; border-radius: 8px; cursor: pointer; font-size: 0.88rem; transition: background 0.2s ease; box-shadow: 0 3px 8px rgba(217, 4, 41, 0.2);">
+          🗑️ Delete Account
+        </button>
+      </div>
+    </section>
+
   </main>
 
   <!-- Interactive Ecosystem Matchmaker Modal -->
@@ -165,18 +168,15 @@
       </div>
 
       <div class="modal-body-content">
-        <!-- Relationship Overview Box -->
         <div class="eco-summary-box">
           <p id="eco-modal-desc">Loading detailed ecological interaction data...</p>
         </div>
 
-        <!-- Dynamic Pairings Container -->
         <div class="eco-pairings-container">
           <h4 id="eco-pairings-heading">✨ Key Ecological Links</h4>
           <div id="eco-pairings-list" class="pairings-chip-grid"></div>
         </div>
 
-        <!-- Citizen Science Action Tip -->
         <div class="eco-action-tip" id="eco-modal-tip">
           💡 <strong>Yard Conservation Action:</strong> Planting native species in small clusters maximizes foraging efficiency for visiting wildlife!
         </div>

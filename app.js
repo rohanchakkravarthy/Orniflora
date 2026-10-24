@@ -36,7 +36,8 @@ function seedSharedAccounts() {
     "Rohan": "birdwatching123",
     "EcoTracker99": "pass123",
     "NC_BirdWatcher": "pass123",
-    "StudentJudge": "appchallenge2026"
+    "StudentJudge": "appchallenge2026",
+    "ornitracker32": "pass123"
   };
 
   let updated = false;
@@ -45,7 +46,10 @@ function seedSharedAccounts() {
       accounts[user] = { password: pass };
       if (!users.includes(user)) users.push(user);
       localStorage.setItem(`orniflora_pass_${user}`, pass);
-      localStorage.setItem(`orniflora_location_${user}`, "Holly Springs, Wake Co.");
+      localStorage.setItem(`orniflora_location_${user}`, user === "ornitracker32" ? "Stovall, Granville Co." : "Holly Springs, Wake Co.");
+      if (user === "ornitracker32") {
+        localStorage.setItem(`orniflora_created_${user}`, "Oct 19, 2026");
+      }
       updated = true;
     }
   }
