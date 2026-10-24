@@ -3,193 +3,157 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Orniflora - Sign In / Register</title>
-  <link rel="stylesheet" href="style.css?v=5">
-  <script defer src="app.js"></script>
-
-  <!-- Vercel Web Analytics -->
-  <script>
-    window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
-  </script>
-  <script defer src="/_vercel/insights/script.js"></script>
+  <title>Orniflora - Access Portal</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="style.css">
+  <script src="app.js" defer></script>
 </head>
-<body data-page="auth">
+<body data-page="auth" style="background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%); min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 1.5rem;">
 
-  <!-- Header Navigation -->
-  <nav style="background: linear-gradient(135deg, #1b4332 0%, #2d5a27 100%); color: white; padding: 1.1rem 2rem; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 4px 15px rgba(27, 67, 50, 0.15);">
-    <a href="auth.html" class="logo" style="color: white; text-decoration: none; font-size: 1.45rem; font-weight: 800; letter-spacing: -0.3px; display: flex; align-items: center; gap: 0.6rem;">
-      <span style="font-size: 1.6rem;">🌿</span> Orniflora <span style="font-size: 0.85rem; font-weight: 600; background: rgba(255,255,255,0.15); padding: 0.25rem 0.6rem; border-radius: 6px; margin-left: 0.2rem;">NC-13</span>
-    </a>
-    <span style="font-size: 0.85rem; font-weight: 600; color: #d8f3dc; background: rgba(255, 255, 255, 0.12); padding: 0.4rem 0.9rem; border-radius: 20px; border: 1px solid rgba(255, 255, 255, 0.2);">
-      Congressional App Challenge
-    </span>
-  </nav>
-
-  <!-- Main Container -->
-  <div class="container" style="display: flex; justify-content: center; align-items: center; min-height: 82vh; padding: 1.5rem;">
-    <div class="login-card" style="width: 100%; max-width: 440px; background: #ffffff; border-radius: 16px; padding: 2.25rem; box-shadow: 0 12px 30px rgba(27, 67, 50, 0.12); border: 1px solid #d2e4d6; margin: auto;">
-      
-      <!-- Brand Header -->
-      <div style="text-align: center; margin-bottom: 1.75rem;">
-        <h2 style="color: #1b4332; font-size: 1.8rem; font-weight: 800; margin-bottom: 0.4rem; letter-spacing: -0.4px;">Welcome to Orniflora</h2>
-        <p style="color: #52796f; font-size: 0.9rem; font-weight: 500;">NC Congressional District 13 Ecological Refuge Network</p>
-      </div>
-
-      <!-- Modern Green Tab Selector -->
-      <div style="display: flex; background: #eef7f1; border-radius: 12px; padding: 5px; margin-bottom: 1.75rem; border: 1px solid #c8e0ce;">
-        <button type="button" id="tab-login" onclick="switchAuthTab('login')" style="flex: 1; background: #2d5a27; color: #ffffff; border: none; border-radius: 8px; padding: 0.7rem 0; font-weight: 700; font-size: 0.95rem; cursor: pointer; transition: all 0.25s ease; box-shadow: 0 2px 6px rgba(45, 90, 39, 0.2);">
-          Log In
-        </button>
-        <button type="button" id="tab-signup" onclick="switchAuthTab('signup')" style="flex: 1; background: transparent; color: #52796f; border: none; border-radius: 8px; padding: 0.7rem 0; font-weight: 600; font-size: 0.95rem; cursor: pointer; transition: all 0.25s ease;">
-          Sign Up
-        </button>
-      </div>
-
-      <!-- LOGIN FORM -->
-      <form id="login-form" onsubmit="handleLoginSubmit(event)">
-        <div style="margin-bottom: 1.25rem;">
-          <label for="login-username" style="display: block; font-weight: 700; font-size: 0.85rem; margin-bottom: 0.45rem; color: #1b4332; text-transform: uppercase; letter-spacing: 0.4px;">Username</label>
-          <input type="text" id="login-username" placeholder="Enter your handle..." required style="width: 100%; padding: 0.8rem 1rem; border: 1.5px solid #b7d7be; border-radius: 8px; font-size: 0.95rem; background: #fbfdfc; outline: none; transition: border-color 0.2s ease, box-shadow 0.2s ease;">
-        </div>
-
-        <div style="margin-bottom: 1.75rem;">
-          <label for="login-password" style="display: block; font-weight: 700; font-size: 0.85rem; margin-bottom: 0.45rem; color: #1b4332; text-transform: uppercase; letter-spacing: 0.4px;">Password</label>
-          <div style="position: relative;">
-            <input type="password" id="login-password" placeholder="Enter password..." required style="width: 100%; padding: 0.8rem 2.75rem 0.8rem 1rem; border: 1.5px solid #b7d7be; border-radius: 8px; font-size: 0.95rem; background: #fbfdfc; outline: none;">
-            <span onclick="togglePasswordVisibility('login-password', this)" style="position: absolute; right: 12px; top: 50%; transform: translateY(-50%); cursor: pointer; font-size: 1.15rem; user-select: none; opacity: 0.7;">👁️</span>
-          </div>
-        </div>
-
-        <button type="submit" style="width: 100%; background: linear-gradient(135deg, #2d5a27 0%, #1b4332 100%); color: white; border: none; padding: 0.9rem; font-size: 1rem; font-weight: 700; border-radius: 8px; cursor: pointer; transition: transform 0.15s ease, box-shadow 0.15s ease; box-shadow: 0 4px 12px rgba(45, 90, 39, 0.25);">
-          Log In to Dashboard
-        </button>
-      </form>
-
-      <!-- SIGNUP FORM -->
-      <form id="signup-form" onsubmit="handleSignupSubmit(event)" style="display: none;">
-        <div style="margin-bottom: 1.15rem;">
-          <label for="signup-username" style="display: block; font-weight: 700; font-size: 0.85rem; margin-bottom: 0.4rem; color: #1b4332; text-transform: uppercase; letter-spacing: 0.4px;">Choose Username</label>
-          <input type="text" id="signup-username" placeholder="Choose a handle..." required style="width: 100%; padding: 0.75rem 1rem; border: 1.5px solid #b7d7be; border-radius: 8px; font-size: 0.95rem; background: #fbfdfc;">
-        </div>
-
-        <div style="margin-bottom: 1.15rem;">
-          <label for="signup-password" style="display: block; font-weight: 700; font-size: 0.85rem; margin-bottom: 0.4rem; color: #1b4332; text-transform: uppercase; letter-spacing: 0.4px;">Create Password</label>
-          <div style="position: relative;">
-            <input type="password" id="signup-password" placeholder="Create password..." required style="width: 100%; padding: 0.75rem 2.75rem 0.75rem 1rem; border: 1.5px solid #b7d7be; border-radius: 8px; font-size: 0.95rem; background: #fbfdfc;">
-            <span onclick="togglePasswordVisibility('signup-password', this)" style="position: absolute; right: 12px; top: 50%; transform: translateY(-50%); cursor: pointer; font-size: 1.15rem; user-select: none; opacity: 0.7;">👁️</span>
-          </div>
-        </div>
-
-        <div style="margin-bottom: 1.15rem;">
-          <label for="signup-confirm-password" style="display: block; font-weight: 700; font-size: 0.85rem; margin-bottom: 0.4rem; color: #1b4332; text-transform: uppercase; letter-spacing: 0.4px;">Confirm Password</label>
-          <div style="position: relative;">
-            <input type="password" id="signup-confirm-password" placeholder="Re-enter password..." required style="width: 100%; padding: 0.75rem 2.75rem 0.75rem 1rem; border: 1.5px solid #b7d7be; border-radius: 8px; font-size: 0.95rem; background: #fbfdfc;">
-            <span onclick="togglePasswordVisibility('signup-confirm-password', this)" style="position: absolute; right: 12px; top: 50%; transform: translateY(-50%); cursor: pointer; font-size: 1.15rem; user-select: none; opacity: 0.7;">👁️</span>
-          </div>
-        </div>
-
-        <div style="margin-bottom: 1.15rem;">
-          <label for="countySelect" style="display: block; font-weight: 700; font-size: 0.85rem; margin-bottom: 0.4rem; color: #1b4332; text-transform: uppercase; letter-spacing: 0.4px;">NC-13 County Location</label>
-          <select id="countySelect" onchange="updateCityOptions()" style="width: 100%; padding: 0.75rem 1rem; border: 1.5px solid #b7d7be; border-radius: 8px; font-size: 0.95rem; background: white; color: #2e3d32; cursor: pointer;">
-            <option value="Wake">Wake County</option>
-            <option value="Johnston">Johnston County</option>
-            <option value="Harnett">Harnett County</option>
-            <option value="Lee">Lee County</option>
-            <option value="Person">Person County</option>
-            <option value="Granville">Granville County</option>
-            <option value="Franklin">Franklin County</option>
-            <option value="Caswell">Caswell County</option>
-          </select>
-        </div>
-
-        <div style="margin-bottom: 1.75rem;">
-          <label for="citySelect" style="display: block; font-weight: 700; font-size: 0.85rem; margin-bottom: 0.4rem; color: #1b4332; text-transform: uppercase; letter-spacing: 0.4px;">Town Community</label>
-          <select id="citySelect" style="width: 100%; padding: 0.75rem 1rem; border: 1.5px solid #b7d7be; border-radius: 8px; font-size: 0.95rem; background: white; color: #2e3d32; cursor: pointer;">
-          </select>
-        </div>
-
-        <button type="submit" style="width: 100%; background: linear-gradient(135deg, #2d5a27 0%, #1b4332 100%); color: white; border: none; padding: 0.9rem; font-size: 1rem; font-weight: 700; border-radius: 8px; cursor: pointer; transition: transform 0.15s ease, box-shadow 0.15s ease; box-shadow: 0 4px 12px rgba(45, 90, 39, 0.25);">
-          Create Account & Start Conservation
-        </button>
-      </form>
-
+  <main class="auth-card-container" style="background: white; border-radius: 16px; width: 100%; max-width: 440px; padding: 2.25rem; box-shadow: 0 12px 32px rgba(27, 67, 50, 0.12); border: 1px solid #d8f3dc;">
+    
+    <!-- Clean Header Banner -->
+    <div style="text-align: center; margin-bottom: 1.8rem;">
+      <h1 style="color: #1b4332; font-size: 2.1rem; font-weight: 800; margin-bottom: 0.3rem;">🌱 Orniflora</h1>
+      <p style="color: #40916c; font-weight: 600; font-size: 0.95rem;">Habitat & Biodiversity Tracker</p>
     </div>
-  </div>
+
+    <!-- Auth Toggle Tabs -->
+    <div style="display: flex; background: #f0f7f4; padding: 0.3rem; border-radius: 10px; margin-bottom: 1.5rem;">
+      <button type="button" id="tab-login-btn" onclick="switchAuthTab('login')" style="flex: 1; padding: 0.65rem; border: none; border-radius: 8px; font-weight: 700; font-size: 0.9rem; cursor: pointer; background: white; color: #1b4332; box-shadow: 0 2px 6px rgba(0,0,0,0.06);">
+        Log In
+      </button>
+      <button type="button" id="tab-signup-btn" onclick="switchAuthTab('signup')" style="flex: 1; padding: 0.65rem; border: none; border-radius: 8px; font-weight: 700; font-size: 0.9rem; cursor: pointer; background: transparent; color: #52b788;">
+        Sign Up
+      </button>
+    </div>
+
+    <!-- Login Form Section -->
+    <form id="login-form" onsubmit="handleLoginSubmit(event)">
+      <div style="margin-bottom: 1rem;">
+        <label for="login-username" style="display: block; font-size: 0.85rem; font-weight: 700; color: #2d6a4f; margin-bottom: 0.4rem;">Username</label>
+        <input type="text" id="login-username" placeholder="Enter your username" required style="width: 100%; padding: 0.75rem 1rem; border: 1.5px solid #d8f3dc; border-radius: 8px; font-size: 0.95rem; font-family: inherit;">
+      </div>
+
+      <div style="margin-bottom: 1.5rem;">
+        <label for="login-password" style="display: block; font-size: 0.85rem; font-weight: 700; color: #2d6a4f; margin-bottom: 0.4rem;">Password</label>
+        <input type="password" id="login-password" placeholder="Enter your password" required style="width: 100%; padding: 0.75rem 1rem; border: 1.5px solid #d8f3dc; border-radius: 8px; font-size: 0.95rem; font-family: inherit;">
+      </div>
+
+      <button type="submit" style="width: 100%; background: #2d6a4f; color: white; border: none; padding: 0.85rem; border-radius: 8px; font-weight: 700; font-size: 1rem; cursor: pointer; transition: background 0.2s ease;">
+        Log In
+      </button>
+    </form>
+
+    <!-- Sign Up Form Section -->
+    <form id="signup-form" onsubmit="handleSignupSubmit(event)" style="display: none;">
+      <div style="margin-bottom: 1rem;">
+        <label for="signup-username" style="display: block; font-size: 0.85rem; font-weight: 700; color: #2d6a4f; margin-bottom: 0.4rem;">Username</label>
+        <input type="text" id="signup-username" placeholder="Choose a unique username" required style="width: 100%; padding: 0.75rem 1rem; border: 1.5px solid #d8f3dc; border-radius: 8px; font-size: 0.95rem; font-family: inherit;">
+      </div>
+
+      <div style="margin-bottom: 1rem;">
+        <label for="countySelect" style="display: block; font-size: 0.85rem; font-weight: 700; color: #2d6a4f; margin-bottom: 0.4rem;">County</label>
+        <select id="countySelect" onchange="updateCityDropdown()" required style="width: 100%; padding: 0.75rem 1rem; border: 1.5px solid #d8f3dc; border-radius: 8px; font-size: 0.95rem; font-family: inherit; background: white;">
+          <option value="Wake">Wake County</option>
+          <option value="Granville">Granville County</option>
+          <option value="Johnston">Johnston County</option>
+          <option value="Harnett">Harnett County</option>
+          <option value="Lee">Lee County</option>
+          <option value="Person">Person County</option>
+          <option value="Franklin">Franklin County</option>
+          <option value="Caswell">Caswell County</option>
+        </select>
+      </div>
+
+      <div style="margin-bottom: 1rem;">
+        <label for="citySelect" style="display: block; font-size: 0.85rem; font-weight: 700; color: #2d6a4f; margin-bottom: 0.4rem;">City</label>
+        <select id="citySelect" required style="width: 100%; padding: 0.75rem 1rem; border: 1.5px solid #d8f3dc; border-radius: 8px; font-size: 0.95rem; font-family: inherit; background: white;">
+          <option value="Holly Springs">Holly Springs</option>
+          <option value="Raleigh">Raleigh</option>
+          <option value="Cary">Cary</option>
+          <option value="Apex">Apex</option>
+          <option value="Fuquay-Varina">Fuquay-Varina</option>
+        </select>
+      </div>
+
+      <div style="margin-bottom: 1rem;">
+        <label for="signup-password" style="display: block; font-size: 0.85rem; font-weight: 700; color: #2d6a4f; margin-bottom: 0.4rem;">Password</label>
+        <input type="password" id="signup-password" placeholder="Create a password" required style="width: 100%; padding: 0.75rem 1rem; border: 1.5px solid #d8f3dc; border-radius: 8px; font-size: 0.95rem; font-family: inherit;">
+      </div>
+
+      <div style="margin-bottom: 1.5rem;">
+        <label for="signup-confirm-password" style="display: block; font-size: 0.85rem; font-weight: 700; color: #2d6a4f; margin-bottom: 0.4rem;">Confirm Password</label>
+        <input type="password" id="signup-confirm-password" placeholder="Confirm your password" required style="width: 100%; padding: 0.75rem 1rem; border: 1.5px solid #d8f3dc; border-radius: 8px; font-size: 0.95rem; font-family: inherit;">
+      </div>
+
+      <button type="submit" style="width: 100%; background: #2d6a4f; color: white; border: none; padding: 0.85rem; border-radius: 8px; font-weight: 700; font-size: 1rem; cursor: pointer; transition: background 0.2s ease;">
+        Create Account
+      </button>
+    </form>
+
+  </main>
 
   <script>
-    const COUNTY_TOWNS = {
-      "Wake": ["Holly Springs", "Fuquay-Varina", "Apex", "Cary", "Raleigh"],
+    function switchAuthTab(tab) {
+      const loginForm = document.getElementById('login-form');
+      const signupForm = document.getElementById('signup-form');
+      const loginBtn = document.getElementById('tab-login-btn');
+      const signupBtn = document.getElementById('tab-signup-btn');
+
+      if (tab === 'login') {
+        loginForm.style.display = 'block';
+        signupForm.style.display = 'none';
+        loginBtn.style.background = 'white';
+        loginBtn.style.color = '#1b4332';
+        loginBtn.style.boxShadow = '0 2px 6px rgba(0,0,0,0.06)';
+        signupBtn.style.background = 'transparent';
+        signupBtn.style.color = '#52b788';
+        signupBtn.style.boxShadow = 'none';
+      } else {
+        loginForm.style.display = 'none';
+        signupForm.style.display = 'block';
+        signupBtn.style.background = 'white';
+        signupBtn.style.color = '#1b4332';
+        signupBtn.style.boxShadow = '0 2px 6px rgba(0,0,0,0.06)';
+        loginBtn.style.background = 'transparent';
+        loginBtn.style.color = '#52b788';
+        loginBtn.style.boxShadow = 'none';
+      }
+    }
+
+    const CITIES_BY_COUNTY = {
+      "Wake": ["Holly Springs", "Raleigh", "Cary", "Apex", "Fuquay-Varina"],
+      "Granville": ["Stovall", "Oxford"],
       "Johnston": ["Clayton", "Smithfield"],
       "Harnett": ["Lillington"],
       "Lee": ["Sanford"],
       "Person": ["Roxboro"],
-      "Granville": ["Oxford"],
       "Franklin": ["Louisburg"],
       "Caswell": ["Yanceyville"]
     };
 
-    function updateCityOptions() {
+    function updateCityDropdown() {
       const countySelect = document.getElementById("countySelect");
       const citySelect = document.getElementById("citySelect");
       if (!countySelect || !citySelect) return;
 
-      const selectedCounty = countySelect.value || "Wake";
-      const towns = COUNTY_TOWNS[selectedCounty] || ["Holly Springs"];
+      const selectedCounty = countySelect.value;
+      const cities = CITIES_BY_COUNTY[selectedCounty] || ["Holly Springs"];
 
-      citySelect.innerHTML = towns.map(town => `<option value="${town}">${town}</option>`).join("");
+      citySelect.innerHTML = cities.map(city => `<option value="${city}">${city}</option>`).join("");
     }
-
-    function switchAuthTab(tab) {
-      const loginForm = document.getElementById("login-form");
-      const signupForm = document.getElementById("signup-form");
-      const tabLogin = document.getElementById("tab-login");
-      const tabSignup = document.getElementById("tab-signup");
-
-      if (tab === "login") {
-        loginForm.style.display = "block";
-        signupForm.style.display = "none";
-        
-        tabLogin.style.background = "#2d5a27";
-        tabLogin.style.color = "#ffffff";
-        tabLogin.style.fontWeight = "700";
-        tabLogin.style.boxShadow = "0 2px 6px rgba(45, 90, 39, 0.2)";
-
-        tabSignup.style.background = "transparent";
-        tabSignup.style.color = "#52796f";
-        tabSignup.style.fontWeight = "600";
-        tabSignup.style.boxShadow = "none";
-      } else {
-        loginForm.style.display = "none";
-        signupForm.style.display = "block";
-
-        tabSignup.style.background = "#2d5a27";
-        tabSignup.style.color = "#ffffff";
-        tabSignup.style.fontWeight = "700";
-        tabSignup.style.boxShadow = "0 2px 6px rgba(45, 90, 39, 0.2)";
-
-        tabLogin.style.background = "transparent";
-        tabLogin.style.color = "#52796f";
-        tabLogin.style.fontWeight = "600";
-        tabLogin.style.boxShadow = "none";
-        updateCityOptions();
-      }
-    }
-
-    function togglePasswordVisibility(inputId, toggleIcon) {
-      const input = document.getElementById(inputId);
-      if (!input) return;
-      if (input.type === "password") {
-        input.type = "text";
-        toggleIcon.textContent = "🙈";
-      } else {
-        input.type = "password";
-        toggleIcon.textContent = "👁️";
-      }
-    }
-
-    document.addEventListener("DOMContentLoaded", () => {
-      updateCityOptions();
-    });
   </script>
+
+  <!-- Vercel Web Analytics -->
+  <script defer src="/_vercel/speed-insights/script.js"></script>
+  <script>
+    window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
+  </script>
+  <script defer src="/_vercel/insights/script.js"></script>
 </body>
 </html>
