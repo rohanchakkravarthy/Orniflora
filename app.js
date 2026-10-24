@@ -1051,6 +1051,13 @@ function initPage(pageType = "dashboard") {
   if (pointsEl) pointsEl.textContent = state.points;
   if (streakEl) streakEl.textContent = state.streak;
 
+  const accUser = document.getElementById("acc-username");
+  const accLocation = document.getElementById("acc-location");
+  const accCreated = document.getElementById("acc-created");
+  if (accUser) accUser.textContent = state.loggedUser || "User";
+  if (accLocation) accLocation.textContent = savedLoc;
+  if (accCreated) accCreated.textContent = localStorage.getItem(state.createdKey) || "Today";
+
   if (pageType === "dashboard") {
     renderTownSpecies();
     renderDynamicSpotlight();
@@ -1090,46 +1097,38 @@ function quickJudgeLogin() {
   window.location.href = "dashboard.html";
 }
 
-// --- Two-Step Delete Account Modal Controls ---
-
+// Two-Step Account Deletion Handlers
 function openDeleteAccountModal() {
   const modal = document.getElementById("delete-account-modal");
-  if (modal) {
-    modal.style.display = "flex";
-  }
+  if (modal) modal.style.display = "flex";
 }
 
 function closeDeleteAccountModal() {
   const modal = document.getElementById("delete-account-modal");
-  if (modal) {
-    modal.style.display = "none";
-  }
+  if (modal) modal.style.display = "none";
 }
 
 function confirmDeleteAccount() {
   const currentUser = sessionStorage.getItem("current_logged_user");
   if (!currentUser) return;
 
-  // 1. Remove user from global account registry
   let accounts = JSON.parse(localStorage.getItem("orniflora_accounts") || "{}");
   delete accounts[currentUser];
   localStorage.setItem("orniflora_accounts", JSON.stringify(accounts));
 
-  // 2. Remove user from user list array
   let users = JSON.parse(localStorage.getItem("orniflora_users") || "[]");
   users = users.filter(user => user !== currentUser);
   localStorage.setItem("orniflora_users", JSON.stringify(users));
 
-  // 3. Purge all user-specific localStorage entries
   localStorage.removeItem(`orniflora_pass_${currentUser}`);
   localStorage.removeItem(`orniflora_points_${currentUser}`);
   localStorage.removeItem(`orniflora_streak_${currentUser}`);
   localStorage.removeItem(`orniflora_location_${currentUser}`);
   localStorage.removeItem(`orniflora_created_${currentUser}`);
+  localStorage.removeItem(`orniflora_lastDate_${currentUser}`);
+  localStorage.removeItem(`orniflora_history_${currentUser}`);
 
-  // 4. Clear active session and redirect to auth screen
   sessionStorage.removeItem("current_logged_user");
   alert("Your account has been permanently deleted.");
   window.location.href = "auth.html";
 }
-
