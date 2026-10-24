@@ -552,7 +552,8 @@ const TOWN_ECO_WEIGHTS = {
   "Oxford": { lossStress: "Low-Moderate Need (Rural Edge)", basePercentage: 76, topAction: "Leave Native Seed Heads" },
   "Roxboro": { lossStress: "Low Need (Lake & Forest Basin)", basePercentage: 73, topAction: "Clean Water Bath" },
   "Yanceyville": { lossStress: "Low Need (Rural Forest Basin)", basePercentage: 71, topAction: "Protect Native Berry Shrubs" },
-  "Louisburg": { lossStress: "Low-Moderate Need (River Basin)", basePercentage: 77, topAction: "Plant Native Flora" }
+  "Louisburg": { lossStress: "Low-Moderate Need (River Basin)", basePercentage: 77, topAction: "Plant Native Flora" },
+  "Stovall": { lossStress: "Low Need (Rural Corridor)", basePercentage: 70, topAction: "Plant Native Flora" }
 };
 
 const AVAILABLE_TASKS = [
