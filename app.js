@@ -378,7 +378,7 @@ const ECOSYSTEM_MATCHMAKER = {
   },
   "Wild Geranium": {
     type: "plant",
-    desc: "Lovely pink spring woodland wildflower providing early nectar for emerging pollinators.",
+    desc: "Lovely pink spring wildflower providing early nectar for emerging pollinators.",
     pairings: ["Carolina Chickadee", "Wood Thrush", "Blue-gray Gnatcatcher"],
     tip: "Forms lovely green carpet mats under shade trees in spring!"
   },
@@ -984,31 +984,27 @@ function renderLeaderboard() {
 
 function renderAccountPage() {
   const state = getUserState();
-  const usernameEl = document.getElementById("account-username");
-  const createdEl = document.getElementById("account-created");
-  const locationEl = document.getElementById("account-location");
-  const pointsEl = document.getElementById("account-points");
-  const streakEl = document.getElementById("account-streak");
+  const usernameEl = document.getElementById("acc-username");
+  const createdEl = document.getElementById("acc-created");
+  const locationEl = document.getElementById("acc-location");
   const historyListEl = document.getElementById("account-history-list");
 
-  if (usernameEl) usernameEl.textContent = state.loggedUser;
+  if (usernameEl) usernameEl.textContent = state.loggedUser || "User";
   if (createdEl) createdEl.textContent = localStorage.getItem(state.createdKey) || "Today";
   if (locationEl) locationEl.textContent = localStorage.getItem(state.locationKey) || "Holly Springs, Wake Co.";
-  if (pointsEl) pointsEl.textContent = state.points;
-  if (streakEl) streakEl.textContent = state.streak;
 
   if (historyListEl) {
     const history = JSON.parse(localStorage.getItem(state.historyKey) || "[]");
     if (history.length === 0) {
-      historyListEl.innerHTML = `<li class="history-item empty">No logged tasks yet. Head over to Log Actions to earn points!</li>`;
+      historyListEl.innerHTML = `<li class="history-item empty" style="color: #666; font-size: 0.9rem;">No logged tasks yet. Head over to Log Actions to earn points!</li>`;
     } else {
       historyListEl.innerHTML = history.slice().reverse().map(item => `
-        <li class="history-item">
+        <li class="history-item" style="display: flex; justify-content: space-between; align-items: center; padding: 0.75rem 1rem; background: #f8faf9; border-radius: 8px; border: 1px solid #e8f0ea;">
           <div>
-            <strong>${item.action}</strong>
-            <div class="time-tag">${item.date}</div>
+            <strong style="color: #1b4332; font-size: 0.95rem;">${item.action}</strong>
+            <div style="font-size: 0.8rem; color: #666; margin-top: 0.2rem;">${item.date}</div>
           </div>
-          <span class="history-pts">+${item.pts} Pts</span>
+          <span style="font-weight: 800; color: #2d5a27; background: #e8f5e9; padding: 0.3rem 0.6rem; border-radius: 6px; font-size: 0.85rem;">+${item.pts} Pts</span>
         </li>
       `).join("");
     }
@@ -1055,13 +1051,6 @@ function initPage(pageType = "dashboard") {
 
   if (pointsEl) pointsEl.textContent = state.points;
   if (streakEl) streakEl.textContent = state.streak;
-
-  const accUser = document.getElementById("acc-username");
-  const accLocation = document.getElementById("acc-location");
-  const accCreated = document.getElementById("acc-created");
-  if (accUser) accUser.textContent = state.loggedUser || "User";
-  if (accLocation) accLocation.textContent = savedLoc;
-  if (accCreated) accCreated.textContent = localStorage.getItem(state.createdKey) || "Today";
 
   if (pageType === "dashboard") {
     renderTownSpecies();
