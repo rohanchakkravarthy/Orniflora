@@ -756,7 +756,7 @@ function handleLoginSubmit(event) {
   const isValidAccount = (accounts[username] && accounts[username].password === pass) || (fallbackPass === pass);
 
   if (!isValidAccount) {
-    alert("Incorrect username or password. Try logging in with a default demo account like Rohan / birdwatching123, or sign up to register on this device.");
+    alert("Incorrect username or password.");
     return;
   }
 
