@@ -32,7 +32,7 @@
         <div id="profile-dropdown" class="profile-dropdown">
           <a href="accounts.html">Your Account</a>
           
-          <hr style="border: none; border-top: 1px solid #d8e2dc; margin: 0.3rem 0;">
+          <hr style="border: none; border-top: 1px solid #e0e8e2; margin: 0.3rem 0;">
           
           <button onclick="logoutApp()" class="dropdown-logout-btn">Log Out</button>
         </div>
@@ -52,8 +52,8 @@
       </div>
     </section>
 
-    <!-- Impact Score Card (Orange bar removed) -->
-    <section class="stats-card score-card" style="border-left: 1px solid var(--card-border);">
+    <!-- Impact Score Card -->
+    <section class="stats-card score-card">
       <div class="score-header">
         <h3>Habitat Activity Points</h3>
         <span class="streak-badge"><span id="user-streak">0</span> Day Streak</span>
@@ -84,21 +84,21 @@
         </div>
       </div>
 
-      <!-- Stat Grid (All unified green tones) -->
+      <!-- Stat Grid -->
       <div class="corridor-grid">
-        <div class="corridor-stat stat-green">
+        <div class="corridor-stat stat-loss">
           <div>
             <span class="stat-label">Town Habitat Loss</span>
             <span class="stat-val" id="corridor-stress">Moderate Need</span>
           </div>
         </div>
-        <div class="corridor-stat stat-green">
+        <div class="corridor-stat stat-yard">
           <div>
             <span class="stat-label">Yard Rating</span>
             <span class="stat-val" id="yard-refuge-level">Initial Habitat</span>
           </div>
         </div>
-        <div class="corridor-stat stat-green">
+        <div class="corridor-stat stat-action">
           <div>
             <span class="stat-label">Recommended Activity</span>
             <span class="stat-val" id="top-recommended-action">Clean Water Source</span>
@@ -128,7 +128,7 @@
   <div id="ecosystem-modal" class="modal-overlay" style="display: none;">
     <div class="modal-card matchmaker-modal">
       <div class="modal-header-banner">
-        <!-- Category chip removed -->
+        <span class="modal-category-chip" id="eco-modal-chip">Native Species Profile</span>
         <h3 id="eco-modal-title">Species Name</h3>
       </div>
 
