@@ -232,12 +232,12 @@ body {
 }
 
 .status-pill {
-  padding: 0.3rem 0.8rem;
-  border-radius: var(--radius-sm);
-  font-size: 0.8rem;
-  font-weight: 700;
+  background-color: #1b4332;
   color: #ffffff;
-  background-color: #b45309;
+  font-weight: 700;
+  padding: 0.35rem 0.85rem;
+  border-radius: var(--radius-sm);
+  letter-spacing: 0.02em;
 }
 
 .meter-wrapper {
@@ -849,4 +849,22 @@ body {
   background: #ffffff !important;
   border: 1px solid var(--card-border);
   box-shadow: var(--shadow-soft);
+}
+
+.welcome-banner {
+  border-top: 3px solid var(--primary-forest);
+}
+
+.corridor-card {
+  border-top: 3px solid var(--accent-sage);
+}
+
+.species-card {
+  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.species-card:hover {
+  transform: translateY(-3px);
+  border-color: #2d6a4f;
+  box-shadow: 0 8px 20px rgba(27, 67, 50, 0.08);
 }
