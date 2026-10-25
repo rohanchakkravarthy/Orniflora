@@ -707,45 +707,6 @@ function inspectSpeciesInteraction(speciesName) {
   if (modal) modal.style.display = "flex";
 }
 
-// --- Ecosystem Modal Functions ---
-
-function openEcoModal(name, desc, pairings, type, tip) {
-  const modal = document.getElementById("ecosystem-modal");
-  const titleEl = document.getElementById("eco-modal-title");
-  const descEl = document.getElementById("eco-modal-desc");
-  const pairingsHeading = document.getElementById("eco-pairings-heading");
-  const pairingsList = document.getElementById("eco-pairings-list");
-  const tipEl = document.getElementById("eco-modal-tip");
-
-  if (!modal) return;
-
-  titleEl.textContent = name;
-  descEl.textContent = desc;
-
-  if (type === 'bird') {
-    pairingsHeading.textContent = "Supported Plant Species";
-  } else {
-    pairingsHeading.textContent = "Dependent Bird Species";
-  }
-
-  pairingsList.innerHTML = "";
-  pairings.forEach(item => {
-    const chip = document.createElement("span");
-    chip.className = "pairing-chip";
-    chip.textContent = item;
-    pairingsList.appendChild(chip);
-  });
-
-  if (tip) {
-    tipEl.style.display = "block";
-    tipEl.innerHTML = `<strong>Habitat Tip:</strong> ${tip}`;
-  } else {
-    tipEl.style.display = "none";
-  }
-
-  modal.style.display = "flex";
-}
-
 function closeEcoModal() {
   const modal = document.getElementById("ecosystem-modal");
   if (modal) modal.style.display = "none";
