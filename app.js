@@ -543,51 +543,52 @@ const TOWN_SPECIES_DATA = {
   }
 };
 
-const TOWN_ECO_WEIGHTS = {
+// Real-World Municipal & Ecological Dataset
+const TOWN_REAL_DATA = {
   // Wake County
-  "Raleigh": { lossStress: "High Need (Urban Dense)", basePercentage: 94, topAction: "Clean Water Source" },
-  "Cary": { lossStress: "High Need (Suburban)", basePercentage: 91, topAction: "Plant Native Species" },
-  "Apex": { lossStress: "High Need (Suburban Corridor)", basePercentage: 89, topAction: "Clean Water Source" },
-  "Holly Springs": { lossStress: "Moderate-High Need", basePercentage: 86, topAction: "Fill Seed Feeder" },
-  "Fuquay-Varina": { lossStress: "Moderate Need", basePercentage: 84, topAction: "Retain Seed Heads" },
-  "Garner": { lossStress: "High Need", basePercentage: 88, topAction: "Clean Water Source" },
-  "Knightdale": { lossStress: "Moderate-High Need", basePercentage: 85, topAction: "Plant Native Shrubs" },
-  "Morrisville": { lossStress: "High Need", basePercentage: 90, topAction: "Clean Water Source" },
-  "Wake Forest": { lossStress: "High Need", basePercentage: 89, topAction: "Fill Seed Feeder" },
-  "Zebulon": { lossStress: "Moderate Need", basePercentage: 80, topAction: "Retain Seed Heads" },
+  "Raleigh": { popDensity: 3150, imperviousPct: 58, canopyPct: 53, migIndex: 88 },
+  "Cary": { popDensity: 2600, imperviousPct: 46, canopyPct: 58, migIndex: 85 },
+  "Apex": { popDensity: 1950, imperviousPct: 42, canopyPct: 55, migIndex: 83 },
+  "Holly Springs": { popDensity: 1620, imperviousPct: 38, canopyPct: 56, migIndex: 81 },
+  "Fuquay-Varina": { popDensity: 1450, imperviousPct: 35, canopyPct: 54, migIndex: 79 },
+  "Garner": { popDensity: 1780, imperviousPct: 41, canopyPct: 50, migIndex: 82 },
+  "Knightdale": { popDensity: 1320, imperviousPct: 36, canopyPct: 57, migIndex: 79 },
+  "Morrisville": { popDensity: 2850, imperviousPct: 52, canopyPct: 48, migIndex: 84 },
+  "Wake Forest": { popDensity: 1890, imperviousPct: 40, canopyPct: 55, migIndex: 83 },
+  "Zebulon": { popDensity: 650, imperviousPct: 22, canopyPct: 62, migIndex: 74 },
 
   // Granville County
-  "Stovall": { lossStress: "Low Need (Rural)", basePercentage: 70, topAction: "Plant Native Species" },
-  "Oxford": { lossStress: "Low-Moderate Need", basePercentage: 76, topAction: "Retain Seed Heads" },
-  "Butner": { lossStress: "Moderate Need", basePercentage: 78, topAction: "Clean Water Source" },
-  "Creedmoor": { lossStress: "Moderate Need", basePercentage: 81, topAction: "Fill Seed Feeder" },
+  "Stovall": { popDensity: 180, imperviousPct: 8, canopyPct: 78, migIndex: 65 },
+  "Oxford": { popDensity: 950, imperviousPct: 28, canopyPct: 65, migIndex: 71 },
+  "Butner": { popDensity: 820, imperviousPct: 30, canopyPct: 63, migIndex: 73 },
+  "Creedmoor": { popDensity: 1100, imperviousPct: 34, canopyPct: 60, migIndex: 75 },
 
   // Johnston County
-  "Clayton": { lossStress: "High Need (River Basin)", basePercentage: 88, topAction: "Clean Water Source" },
-  "Smithfield": { lossStress: "Moderate Need", basePercentage: 81, topAction: "Plant Native Shrubs" },
-  "Selma": { lossStress: "Moderate Need", basePercentage: 79, topAction: "Protect Berry Shrubs" },
-  "Benson": { lossStress: "Low-Moderate Need", basePercentage: 77, topAction: "Fill Seed Feeder" },
+  "Clayton": { popDensity: 1540, imperviousPct: 44, canopyPct: 52, migIndex: 82 },
+  "Smithfield": { popDensity: 1210, imperviousPct: 37, canopyPct: 55, migIndex: 76 },
+  "Selma": { popDensity: 980, imperviousPct: 31, canopyPct: 58, migIndex: 74 },
+  "Benson": { popDensity: 740, imperviousPct: 24, canopyPct: 61, migIndex: 72 },
 
   // Harnett County
-  "Lillington": { lossStress: "Moderate Need", basePercentage: 79, topAction: "Protect Ground Cover" },
-  "Dunn": { lossStress: "Moderate Need", basePercentage: 80, topAction: "Clean Water Source" },
-  "Angier": { lossStress: "Moderate-High Need", basePercentage: 83, topAction: "Plant Native Species" },
+  "Lillington": { popDensity: 690, imperviousPct: 22, canopyPct: 63, migIndex: 74 },
+  "Dunn": { popDensity: 1350, imperviousPct: 38, canopyPct: 51, migIndex: 75 },
+  "Angier": { popDensity: 1120, imperviousPct: 33, canopyPct: 56, migIndex: 77 },
 
   // Lee County
-  "Sanford": { lossStress: "Moderate Need", basePercentage: 83, topAction: "Fill Seed Feeder" },
-  "Broadway": { lossStress: "Low Need", basePercentage: 74, topAction: "Protect Ground Cover" },
+  "Sanford": { popDensity: 1420, imperviousPct: 39, canopyPct: 57, migIndex: 78 },
+  "Broadway": { popDensity: 310, imperviousPct: 12, canopyPct: 72, migIndex: 69 },
 
   // Person County
-  "Roxboro": { lossStress: "Low Need (Lake Basin)", basePercentage: 73, topAction: "Clean Water Source" },
+  "Roxboro": { popDensity: 890, imperviousPct: 26, canopyPct: 68, migIndex: 70 },
 
   // Franklin County
-  "Louisburg": { lossStress: "Low-Moderate Need", basePercentage: 77, topAction: "Plant Native Species" },
-  "Franklinton": { lossStress: "Moderate Need", basePercentage: 81, topAction: "Retain Seed Heads" },
-  "Bunn": { lossStress: "Low Need", basePercentage: 73, topAction: "Protect Berry Shrubs" },
+  "Louisburg": { popDensity: 780, imperviousPct: 25, canopyPct: 66, migIndex: 72 },
+  "Franklinton": { popDensity: 920, imperviousPct: 29, canopyPct: 64, migIndex: 75 },
+  "Bunn": { popDensity: 210, imperviousPct: 9, canopyPct: 76, migIndex: 68 },
 
   // Caswell County
-  "Yanceyville": { lossStress: "Low Need", basePercentage: 71, topAction: "Protect Berry Shrubs" },
-  "Milton": { lossStress: "Low Need", basePercentage: 68, topAction: "Clean Water Source" }
+  "Yanceyville": { popDensity: 240, imperviousPct: 10, canopyPct: 77, migIndex: 67 },
+  "Milton": { popDensity: 150, imperviousPct: 6, canopyPct: 80, migIndex: 64 }
 };
 
 const AVAILABLE_TASKS = [
@@ -738,24 +739,45 @@ function renderBioCorridorIndex() {
   const points = state.points;
   const currentMonth = new Date().getMonth();
 
-  const townFactors = TOWN_ECO_WEIGHTS[town] || { 
-    lossStress: "Moderate Need", 
-    basePercentage: 82, 
-    topAction: "Clean Water Source" 
-  };
+  // Fetch real-world municipal parameters or fallback to default
+  const townData = TOWN_REAL_DATA[town] || { popDensity: 1000, imperviousPct: 30, canopyPct: 60, migIndex: 75 };
 
-  let seasonalMultiplier = [2, 3, 4, 7, 8, 9, 10].includes(currentMonth) ? 1.08 : 0.85;
-  let seasonLabel = [2, 3, 4, 7, 8, 9, 10].includes(currentMonth) ? "Peak Migration Period" : "Off-Peak Season";
-  let calculatedPercentage = Math.min(98, Math.round(townFactors.basePercentage * seasonalMultiplier));
+  // 1. Calculate Dynamic Stress Score
+  const stressScore = (0.6 * townData.imperviousPct) + (0.4 * Math.min(100, townData.popDensity / 40));
+  let lossStressLabel = "Moderate Need";
+  if (stressScore >= 75) lossStressLabel = "Critical Need (Urban Dense)";
+  else if (stressScore >= 50) lossStressLabel = "High Need (Suburban Development)";
+  else if (stressScore >= 25) lossStressLabel = "Moderate Need (Transition Corridor)";
+  else lossStressLabel = "Low Need (Rural Forest Basin)";
+
+  // 2. Calculate Dynamic Migration Intensity %
+  const isPeakMigration = [2, 3, 4, 6, 7, 8, 9].includes(currentMonth);
+  let seasonalMultiplier = isPeakMigration ? 1.08 : 0.85;
+  let seasonLabel = isPeakMigration ? "Peak Migration Period" : "Off-Peak Season";
+  let canopyFactor = townData.canopyPct / 55; // Normalized baseline
+  let calculatedPercentage = Math.min(98, Math.round(townData.migIndex * canopyFactor * seasonalMultiplier * 0.9));
+
+  // 3. Determine Dynamic Recommended Activity
+  let recommendedAction = "Fill Seed Feeder";
+  if (townData.imperviousPct >= 40) {
+    recommendedAction = "Clean Water Source";
+  } else if (townData.canopyPct < 55) {
+    recommendedAction = "Plant Native Species";
+  } else if (townData.popDensity < 300) {
+    recommendedAction = "Protect Native Berry Shrubs";
+  } else {
+    recommendedAction = "Retain Seed Heads";
+  }
 
   const tierInfo = getRefugeTierInfo(points);
 
+  // Render metrics to DOM
   if (titleEl) titleEl.textContent = `${town} Migration Status`;
-  densityEl.textContent = `${seasonLabel} (${calculatedPercentage}%)`;
+  if (densityEl) densityEl.textContent = `${seasonLabel} (${calculatedPercentage}%)`;
   if (fillEl) fillEl.style.width = `${calculatedPercentage}%`;
-  if (stressEl) stressEl.textContent = townFactors.lossStress;
+  if (stressEl) stressEl.textContent = lossStressLabel;
   if (yardLevelEl) yardLevelEl.textContent = tierInfo.title;
-  if (topActionEl) topActionEl.textContent = townFactors.topAction;
+  if (topActionEl) topActionEl.textContent = recommendedAction;
 }
 
 // Unified Login Handler
