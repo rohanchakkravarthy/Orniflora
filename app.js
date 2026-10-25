@@ -727,9 +727,7 @@ function renderBioCorridorIndex() {
   const titleEl = document.getElementById("flyway-title");
   const densityEl = document.getElementById("flyway-density");
   const yardLevelEl = document.getElementById("yard-refuge-level");
-  const badgeEl = document.getElementById("migration-badge");
   const stressEl = document.getElementById("corridor-stress");
-  const tipEl = document.getElementById("corridor-tip");
   const fillEl = document.getElementById("meter-fill");
   const topActionEl = document.getElementById("top-recommended-action");
 
@@ -756,13 +754,8 @@ function renderBioCorridorIndex() {
   densityEl.textContent = `${seasonLabel} (${calculatedPercentage}%)`;
   if (fillEl) fillEl.style.width = `${calculatedPercentage}%`;
   if (stressEl) stressEl.textContent = townFactors.lossStress;
-  if (badgeEl) badgeEl.textContent = seasonLabel;
   if (yardLevelEl) yardLevelEl.textContent = tierInfo.title;
   if (topActionEl) topActionEl.textContent = townFactors.topAction;
-
-  if (tipEl) {
-    tipEl.innerHTML = `<strong>Field Observation (${town}):</strong> Seasonal migration activity is estimated at <strong>${calculatedPercentage}%</strong>. Current local rating: <strong>${tierInfo.title}</strong>. Recommended focus for ${town}: <strong>${townFactors.topAction}</strong>.`;
-  }
 }
 
 // Unified Login Handler
