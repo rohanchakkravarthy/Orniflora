@@ -5,7 +5,7 @@
 :root {
   --primary-green: #1b4332;
   --primary-dark: #122d21;
-  --accent-gold: #b45309;
+  --accent-green: #2d6a4f;
   --bg-main: #f4f6f4;
   --card-bg: #ffffff;
   --card-border: #d8e2dc;
@@ -138,7 +138,7 @@ body {
   margin-bottom: 1.5rem;
 }
 
-/* Spotlight Card Color Accent */
+/* Spotlight Card */
 .spotlight-card {
   background: #ffffff;
   border-left: 4px solid var(--primary-green);
@@ -172,14 +172,14 @@ body {
   font-size: 0.95rem;
 }
 
-/* Restored Color Impact Score Card */
+/* Impact Score Card (Orange border stripped out) */
 .score-card {
   display: flex;
   justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
   background: #ffffff;
-  border-left: 4px solid var(--accent-gold);
+  border-left: 1px solid var(--card-border);
 }
 
 .score-header h3 {
@@ -188,8 +188,8 @@ body {
 }
 
 .streak-badge {
-  background-color: #fef3c7;
-  color: #92400e;
+  background-color: #e8f0eb;
+  color: var(--primary-green);
   font-weight: 700;
   padding: 0.2rem 0.6rem;
   border-radius: var(--radius-sm);
@@ -215,7 +215,7 @@ body {
   font-weight: 600;
 }
 
-/* Migration Index Restored Colors & Bar Gauge */
+/* Migration Index & Bar Gauge */
 .corridor-header {
   display: flex;
   justify-content: space-between;
@@ -237,7 +237,7 @@ body {
   font-size: 0.8rem;
   font-weight: 700;
   color: #ffffff;
-  background-color: #b45309;
+  background-color: var(--accent-green);
 }
 
 .meter-wrapper {
@@ -267,7 +267,7 @@ body {
   transition: width 0.4s ease;
 }
 
-/* Individual Colored Metric Boxes */
+/* Unified Green Tones for Corridor Stat Boxes */
 .corridor-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -284,23 +284,9 @@ body {
   border: 1px solid var(--card-border);
 }
 
-.stat-loss {
-  background-color: #fffbeb;
-  border-color: #fde68a;
-}
-
-.stat-yard {
-  background-color: #f0fdf4;
-  border-color: #bbf7d0;
-}
-
-.stat-action {
-  background-color: #f0f9ff;
-  border-color: #bae6fd;
-}
-
-.stat-icon {
-  font-size: 1.4rem;
+.stat-green {
+  background-color: #f8fafc;
+  border-color: #d8e2dc;
 }
 
 .stat-label {
@@ -328,7 +314,7 @@ body {
   line-height: 1.4;
 }
 
-/* FULL SPECIES CARD FIT FIX (NO CUT OFF HEADS) */
+/* Species Grid */
 .species-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -377,7 +363,7 @@ body {
   line-height: 1.2;
 }
 
-/* Account Page Stat Boxes UI Enhancement */
+/* Account Page Stat Boxes */
 .account-header {
   border-bottom: 1px solid var(--card-border);
   padding-bottom: 1rem;
@@ -389,12 +375,6 @@ body {
   font-size: 1.5rem;
   font-weight: 700;
   color: var(--primary-green);
-}
-
-.account-joined-text {
-  margin: 0.2rem 0 0 0;
-  color: var(--text-muted);
-  font-size: 0.85rem;
 }
 
 .account-stats-row {
@@ -540,11 +520,11 @@ body {
 
 .streak-count {
   font-size: 0.75rem;
-  color: var(--accent-gold);
+  color: var(--primary-green);
   font-weight: 600;
 }
 
-/* Tier Badges */
+/* Tier Badges (Unified Green Tones) */
 .tier-pill-badge {
   display: inline-block;
   font-size: 0.7rem;
@@ -552,15 +532,9 @@ body {
   padding: 0.15rem 0.5rem;
   border-radius: var(--radius-sm);
   margin-top: 0.2rem;
+  background-color: #e8f0eb;
+  color: var(--primary-green);
 }
-
-.tier-1 { background-color: #f1f5f9; color: #475569; }
-.tier-2 { background-color: #e0f2fe; color: #0369a1; }
-.tier-3 { background-color: #e0f2fe; color: #0284c7; }
-.tier-4 { background-color: #dcfce7; color: #15803d; }
-.tier-5 { background-color: #fef3c7; color: #b45309; }
-.tier-6 { background-color: #fae8ff; color: #86198f; }
-.tier-7 { background-color: #fef2f2; color: #991b1b; border: 1px solid #fca5a5; }
 
 /* Auth / Login Page Layout */
 .login-page {
@@ -684,20 +658,7 @@ body {
   box-shadow: 0 10px 25px rgba(0,0,0,0.08);
 }
 
-@media print {
-  .navbar, .btn-primary, .profile-menu-container {
-    display: none !important;
-  }
-  body {
-    background: white;
-  }
-  .container {
-    max-width: 100%;
-    margin: 0;
-  }
-}
-
-/* Upgraded Matchmaker Modal Styles */
+/* Matchmaker Modal Styles */
 .matchmaker-modal {
   max-width: 480px !important;
   text-align: left !important;
@@ -710,25 +671,6 @@ body {
   border-bottom: 1px solid var(--card-border);
   padding-bottom: 0.6rem;
   margin-bottom: 0.85rem;
-}
-
-.modal-category-chip {
-  display: inline-block;
-  font-size: 0.72rem;
-  font-weight: 700;
-  padding: 0.2rem 0.6rem;
-  border-radius: var(--radius-sm);
-  margin-bottom: 0.3rem;
-}
-
-.chip-bird {
-  background-color: #e0f2fe;
-  color: #0369a1;
-}
-
-.chip-plant {
-  background-color: #dcfce7;
-  color: #15803d;
 }
 
 .modal-header-banner h3 {
@@ -785,58 +727,6 @@ body {
   border-radius: var(--radius-sm);
   font-size: 0.85rem;
   line-height: 1.4;
-}
-
-/* --- Responsive Mobile & Tablet Layout Fixes --- */
-body {
-  max-width: 100vw;
-  overflow-x: hidden;
-  margin: 0;
-  padding: 0;
-}
-
-.dashboard-container, 
-.container, 
-.main-content, 
-.card-grid, 
-.species-grid {
-  max-width: 100%;
-  overflow-x: hidden;
-}
-
-@media screen and (max-width: 1024px) {
-  .species-grid, .grid-container {
-    grid-template-columns: repeat(2, 1fr) !important;
-  }
-}
-
-@media screen and (max-width: 768px) {
-  body {
-    padding: 0.5rem;
-  }
-
-  .species-grid, .grid-container {
-    grid-template-columns: 1fr !important;
-  }
-
-  .login-card {
-    width: 90% !important;
-    margin: 1rem auto !important;
-    padding: 1.25rem !important;
-  }
-
-  header, nav {
-    flex-direction: column;
-    gap: 0.5rem;
-    text-align: center;
-  }
-}
-
-.task-badge {
-  white-space: nowrap !important;
-  display: inline-block;
-  font-size: 0.8rem;
-  padding: 0.15rem 0.4rem;
 }
 
 /* Solid Clean Background Field Journal Theme */
