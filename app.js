@@ -544,20 +544,50 @@ const TOWN_SPECIES_DATA = {
 };
 
 const TOWN_ECO_WEIGHTS = {
+  // Wake County
   "Raleigh": { lossStress: "Critical Need (Urban Dense)", basePercentage: 94, topAction: "Clean Water Bath" },
   "Cary": { lossStress: "High Need (Suburban Development)", basePercentage: 91, topAction: "Plant Native Flora" },
   "Apex": { lossStress: "High Need (Suburban Corridor)", basePercentage: 89, topAction: "Clean Water Bath" },
   "Holly Springs": { lossStress: "Moderate-High Need", basePercentage: 86, topAction: "Stock Native Seed Feeder" },
   "Fuquay-Varina": { lossStress: "Moderate Need (Suburban)", basePercentage: 84, topAction: "Leave Native Seed Heads" },
+  "Garner": { lossStress: "High Need (Suburban Corridor)", basePercentage: 88, topAction: "Clean Water Bath" },
+  "Knightdale": { lossStress: "Moderate-High Need (Growth Pressure)", basePercentage: 85, topAction: "Plant Native Shrubs" },
+  "Morrisville": { lossStress: "High Need (Commercial/Suburban)", basePercentage: 90, topAction: "Clean Water Bath" },
+  "Wake Forest": { lossStress: "High Need (Rapid Suburban Expansion)", basePercentage: 89, topAction: "Stock Native Seed Feeder" },
+  "Zebulon": { lossStress: "Moderate Need (Rural Transition)", basePercentage: 80, topAction: "Leave Native Seed Heads" },
+
+  // Granville County
+  "Stovall": { lossStress: "Low Need (Rural Corridor)", basePercentage: 70, topAction: "Plant Native Flora" },
+  "Oxford": { lossStress: "Low-Moderate Need (Rural Edge)", basePercentage: 76, topAction: "Leave Native Seed Heads" },
+  "Butner": { lossStress: "Moderate Need (Industrial Edge)", basePercentage: 78, topAction: "Clean Water Bath" },
+  "Creedmoor": { lossStress: "Moderate Need (Suburban Edge)", basePercentage: 81, topAction: "Stock Native Seed Feeder" },
+
+  // Johnston County
   "Clayton": { lossStress: "High Need (River Basin Pressure)", basePercentage: 88, topAction: "Clean Water Bath" },
   "Smithfield": { lossStress: "Moderate Need (Agricultural Edge)", basePercentage: 81, topAction: "Plant Native Shrubs" },
+  "Selma": { lossStress: "Moderate Need (Transit/Ag Corridor)", basePercentage: 79, topAction: "Protect Native Berry Shrubs" },
+  "Benson": { lossStress: "Low-Moderate Need (Highway Corridor)", basePercentage: 77, topAction: "Stock Native Seed Feeder" },
+
+  // Harnett County
   "Lillington": { lossStress: "Moderate Need (Sandhills Edge)", basePercentage: 79, topAction: "Protect Ground Cover" },
+  "Dunn": { lossStress: "Moderate Need (Agricultural Edge)", basePercentage: 80, topAction: "Clean Water Bath" },
+  "Angier": { lossStress: "Moderate-High Need (Suburban Expansion)", basePercentage: 83, topAction: "Plant Native Flora" },
+
+  // Lee County
   "Sanford": { lossStress: "Moderate Need (Urban Transition)", basePercentage: 83, topAction: "Stock Native Seed Feeder" },
-  "Oxford": { lossStress: "Low-Moderate Need (Rural Edge)", basePercentage: 76, topAction: "Leave Native Seed Heads" },
+  "Broadway": { lossStress: "Low Need (Rural Pine Corridor)", basePercentage: 74, topAction: "Protect Pine Ground Cover" },
+
+  // Person County
   "Roxboro": { lossStress: "Low Need (Lake & Forest Basin)", basePercentage: 73, topAction: "Clean Water Bath" },
-  "Yanceyville": { lossStress: "Low Need (Rural Forest Basin)", basePercentage: 71, topAction: "Protect Native Berry Shrubs" },
+
+  // Franklin County
   "Louisburg": { lossStress: "Low-Moderate Need (River Basin)", basePercentage: 77, topAction: "Plant Native Flora" },
-  "Stovall": { lossStress: "Low Need (Rural Corridor)", basePercentage: 70, topAction: "Plant Native Flora" }
+  "Franklinton": { lossStress: "Moderate Need (Commuter Growth)", basePercentage: 81, topAction: "Leave Native Seed Heads" },
+  "Bunn": { lossStress: "Low Need (Rural Agricultural Edge)", basePercentage: 73, topAction: "Protect Native Berry Shrubs" },
+
+  // Caswell County
+  "Yanceyville": { lossStress: "Low Need (Rural Forest Basin)", basePercentage: 71, topAction: "Protect Native Berry Shrubs" },
+  "Milton": { lossStress: "Low Need (Dan River Basin)", basePercentage: 68, topAction: "Clean Water Bath" }
 };
 
 const AVAILABLE_TASKS = [
