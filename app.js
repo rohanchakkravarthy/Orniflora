@@ -8,22 +8,22 @@ function checkAuthGuard() {
   }
 }
 
-// 7-Tier Refuge Level Progression Calculator
+// 7-Tier Level Progression Calculator
 function getRefugeTierInfo(points) {
   if (points >= 1200) {
-    return { level: 7, title: "Master Oasis Corridor 👑", badgeClass: "tier-7" };
+    return { level: 7, title: "Established Sanctuary Area", badgeClass: "tier-7" };
   } else if (points >= 800) {
-    return { level: 6, title: "Certified Bio-Refuge 🛡️", badgeClass: "tier-6" };
+    return { level: 6, title: "Certified Wildlife Haven", badgeClass: "tier-6" };
   } else if (points >= 500) {
-    return { level: 5, title: "Flyway Sanctuary 🦅", badgeClass: "tier-5" };
+    return { level: 5, title: "Active Migratory Refuge", badgeClass: "tier-5" };
   } else if (points >= 300) {
-    return { level: 4, title: "Urban Haven 🏡", badgeClass: "tier-4" };
+    return { level: 4, title: "Suburban Habitat Zone", badgeClass: "tier-4" };
   } else if (points >= 150) {
-    return { level: 3, title: "Active Rest Stop 💧", badgeClass: "tier-3" };
+    return { level: 3, title: "Active Water Stop", badgeClass: "tier-3" };
   } else if (points >= 50) {
-    return { level: 2, title: "Pocket Habitat 🌿", badgeClass: "tier-2" };
+    return { level: 2, title: "Native Garden Plot", badgeClass: "tier-2" };
   } else {
-    return { level: 1, title: "Seedling Spot 🌱", badgeClass: "tier-1" };
+    return { level: 1, title: "Initial Habitat", badgeClass: "tier-1" };
   }
 }
 
@@ -62,337 +62,337 @@ function seedSharedAccounts() {
 
 seedSharedAccounts();
 
-// Comprehensive NC-13 Ecosystem Matchmaker Database
+// Comprehensive Ecosystem Database
 const ECOSYSTEM_MATCHMAKER = {
   "Eastern Bluebird": {
     type: "bird",
     desc: "Eastern Bluebirds rely heavily on insects during summer breeding, foraging caterpillars off native leaves. In fall and winter, they switch to energy-rich native berries to survive freezing weather.",
     pairings: ["American Beautyberry", "Flowering Dogwood", "Spicebush"],
-    tip: "Leave native berry bushes unpruned in winter to give bluebirds crucial cold-weather energy!"
+    tip: "Leave native berry bushes unpruned in winter to give bluebirds crucial cold-weather energy."
   },
   "Northern Cardinal": {
     type: "bird",
-    desc: "Year-round NC residents, Northern Cardinals feed on large native seeds and nest in dense, prickly thickets that shield nestlings from urban predators.",
+    desc: "Year-round NC residents, Northern Cardinals feed on large native seeds and nest in dense thickets that shield nestlings from urban predators.",
     pairings: ["Purple Coneflower", "Black-eyed Susan", "Spicebush"],
-    tip: "Keep dried coneflower seed heads intact through winter—cardinals love feeding on them directly!"
+    tip: "Keep dried coneflower seed heads intact through winter for cardinals to feed on."
   },
   "Carolina Chickadee": {
     type: "bird",
-    desc: "Chickadees require up to 9,000 caterpillars to raise a single clutch of eggs! They actively forage caterpillar larvae hosted on native foliage.",
+    desc: "Chickadees require up to 9,000 caterpillars to raise a single clutch of eggs, foraging caterpillar larvae hosted on native foliage.",
     pairings: ["Butterfly Weed", "Spicebush", "Flowering Dogwood"],
-    tip: "Avoid garden pesticides—chickadees depend on native leaf caterpillars to feed their chicks!"
+    tip: "Avoid garden pesticides because chickadees depend on leaf caterpillars to feed their chicks."
   },
   "Ruby-throated Hummingbird": {
     type: "bird",
-    desc: "NC's tiny migratory nectar feeder, the Ruby-throated Hummingbird fuels its trans-Gulf flight by visiting native tubular flowers rich in natural nectar.",
+    desc: "A tiny migratory nectar feeder, the Ruby-throated Hummingbird fuels its trans-Gulf flight by visiting native tubular flowers rich in natural nectar.",
     pairings: ["Trumpet Honeysuckle", "Cardinal Flower", "Coral Honeysuckle"],
-    tip: "Plant bright red native tubular flowers to attract hummingbirds naturally without sugar-water feeders!"
+    tip: "Plant bright red native tubular flowers to attract hummingbirds naturally without sugar-water feeders."
   },
   "Pine Warbler": {
     type: "bird",
     desc: "Pine-obligate songbirds that nest high in evergreen canopies across central NC. They glean insects off pine needles and feed on native pine cone seeds.",
     pairings: ["Loblolly Pine", "Longleaf Pine", "Crossvine"],
-    tip: "Preserving mature pine stands in backyards creates vital shelter for migrating Pine Warblers!"
+    tip: "Preserving mature pine stands in backyards creates vital shelter for migrating Pine Warblers."
   },
   "American Robin": {
     type: "bird",
     desc: "Robins search damp soil for worms during spring and turn to high-fat native fruits in autumn to store energy for migration.",
     pairings: ["American Beautyberry", "Elderberry", "Flowering Dogwood"],
-    tip: "Maintain a small leaf-litter zone in your yard so robins can forage for soil invertebrates!"
+    tip: "Maintain a small leaf-litter zone in your yard so robins can forage for soil invertebrates."
   },
   "Tufted Titmouse": {
     type: "bird",
     desc: "Acorn and seed hoarders, Titmice pluck seeds from native plants and cache them under tree bark for winter reserves.",
     pairings: ["Purple Coneflower", "Black-eyed Susan", "Loblolly Pine"],
-    tip: "Setting up a native seed feeder alongside coneflowers creates an active foraging station!"
+    tip: "Setting up a native seed feeder alongside coneflowers creates an active foraging station."
   },
   "Red-headed Woodpecker": {
     type: "bird",
-    desc: "Striking cavity nesters that thrive in oak savanna habitats across Johnston and Lee counties, storing pine nuts and acorns in dead snag trees.",
+    desc: "Striking cavity nesters that thrive in oak savanna habitats, storing pine nuts and acorns in dead snag trees.",
     pairings: ["Loblolly Pine", "Longleaf Pine", "American Beautyberry"],
-    tip: "Leave safe dead tree trunks (snags) standing to provide nesting cavities for woodpeckers!"
+    tip: "Leave safe dead tree trunks standing to provide nesting cavities for woodpeckers."
   },
   "Carolina Wren": {
     type: "bird",
     desc: "Energetic insectivores that hunt for spiders and beetles hidden inside thick native vines and brush piles.",
     pairings: ["Crossvine", "Trumpet Honeysuckle", "American Beautyberry"],
-    tip: "Build a small wood or brush pile in a quiet corner of your garden to offer cozy wren habitat!"
+    tip: "Build a small wood or brush pile in a quiet corner of your garden to offer wren habitat."
   },
   "Brown-headed Nuthatch": {
     type: "bird",
     desc: "Specialized NC pine-savanna birds known for using pine needles as tools to pry open tree bark for insects.",
     pairings: ["Longleaf Pine", "Wiregrass", "Loblolly Pine"],
-    tip: "Retaining native longleaf and loblolly pines helps protect this declining local species!"
+    tip: "Retaining native longleaf and loblolly pines helps protect this declining local species."
   },
   "Summer Tanager": {
     type: "bird",
     desc: "Bee and wasp specialists, Summer Tanagers nest in open pine-oak canopies and pluck stinging insects right out of the air near native flowers.",
     pairings: ["Wild Indigo", "Trumpet Honeysuckle", "Longleaf Pine"],
-    tip: "Native flowering meadows attract beneficial pollinators that Summer Tanagers feed on!"
+    tip: "Native flowering meadows attract beneficial pollinators that Summer Tanagers feed on."
   },
   "Eastern Towhee": {
     type: "bird",
-    desc: "Ground-dwelling birds that scratch double-footed through fallen native leaf litter to uncover beetles, spiders, and seeds.",
+    desc: "Ground-dwelling birds that scratch through fallen native leaf litter to uncover beetles, spiders, and seeds.",
     pairings: ["Wiregrass", "Wild Indigo", "Black-eyed Susan"],
-    tip: "Leave autumn leaves under garden shrubs instead of bagging them to create rich towhee habitat!"
+    tip: "Leave autumn leaves under garden shrubs instead of bagging them to create towhee habitat."
   },
   "Barred Owl": {
     type: "bird",
     desc: "Nocturnal predators that nest in mature hollow hardwoods along swampy river basins like the Neuse and Cape Fear rivers.",
     pairings: ["Loblolly Pine", "Flowering Dogwood", "Buttonbush"],
-    tip: "Protecting mature trees along stream corridors ensures owls have safe daytime roosting spots!"
+    tip: "Protecting mature trees along stream corridors ensures owls have safe daytime roosting spots."
   },
   "Wood Thrush": {
     type: "bird",
     desc: "Known for their flute-like song, Wood Thrushes forage in shady leaf litter under damp forest understories for snails and insects.",
     pairings: ["Mapleleaf Viburnum", "Sweet Goldenrod", "Spicebush"],
-    tip: "Planting layered native shrubs creates cool, moist understory shade essential for thrushes!"
+    tip: "Planting layered native shrubs creates cool, moist understory shade essential for thrushes."
   },
   "Yellow-billed Cuckoo": {
     type: "bird",
     desc: "Caterpillar specialists that consume spiny caterpillars that other birds avoid, nesting in dense canopy foliage.",
     pairings: ["Mapleleaf Viburnum", "Heartleaf Aster", "Flowering Dogwood"],
-    tip: "Planting native viburnums provides dense nesting cover and abundant caterpillar prey!"
+    tip: "Planting native viburnums provides dense nesting cover and caterpillar prey."
   },
   "Whip-poor-will": {
     type: "bird",
     desc: "Nocturnal aerial insectivores that nest directly on dry forest leaf litter and hunt moths over open night meadows.",
     pairings: ["Elderberry", "Buttonbush", "Joe-Pye Weed"],
-    tip: "Reducing outdoor night lighting helps preserve night-flying moths that Whip-poor-wills eat!"
+    tip: "Reducing outdoor night lighting helps preserve night-flying moths that Whip-poor-wills eat."
   },
   "Swainson's Warbler": {
     type: "bird",
     desc: "Secretive swamp-dwelling warblers that use their strong bills to flip over damp leaf litter, hunting spiders and insect larvae in dense bottomland thickets.",
     pairings: ["Switchcane", "Sweetgum", "Fothergilla"],
-    tip: "Preserving undisturbed damp woodlands and thick bottomland undergrowth protects Swainson's Warbler habitat!"
+    tip: "Preserving undisturbed damp woodlands and thick bottomland undergrowth protects Swainson's Warbler habitat."
   },
   "Hooded Warbler": {
     type: "bird",
     desc: "Active canopy-edge gleaners that dart among dense shrub layers to capture flying insects near forest openings.",
     pairings: ["Mapleleaf Viburnum", "Spicebush", "Flowering Dogwood"],
-    tip: "Maintaining diverse forest understories supports successful warbler breeding seasons!"
+    tip: "Maintaining diverse forest understories supports successful warbler breeding seasons."
   },
   "Red-tailed Hawk": {
     type: "bird",
-    desc: "Majestic raptors soaring over open fields and highways across NC-13, perching on tall snags to spot small mammals.",
+    desc: "Majestic raptors soaring over open fields and highways, perching on tall snags to spot small mammals.",
     pairings: ["Loblolly Pine", "Longleaf Pine", "Flowering Dogwood"],
-    tip: "Avoiding rodenticides keeps local hawks safe from secondary poisoning!"
+    tip: "Avoiding rodenticides keeps local hawks safe from secondary poisoning."
   },
   "Blue-gray Gnatcatcher": {
     type: "bird",
     desc: "Tiny, restless insect hunters that weave delicate spiderweb nests in hardwood trees and glean tiny aphids off leaves.",
     pairings: ["Flowering Dogwood", "Sweet Goldenrod", "Mapleleaf Viburnum"],
-    tip: "Providing pesticide-free gardens ensures gnatcatchers have plenty of small insects to eat!"
+    tip: "Providing pesticide-free gardens ensures gnatcatchers have plenty of small insects to eat."
   },
   "Great Blue Heron": {
     type: "bird",
-    desc: "Patient wetland waders that stalk fish and amphibians along the edges of rivers, lakes, and reservoirs in Person and Wake counties.",
+    desc: "Patient wetland waders that stalk fish and amphibians along the edges of rivers, lakes, and reservoirs.",
     pairings: ["Buttonbush", "Elderberry", "Swamp Rosemallow"],
-    tip: "Protecting natural shoreline vegetation preserves critical foraging zones for herons!"
+    tip: "Protecting natural shoreline vegetation preserves critical foraging zones for herons."
   },
   "Wood Duck": {
     type: "bird",
     desc: "Perched tree-ducks that nest in hollow cavities over water, feeding on acorns, seeds, and aquatic plants.",
     pairings: ["Buttonbush", "Elderberry", "Loblolly Pine"],
-    tip: "Installing wooden nest boxes near ponds helps boost local Wood Duck populations!"
+    tip: "Installing wooden nest boxes near ponds helps boost local Wood Duck populations."
   },
   "Belted Kingfisher": {
     type: "bird",
     desc: "Rattling coastal-plain birds that dive headfirst into streams and lakes to catch small fish from streamside perches.",
     pairings: ["Buttonbush", "Elderberry", "Loblolly Pine"],
-    tip: "Keeping stream banks natural and un-channeled prevents erosion and supports fish populations!"
+    tip: "Keeping stream banks natural and un-channeled prevents erosion and supports fish populations."
   },
   "Cedar Waxwing": {
     type: "bird",
     desc: "Sociable fruit-eating nomads that travel in flocks, feeding heavily on late-season berries in native trees and shrubs.",
     pairings: ["American Beautyberry", "Flowering Dogwood", "Elderberry"],
-    tip: "Planting native fruit trees ensures winter flocks have plenty of natural food sources!"
+    tip: "Planting native fruit trees ensures winter flocks have plenty of natural food sources."
   },
   "Northern Bobwhite": {
     type: "bird",
-    desc: "Ground-dwelling quail known for their iconic 'bob-white' whistle, foraging for weed seeds and insects in grassy fields.",
+    desc: "Ground-dwelling quail known for their iconic whistle, foraging for weed seeds and insects in grassy fields.",
     pairings: ["Wiregrass", "Wild Indigo", "Black-eyed Susan"],
-    tip: "Creating wild field borders with native bunchgrasses gives quail vital nesting cover!"
+    tip: "Creating wild field borders with native bunchgrasses gives quail vital nesting cover."
   },
   "American Beautyberry": {
     type: "plant",
     desc: "Produces vibrant purple autumn berries packed with moisture and nutrients, serving as a critical energy stopover for migrating songbirds.",
     pairings: ["Eastern Bluebird", "American Robin", "Northern Cardinal"],
-    tip: "Plant Beautyberry near sunny borders to create an autumn bird feeding station!"
+    tip: "Plant Beautyberry near sunny borders to create an autumn bird feeding station."
   },
   "Purple Coneflower": {
     type: "plant",
-    desc: "A powerhouse native flower! Bees and butterflies nectar on summer blooms, while finches and cardinals strip seed heads all winter long.",
+    desc: "A durable native flower. Bees and butterflies visit summer blooms, while finches and cardinals strip seed heads through winter.",
     pairings: ["Northern Cardinal", "Tufted Titmouse", "Carolina Chickadee"],
-    tip: "Do not cut down dead flower stalks in fall—the seed heads feed birds through snow!"
+    tip: "Do not cut down dead flower stalks in fall—the seed heads feed birds through snow."
   },
   "Trumpet Honeysuckle": {
     type: "plant",
-    desc: "A non-invasive native vine featuring tubular red flowers specially shaped for hummingbird beaks to collect high-energy nectar.",
+    desc: "A non-invasive native vine featuring tubular red flowers specially shaped for hummingbird beaks to collect natural nectar.",
     pairings: ["Ruby-throated Hummingbird", "Carolina Wren", "Summer Tanager"],
-    tip: "Train this vine up a sunny fence or trellis near a window for incredible bird watching!"
+    tip: "Train this vine up a sunny fence or trellis near a window for clear bird watching."
   },
   "Butterfly Weed": {
     type: "plant",
     desc: "Essential host plant for caterpillars that parent songbirds collect to feed nestlings, plus rich nectar for adult pollinators.",
     pairings: ["Carolina Chickadee", "Eastern Bluebird", "Ruby-throated Hummingbird"],
-    tip: "Plant in full sun and well-drained soil to build a thriving caterpillar nursery!"
+    tip: "Plant in full sun and well-drained soil to build a caterpillar nursery."
   },
   "Black-eyed Susan": {
     type: "plant",
     desc: "Durable native wildflowers providing abundant summer nectar and dense autumn seed clusters for seed-eating birds.",
     pairings: ["Northern Cardinal", "Tufted Titmouse", "Eastern Towhee"],
-    tip: "Allow plants to naturally drop seed to form expanding native meadow patches!"
+    tip: "Allow plants to naturally drop seed to form expanding native meadow patches."
   },
   "Spicebush": {
     type: "plant",
     desc: "Understory shrub supporting swallowtail caterpillars in summer and producing high-fat red berries for migrating thrushes in fall.",
     pairings: ["Eastern Bluebird", "Carolina Chickadee", "Wood Thrush"],
-    tip: "Thrives in partial shade—perfect for planting along wooded fence lines!"
+    tip: "Thrives in partial shade—perfect for planting along wooded fence lines."
   },
   "Flowering Dogwood": {
     type: "plant",
-    desc: "North Carolina's state tree! High-calcium spring blooms support insects, while glossy red fall berries feed over 35 songbird species.",
+    desc: "North Carolina's state tree. High-calcium spring blooms support insects, while glossy red fall berries feed over 35 songbird species.",
     pairings: ["Eastern Bluebird", "American Robin", "Yellow-billed Cuckoo"],
-    tip: "Plant under larger canopy trees to mimic its natural NC forest understory position!"
+    tip: "Plant under larger canopy trees to mimic its natural forest understory position."
   },
   "Cardinal Flower": {
     type: "plant",
     desc: "Brilliant scarlet spikes produce rich nectar, making it a favorite feeding stop for southward-migrating hummingbirds in late summer.",
     pairings: ["Ruby-throated Hummingbird", "Summer Tanager", "Carolina Wren"],
-    tip: "Requires moist soil—ideal for planting near birdbaths or rain gardens!"
+    tip: "Requires moist soil—ideal for planting near birdbaths or rain gardens."
   },
   "Loblolly Pine": {
     type: "plant",
     desc: "Keystone evergreen tree offering crucial winter wind shelter, roosting sites, and pine cone seeds for native birds.",
     pairings: ["Pine Warbler", "Brown-headed Nuthatch", "Barred Owl"],
-    tip: "Maintain pine needle mulch under trees to create natural foraging ground cover!"
+    tip: "Maintain pine needle mulch under trees to create natural foraging ground cover."
   },
   "Longleaf Pine": {
     type: "plant",
-    desc: "Historic NC Sandhills pine species supporting rare nuthatches and woodpeckers with nest cavities and giant seed cones.",
+    desc: "Historic NC pine species supporting rare nuthatches and woodpeckers with nest cavities and giant seed cones.",
     pairings: ["Brown-headed Nuthatch", "Red-headed Woodpecker", "Summer Tanager"],
-    tip: "Longleaf pines live for centuries and form the backbone of central NC pine ecosystems!"
+    tip: "Longleaf pines live for centuries and form the backbone of central NC pine ecosystems."
   },
   "Crossvine": {
     type: "plant",
     desc: "Early spring bloomer offering orange-red trumpet flowers that feed returning hummingbirds before other flowers open.",
     pairings: ["Ruby-throated Hummingbird", "Carolina Wren", "Pine Warbler"],
-    tip: "Provides thick evergreen foliage that gives wrens winter shelter!"
+    tip: "Provides thick evergreen foliage that gives wrens winter shelter."
   },
   "Wiregrass": {
     type: "plant",
     desc: "Native bunchgrass providing protective ground shelter and insect foraging zones for ground-feeding songbirds.",
     pairings: ["Eastern Towhee", "Brown-headed Nuthatch", "Northern Bobwhite"],
-    tip: "Plant in dry, sunny areas to create natural ground-cover protection!"
+    tip: "Plant in dry, sunny areas to create natural ground-cover protection."
   },
   "Wild Indigo": {
     type: "plant",
     desc: "Deep-rooted native perennial supporting native caterpillars and bumblebees, generating seed pods for songbirds.",
     pairings: ["Summer Tanager", "Eastern Towhee", "Carolina Chickadee"],
-    tip: "Once established, Wild Indigo is drought-hardy and blooms year after year!"
+    tip: "Once established, Wild Indigo is drought-hardy and blooms year after year."
   },
   "Elderberry": {
     type: "plant",
     desc: "Fast-growing shrub producing massive clusters of dark berries in late summer, providing a feast for fruit-eating songbirds.",
     pairings: ["American Robin", "Whip-poor-will", "Cedar Waxwing"],
-    tip: "Elderberries love moist ground—great for natural wetland borders!"
+    tip: "Elderberries love moist ground—great for natural wetland borders."
   },
   "Buttonbush": {
     type: "plant",
     desc: "Moisture-loving shrub with globe-like flowers attracting butterflies and water birds along creek edges.",
     pairings: ["Great Blue Heron", "Wood Duck", "Whip-poor-will"],
-    tip: "Plant along pond edges or low spots that hold water after rain!"
+    tip: "Plant along pond edges or low spots that hold water after rain."
   },
   "Mapleleaf Viburnum": {
     type: "plant",
     desc: "Shade-tolerant forest shrub providing caterpillar habitat and dark purple berries for deep-forest thrushes.",
     pairings: ["Wood Thrush", "Yellow-billed Cuckoo", "Eastern Towhee"],
-    tip: "Excellent native choice for shaded backyards with heavy tree canopy!"
+    tip: "Excellent native choice for shaded backyards with heavy tree canopy."
   },
   "Heartleaf Aster": {
     type: "plant",
     desc: "Delicate woodland aster providing late-season nectar for migrating pollinators and seeds for small birds.",
     pairings: ["Yellow-billed Cuckoo", "Wood Thrush", "Carolina Chickadee"],
-    tip: "Tolerates deep shade, making it a wonderful woodland garden addition!"
+    tip: "Tolerates deep shade, making it a reliable woodland garden addition."
   },
   "Calico Aster": {
     type: "plant",
-    desc: "Abundant starry white blooms that supply essential late-autumn nectar before winter freezes.",
+    desc: "Abundant white blooms that supply essential late-autumn nectar before winter freezes.",
     pairings: ["Yellow-billed Cuckoo", "Eastern Towhee", "Northern Cardinal"],
-    tip: "Grows easily in borders and attracts beneficial native pollinators!"
+    tip: "Grows easily in borders and attracts beneficial native pollinators."
   },
   "Orange Coneflower": {
     type: "plant",
     desc: "Golden petals and dark central cones supplying rich summer nectar and nutritious winter seeds.",
     pairings: ["Northern Cardinal", "American Goldfinch", "Tufted Titmouse"],
-    tip: "Extremely drought-resistant once established in garden beds!"
+    tip: "Extremely drought-resistant once established in garden beds."
   },
   "Tall Blue Wild Indigo": {
     type: "plant",
     desc: "Stately perennial legume fixing soil nitrogen while hosting specialized insect larvae for birds.",
     pairings: ["Summer Tanager", "Carolina Chickadee", "Eastern Bluebird"],
-    tip: "Features striking blue foliage and seed pods that rattle in autumn breeze!"
+    tip: "Features striking blue foliage and seed pods that rattle in autumn breeze."
   },
   "Wild Strawberry": {
     type: "plant",
     desc: "Low-growing ground cover producing sweet berries relished by ground-foraging birds.",
     pairings: ["Wood Thrush", "Eastern Towhee", "American Robin"],
-    tip: "Makes an incredible, eco-friendly living lawn replacement in shady spots!"
+    tip: "Makes a simple ground replacement in shady spots."
   },
   "Sweet Goldenrod": {
     type: "plant",
     desc: "Golden autumn spikes that support scores of native insect species vital for migrating songbirds.",
     pairings: ["Wood Thrush", "Blue-gray Gnatcatcher", "Carolina Wren"],
-    tip: "Anise-scented leaves can be brewed into a soothing herbal tea!"
+    tip: "Anise-scented leaves can be brewed into a traditional herbal tea."
   },
   "Swamp Rosemallow": {
     type: "plant",
-    desc: "Magnificent native hibiscus with giant blooms providing sanctuary for wetland insects and birds.",
+    desc: "Native hibiscus with large blooms providing sanctuary for wetland insects and birds.",
     pairings: ["Great Blue Heron", "Swamp Sparrow", "Red-winged Blackbird"],
-    tip: "Plant in rain gardens or wet drainage areas for stunning summer color!"
+    tip: "Plant in rain gardens or wet drainage areas for late summer color."
   },
   "New Jersey Tea": {
     type: "plant",
     desc: "Compact deciduous shrub with white flower clusters that attract diverse insect pollinators.",
     pairings: ["Carolina Chickadee", "Eastern Bluebird", "Northern Cardinal"],
-    tip: "Deep taproots make it remarkably resistant to summer dry spells!"
+    tip: "Deep taproots make it remarkably resistant to summer dry spells."
   },
   "Bluestem Goldenrod": {
     type: "plant",
-    desc: "Wand-like golden blossoms winding along stems, offering late-season sustenance for local wildlife.",
+    desc: "Golden blossoms along arching stems, offering late-season sustenance for local wildlife.",
     pairings: ["Wood Thrush", "Carolina Wren", "Pine Warbler"],
-    tip: "Thrives effortlessly in wooded shade gardens and natural borders!"
+    tip: "Thrives effortlessly in wooded shade gardens and natural borders."
   },
   "Passionflower": {
     type: "plant",
-    desc: "Exotic-looking native vine producing intricate blooms and nutritious autumn fruit for wildlife.",
+    desc: "Native vine producing intricate blooms and nutritious autumn fruit for wildlife.",
     pairings: ["Summer Tanager", "Carolina Wren", "Northern Cardinal"],
-    tip: "Train along fences to provide dense shelter and flowers simultaneously!"
+    tip: "Train along fences to provide dense shelter and flowers simultaneously."
   },
   "Wax Myrtle": {
     type: "plant",
     desc: "Aromatic evergreen shrub producing waxy berries eagerly consumed by tree swallows and warblers.",
     pairings: ["Pine Warbler", "Yellow-rumped Warbler", "Eastern Bluebird"],
-    tip: "Acts as an exceptional privacy screen that doubles as a bird sanctuary!"
+    tip: "Acts as a privacy screen that doubles as shelter for birds."
   },
   "Wild Geranium": {
     type: "plant",
-    desc: "Lovely pink spring wildflower providing early nectar for emerging pollinators.",
+    desc: "Pink spring wildflower providing early nectar for emerging pollinators.",
     pairings: ["Carolina Chickadee", "Wood Thrush", "Blue-gray Gnatcatcher"],
-    tip: "Forms lovely green carpet mats under shade trees in spring!"
+    tip: "Forms small green mats under shade trees in spring."
   },
   "Narrowleaf Sundrops": {
     type: "plant",
-    desc: "Bright yellow evening-primrose relative opening sunny cups that attract beneficial daytime insects.",
+    desc: "Bright yellow evening-primrose relative opening cups that attract daytime insects.",
     pairings: ["Eastern Bluebird", "Northern Cardinal", "Indigo Bunting"],
-    tip: "Prefers sunny meadows and open woodland borders!"
+    tip: "Prefers sunny meadows and open woodland borders."
   },
   "Coral Honeysuckle": {
     type: "plant",
-    desc: "Climbing native vine with coral-red trumpet flowers that bloom all summer long for hummingbirds.",
+    desc: "Climbing native vine with coral-red trumpet flowers that bloom all summer for hummingbirds.",
     pairings: ["Ruby-throated Hummingbird", "Carolina Wren", "American Robin"],
-    tip: "Unlike invasive Japanese honeysuckle, this native variety behaves politely in gardens!"
+    tip: "Unlike invasive Japanese honeysuckle, this native variety grows neatly in domestic gardens."
   }
 };
 
@@ -545,57 +545,57 @@ const TOWN_SPECIES_DATA = {
 
 const TOWN_ECO_WEIGHTS = {
   // Wake County
-  "Raleigh": { lossStress: "Critical Need (Urban Dense)", basePercentage: 94, topAction: "Clean Water Bath" },
-  "Cary": { lossStress: "High Need (Suburban Development)", basePercentage: 91, topAction: "Plant Native Flora" },
-  "Apex": { lossStress: "High Need (Suburban Corridor)", basePercentage: 89, topAction: "Clean Water Bath" },
-  "Holly Springs": { lossStress: "Moderate-High Need", basePercentage: 86, topAction: "Stock Native Seed Feeder" },
-  "Fuquay-Varina": { lossStress: "Moderate Need (Suburban)", basePercentage: 84, topAction: "Leave Native Seed Heads" },
-  "Garner": { lossStress: "High Need (Suburban Corridor)", basePercentage: 88, topAction: "Clean Water Bath" },
-  "Knightdale": { lossStress: "Moderate-High Need (Growth Pressure)", basePercentage: 85, topAction: "Plant Native Shrubs" },
-  "Morrisville": { lossStress: "High Need (Commercial/Suburban)", basePercentage: 90, topAction: "Clean Water Bath" },
-  "Wake Forest": { lossStress: "High Need (Rapid Suburban Expansion)", basePercentage: 89, topAction: "Stock Native Seed Feeder" },
-  "Zebulon": { lossStress: "Moderate Need (Rural Transition)", basePercentage: 80, topAction: "Leave Native Seed Heads" },
+  "Raleigh": { lossStress: "High Need (Urban Dense)", basePercentage: 94, topAction: "Clean Water Source" },
+  "Cary": { lossStress: "High Need (Suburban)", basePercentage: 91, topAction: "Plant Native Species" },
+  "Apex": { lossStress: "High Need (Suburban Corridor)", basePercentage: 89, topAction: "Clean Water Source" },
+  "Holly Springs": { lossStress: "Moderate-High Need", basePercentage: 86, topAction: "Fill Seed Feeder" },
+  "Fuquay-Varina": { lossStress: "Moderate Need", basePercentage: 84, topAction: "Retain Seed Heads" },
+  "Garner": { lossStress: "High Need", basePercentage: 88, topAction: "Clean Water Source" },
+  "Knightdale": { lossStress: "Moderate-High Need", basePercentage: 85, topAction: "Plant Native Shrubs" },
+  "Morrisville": { lossStress: "High Need", basePercentage: 90, topAction: "Clean Water Source" },
+  "Wake Forest": { lossStress: "High Need", basePercentage: 89, topAction: "Fill Seed Feeder" },
+  "Zebulon": { lossStress: "Moderate Need", basePercentage: 80, topAction: "Retain Seed Heads" },
 
   // Granville County
-  "Stovall": { lossStress: "Low Need (Rural Corridor)", basePercentage: 70, topAction: "Plant Native Flora" },
-  "Oxford": { lossStress: "Low-Moderate Need (Rural Edge)", basePercentage: 76, topAction: "Leave Native Seed Heads" },
-  "Butner": { lossStress: "Moderate Need (Industrial Edge)", basePercentage: 78, topAction: "Clean Water Bath" },
-  "Creedmoor": { lossStress: "Moderate Need (Suburban Edge)", basePercentage: 81, topAction: "Stock Native Seed Feeder" },
+  "Stovall": { lossStress: "Low Need (Rural)", basePercentage: 70, topAction: "Plant Native Species" },
+  "Oxford": { lossStress: "Low-Moderate Need", basePercentage: 76, topAction: "Retain Seed Heads" },
+  "Butner": { lossStress: "Moderate Need", basePercentage: 78, topAction: "Clean Water Source" },
+  "Creedmoor": { lossStress: "Moderate Need", basePercentage: 81, topAction: "Fill Seed Feeder" },
 
   // Johnston County
-  "Clayton": { lossStress: "High Need (River Basin Pressure)", basePercentage: 88, topAction: "Clean Water Bath" },
-  "Smithfield": { lossStress: "Moderate Need (Agricultural Edge)", basePercentage: 81, topAction: "Plant Native Shrubs" },
-  "Selma": { lossStress: "Moderate Need (Transit/Ag Corridor)", basePercentage: 79, topAction: "Protect Native Berry Shrubs" },
-  "Benson": { lossStress: "Low-Moderate Need (Highway Corridor)", basePercentage: 77, topAction: "Stock Native Seed Feeder" },
+  "Clayton": { lossStress: "High Need (River Basin)", basePercentage: 88, topAction: "Clean Water Source" },
+  "Smithfield": { lossStress: "Moderate Need", basePercentage: 81, topAction: "Plant Native Shrubs" },
+  "Selma": { lossStress: "Moderate Need", basePercentage: 79, topAction: "Protect Berry Shrubs" },
+  "Benson": { lossStress: "Low-Moderate Need", basePercentage: 77, topAction: "Fill Seed Feeder" },
 
   // Harnett County
-  "Lillington": { lossStress: "Moderate Need (Sandhills Edge)", basePercentage: 79, topAction: "Protect Ground Cover" },
-  "Dunn": { lossStress: "Moderate Need (Agricultural Edge)", basePercentage: 80, topAction: "Clean Water Bath" },
-  "Angier": { lossStress: "Moderate-High Need (Suburban Expansion)", basePercentage: 83, topAction: "Plant Native Flora" },
+  "Lillington": { lossStress: "Moderate Need", basePercentage: 79, topAction: "Protect Ground Cover" },
+  "Dunn": { lossStress: "Moderate Need", basePercentage: 80, topAction: "Clean Water Source" },
+  "Angier": { lossStress: "Moderate-High Need", basePercentage: 83, topAction: "Plant Native Species" },
 
   // Lee County
-  "Sanford": { lossStress: "Moderate Need (Urban Transition)", basePercentage: 83, topAction: "Stock Native Seed Feeder" },
-  "Broadway": { lossStress: "Low Need (Rural Pine Corridor)", basePercentage: 74, topAction: "Protect Pine Ground Cover" },
+  "Sanford": { lossStress: "Moderate Need", basePercentage: 83, topAction: "Fill Seed Feeder" },
+  "Broadway": { lossStress: "Low Need", basePercentage: 74, topAction: "Protect Ground Cover" },
 
   // Person County
-  "Roxboro": { lossStress: "Low Need (Lake & Forest Basin)", basePercentage: 73, topAction: "Clean Water Bath" },
+  "Roxboro": { lossStress: "Low Need (Lake Basin)", basePercentage: 73, topAction: "Clean Water Source" },
 
   // Franklin County
-  "Louisburg": { lossStress: "Low-Moderate Need (River Basin)", basePercentage: 77, topAction: "Plant Native Flora" },
-  "Franklinton": { lossStress: "Moderate Need (Commuter Growth)", basePercentage: 81, topAction: "Leave Native Seed Heads" },
-  "Bunn": { lossStress: "Low Need (Rural Agricultural Edge)", basePercentage: 73, topAction: "Protect Native Berry Shrubs" },
+  "Louisburg": { lossStress: "Low-Moderate Need", basePercentage: 77, topAction: "Plant Native Species" },
+  "Franklinton": { lossStress: "Moderate Need", basePercentage: 81, topAction: "Retain Seed Heads" },
+  "Bunn": { lossStress: "Low Need", basePercentage: 73, topAction: "Protect Berry Shrubs" },
 
   // Caswell County
-  "Yanceyville": { lossStress: "Low Need (Rural Forest Basin)", basePercentage: 71, topAction: "Protect Native Berry Shrubs" },
-  "Milton": { lossStress: "Low Need (Dan River Basin)", basePercentage: 68, topAction: "Clean Water Bath" }
+  "Yanceyville": { lossStress: "Low Need", basePercentage: 71, topAction: "Protect Berry Shrubs" },
+  "Milton": { lossStress: "Low Need", basePercentage: 68, topAction: "Clean Water Source" }
 };
 
 const AVAILABLE_TASKS = [
-  { id: "birdbath", title: "Clean or Refill a Birdbath", pts: 25, desc: "Provide clean, fresh drinking water for local songbirds." },
-  { id: "feeder", title: "Set Up or Stock a Bird Feeder", pts: 30, desc: "Fill feeders with native seed blends or suet." },
-  { id: "plant_native", title: "Plant a Native Flora Species", pts: 50, desc: "Add native flora suited for your local NC-13 town." },
-  { id: "water_plant", title: "Water Local Native Plants", pts: 15, desc: "Maintain native gardens during dry seasonal spells." },
-  { id: "remove_invasive", title: "Remove Invasive Plant Species", pts: 40, desc: "Clear invasive weeds to allow native plants to thrive." }
+  { id: "birdbath", title: "Clean or Refill a Birdbath", pts: 25, desc: "Provide clean water for resident songbirds." },
+  { id: "feeder", title: "Maintain a Bird Feeder", pts: 30, desc: "Fill feeders with native seed or suet." },
+  { id: "plant_native", title: "Plant a Native Species", pts: 50, desc: "Add native flora suited to your regional climate." },
+  { id: "water_plant", title: "Water Native Gardens", pts: 15, desc: "Maintain garden areas during dry summer weather." },
+  { id: "remove_invasive", title: "Remove Invasive Vegetation", pts: 40, desc: "Clear non-native weeds to allow native plants to grow." }
 ];
 
 function getUserState() {
@@ -673,9 +673,9 @@ function inspectSpeciesInteraction(speciesName) {
 
   const data = ECOSYSTEM_MATCHMAKER[speciesName] || {
     type: "plant",
-    desc: `${speciesName} plays a vital ecological role in maintaining biodiversity corridors across North Carolina's 13th Congressional District.`,
+    desc: `${speciesName} plays a role in supporting local species diversity in North Carolina.`,
     pairings: ["Eastern Bluebird", "Northern Cardinal", "Carolina Chickadee"],
-    tip: "Plant native flora in clusters to maximize food and shelter for local wildlife!"
+    tip: "Plant native species in groups to maximize shelter and food."
   };
 
   if (titleEl) titleEl.textContent = speciesName;
@@ -683,24 +683,24 @@ function inspectSpeciesInteraction(speciesName) {
 
   if (chipEl) {
     if (data.type === "bird") {
-      chipEl.textContent = "🦅 Native Avian Species";
+      chipEl.textContent = "Native Bird Species";
       chipEl.className = "modal-category-chip chip-bird";
-      if (pairingsHeading) pairingsHeading.textContent = "🌸 Supported Native Plants & Trees";
+      if (pairingsHeading) pairingsHeading.textContent = "Supported Plants";
     } else {
-      chipEl.textContent = "🌿 Native Botanical Species";
+      chipEl.textContent = "Native Plant Species";
       chipEl.className = "modal-category-chip chip-plant";
-      if (pairingsHeading) pairingsHeading.textContent = "🐥 Attracted Native Songbirds";
+      if (pairingsHeading) pairingsHeading.textContent = "Attracted Birds";
     }
   }
 
   if (pairingsList) {
     pairingsList.innerHTML = data.pairings.map(item => `
-      <span class="pairing-chip">${data.type === "bird" ? "🌸" : "🐥"} ${item}</span>
+      <span class="pairing-chip">${item}</span>
     `).join("");
   }
 
   if (tipEl) {
-    tipEl.innerHTML = `💡 <strong>Yard Action:</strong> ${data.tip}`;
+    tipEl.innerHTML = `<strong>Yard Action:</strong> ${data.tip}`;
   }
 
   if (modal) modal.style.display = "flex";
@@ -719,8 +719,8 @@ function renderDynamicSpotlight() {
   const state = getUserState();
   const { town, county } = getUserLocationInfo(state.loggedUser);
 
-  titleEl.textContent = `📍 Conservation Spotlight: ${town} (${county} County)`;
-  descEl.textContent = `Suburban growth across ${county} County fragments local songbird habitat. Adding native plants and clean water in ${town} transforms your property into a vital habitat bridge!`;
+  titleEl.textContent = `Habitat Overview: ${town} (${county} County)`;
+  descEl.textContent = `Suburban development across ${county} County affects local bird populations. Adding native plants and reliable water sources in ${town} helps connect local wildlife spaces.`;
 }
 
 function renderBioCorridorIndex() {
@@ -743,16 +743,16 @@ function renderBioCorridorIndex() {
   const townFactors = TOWN_ECO_WEIGHTS[town] || { 
     lossStress: "Moderate Need", 
     basePercentage: 82, 
-    topAction: "Clean Water Bath" 
+    topAction: "Clean Water Source" 
   };
 
   let seasonalMultiplier = [2, 3, 4, 7, 8, 9, 10].includes(currentMonth) ? 1.08 : 0.85;
-  let seasonLabel = [2, 3, 4, 7, 8, 9, 10].includes(currentMonth) ? "🔥 Peak Migration Month" : "Off-Peak Season";
+  let seasonLabel = [2, 3, 4, 7, 8, 9, 10].includes(currentMonth) ? "Peak Migration Period" : "Off-Peak Season";
   let calculatedPercentage = Math.min(98, Math.round(townFactors.basePercentage * seasonalMultiplier));
 
   const tierInfo = getRefugeTierInfo(points);
 
-  if (titleEl) titleEl.textContent = `🦅 ${town} Bird Migration Status`;
+  if (titleEl) titleEl.textContent = `${town} Migration Status`;
   densityEl.textContent = `${seasonLabel} (${calculatedPercentage}%)`;
   if (fillEl) fillEl.style.width = `${calculatedPercentage}%`;
   if (stressEl) stressEl.textContent = townFactors.lossStress;
@@ -761,11 +761,11 @@ function renderBioCorridorIndex() {
   if (topActionEl) topActionEl.textContent = townFactors.topAction;
 
   if (tipEl) {
-    tipEl.innerHTML = `💡 <strong>Citizen Science Insight for ${town}:</strong> With migration activity at <strong>${calculatedPercentage}%</strong>, your yard operates at <strong>${tierInfo.title}</strong>. Today's top action in ${town} is to <strong>${townFactors.topAction}</strong>.`;
+    tipEl.innerHTML = `<strong>Field Observation (${town}):</strong> Seasonal migration activity is estimated at <strong>${calculatedPercentage}%</strong>. Current local rating: <strong>${tierInfo.title}</strong>. Recommended focus for ${town}: <strong>${townFactors.topAction}</strong>.`;
   }
 }
 
-// Unified Device Login Handler
+// Unified Login Handler
 function handleLoginSubmit(event) {
   if (event) event.preventDefault();
   const usernameInput = document.getElementById("login-username");
@@ -816,14 +816,14 @@ function handleSignupSubmit(event) {
   }
 
   if (pass !== confirmPass) {
-    alert("Passwords do not match! Please verify your password entry.");
+    alert("Passwords do not match. Please try again.");
     return;
   }
 
   let accounts = JSON.parse(localStorage.getItem("orniflora_accounts") || "{}");
 
   if (accounts[username]) {
-    alert("This username is already registered on this device. Please log in or choose a unique handle.");
+    alert("This username is already taken on this browser. Please select another.");
     return;
   }
 
@@ -878,7 +878,7 @@ function renderTasksPage() {
         <div class="task-info">
           <h4>${task.title} <span class="task-badge">+${task.pts} Pts</span></h4>
           <p>${task.desc}</p>
-          ${isCompletedToday ? '<span class="status-done">✅ Completed Today</span>' : ''}
+          ${isCompletedToday ? '<span class="status-done">Completed Today</span>' : ''}
         </div>
         <button 
           onclick="triggerTaskVerification('${task.id}', '${task.title}', ${task.pts})" 
@@ -902,7 +902,7 @@ function triggerTaskVerification(taskId, taskTitle, pts) {
   const taskLastDone = localStorage.getItem(`orniflora_task_${taskId}_lastDate_${state.loggedUser}`);
 
   if (taskLastDone === today) {
-    alert("You have already logged this activity today!");
+    alert("You have already logged this activity today.");
     return;
   }
 
@@ -949,7 +949,7 @@ function submitTaskProof() {
   const noteText = noteInput ? noteInput.value.trim() : "";
 
   if (!noteText) {
-    alert("Please enter a quick field note describing your activity.");
+    alert("Please enter a short field note describing your activity.");
     return;
   }
 
@@ -959,7 +959,7 @@ function submitTaskProof() {
   localStorage.setItem(`orniflora_task_${activeTaskId}_lastDate_${state.loggedUser}`, today);
   saveUserScore(activeTaskPts, `${activeTaskTitle} ("${noteText}")`);
   
-  alert(`🎉 Success! +${activeTaskPts} Pts added to your Oasis Score.`);
+  alert(`Action saved. +${activeTaskPts} points recorded.`);
   closeAIModal();
   renderTasksPage();
 }
@@ -1006,7 +1006,7 @@ function renderLeaderboard() {
       </div>
       <div class="user-score-info">
         <span class="score-num">${user.score} pts</span>
-        <span class="streak-count">🔥 ${user.streak}d streak</span>
+        <span class="streak-count">${user.streak}d streak</span>
       </div>
     </div>
   `).join("");
@@ -1026,7 +1026,7 @@ function renderAccountPage() {
   if (historyListEl) {
     const history = JSON.parse(localStorage.getItem(state.historyKey) || "[]");
     if (history.length === 0) {
-      historyListEl.innerHTML = `<li class="history-item empty" style="color: #666; font-size: 0.9rem;">No logged tasks yet. Head over to Log Actions to earn points!</li>`;
+      historyListEl.innerHTML = `<li class="history-item empty" style="color: #666; font-size: 0.9rem;">No recorded activity yet. Complete a task on the Log Actions page to record activity.</li>`;
     } else {
       historyListEl.innerHTML = history.slice().reverse().map(item => `
         <li class="history-item" style="display: flex; justify-content: space-between; align-items: center; padding: 0.75rem 1rem; background: #f8faf9; border-radius: 8px; border: 1px solid #e8f0ea;">
@@ -1153,6 +1153,6 @@ function confirmDeleteAccount() {
   localStorage.removeItem(`orniflora_history_${currentUser}`);
 
   sessionStorage.removeItem("current_logged_user");
-  alert("Your account has been permanently deleted.");
+  alert("Your account has been deleted.");
   window.location.href = "auth.html";
 }

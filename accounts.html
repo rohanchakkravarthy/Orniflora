@@ -17,7 +17,7 @@
   <!-- Navigation Bar -->
   <header class="navbar">
     <div class="logo">
-      <h1>🌱 Orniflora</h1>
+      <h1>Orniflora</h1>
     </div>
     <nav>
       <a href="dashboard.html">Dashboard</a>
@@ -27,12 +27,11 @@
       <!-- Profile Menu -->
       <div class="profile-menu-container" style="position: relative; display: inline-block;">
         <button onclick="toggleProfileMenu(event)" class="profile-btn">
-          👤 <span id="nav-username">User</span> ▾
+          <span id="nav-username">User</span> ▾
         </button>
         <div id="profile-dropdown" class="profile-dropdown">
           <a href="accounts.html" class="active">Your Account</a>
           
-          <!-- Divider Line -->
           <hr style="border: none; border-top: 1px solid #e0e8e2; margin: 0.3rem 0;">
           
           <button onclick="logoutApp()" class="dropdown-logout-btn">Log Out</button>
@@ -47,15 +46,15 @@
     <!-- Hero Banner -->
     <section class="welcome-banner hero-card">
       <div class="welcome-text">
-        <span class="location-chip">📍 <span id="user-location-label">Wake County</span></span>
-        <h2>Account Settings & Profile</h2>
-        <p>Manage your regional profile details, review earned impact score, and control device account security.</p>
+        <span class="location-chip"><span id="user-location-label">Wake County</span></span>
+        <h2>Account Profile</h2>
+        <p>Review regional location settings, manage logged activity, and update account preferences.</p>
       </div>
     </section>
 
     <!-- Account Details Card -->
     <section class="stats-card" style="background: white; border-radius: 12px; padding: 2rem; border: 1px solid #e0e8e2; box-shadow: 0 2px 8px rgba(0,0,0,0.04); margin-bottom: 2rem;">
-      <h3 style="color: #1b4332; margin-bottom: 1.25rem; font-size: 1.4rem; font-weight: 800;">Account Profile Details</h3>
+      <h3 style="color: #1b4332; margin-bottom: 1.25rem; font-size: 1.4rem; font-weight: 800;">Profile Details</h3>
       
       <div id="account-details" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.25rem; font-size: 0.95rem; color: #333;">
         <div style="background: #f8faf9; padding: 1rem; border-radius: 8px; border: 1px solid #e8f0ea;">
@@ -64,7 +63,7 @@
         </div>
 
         <div style="background: #f8faf9; padding: 1rem; border-radius: 8px; border: 1px solid #e8f0ea;">
-          <span style="color: #666; font-size: 0.8rem; text-transform: uppercase; font-weight: 700;">NC-13 Location</span>
+          <span style="color: #666; font-size: 0.8rem; text-transform: uppercase; font-weight: 700;">Location</span>
           <p style="margin-top: 0.3rem; font-size: 1.1rem; font-weight: 700; color: #1b4332;" id="acc-location">Wake County</p>
         </div>
 
@@ -77,7 +76,7 @@
 
     <!-- Activity History Card -->
     <section class="stats-card" style="background: white; border-radius: 12px; padding: 2rem; border: 1px solid #e0e8e2; box-shadow: 0 2px 8px rgba(0,0,0,0.04); margin-bottom: 2rem;">
-      <h3 style="color: #1b4332; margin-bottom: 1rem; font-size: 1.35rem; font-weight: 800;">Recent Conservation Activity</h3>
+      <h3 style="color: #1b4332; margin-bottom: 1rem; font-size: 1.35rem; font-weight: 800;">Recent Field Activity</h3>
       <ul id="account-history-list" style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0.75rem;">
         <li class="history-item empty" style="color: #666; font-size: 0.9rem;">Loading recorded activity history...</li>
       </ul>
@@ -86,10 +85,10 @@
     <!-- Danger Zone Card -->
     <section class="stats-card" style="background: #fff5f5; border-radius: 12px; padding: 1.8rem; border: 1px solid #ffccd5; box-shadow: 0 2px 8px rgba(217, 4, 41, 0.05);">
       <h3 style="color: #d90429; margin-bottom: 0.5rem; font-size: 1.25rem; font-weight: 800;">Danger Zone</h3>
-      <p style="color: #555; font-size: 0.9rem; margin-bottom: 1.25rem;">Permanently erase your user profile, saved points, and streak progress from this device.</p>
+      <p style="color: #555; font-size: 0.9rem; margin-bottom: 1.25rem;">Permanently remove your user profile and saved activity log from this browser.</p>
       
-      <button type="button" onclick="openDeleteAccountModal()" style="background-color: #d90429; color: white; border: none; padding: 0.7rem 1.3rem; font-weight: 700; border-radius: 8px; cursor: pointer; font-size: 0.9rem; transition: background 0.2s ease; box-shadow: 0 3px 8px rgba(217, 4, 41, 0.2);">
-        🗑️ Delete Account
+      <button type="button" onclick="openDeleteAccountModal()" style="background-color: #d90429; color: white; border: none; padding: 0.7rem 1.3rem; font-weight: 700; border-radius: 8px; cursor: pointer; font-size: 0.9rem; transition: background 0.2s ease;">
+        Delete Account
       </button>
     </section>
 
@@ -99,14 +98,12 @@
   <div id="delete-account-modal" class="modal-overlay" style="display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0,0,0,0.6); backdrop-filter: blur(4px); justify-content: center; align-items: center; z-index: 2000;">
     <div class="modal-content" style="background: white; max-width: 440px; width: 90%; padding: 2rem; border-radius: 14px; text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.25); border: 2px solid #ffccd5;">
       
-      <div style="font-size: 2.8rem; margin-bottom: 0.4rem;">⚠️</div>
-      
       <h3 style="color: #d90429; font-size: 1.35rem; font-weight: 800; margin-bottom: 0.75rem;">
-        Are you absolutely sure?
+        Confirm Account Deletion
       </h3>
       
       <p style="color: #4a5568; font-size: 0.95rem; margin-bottom: 1.5rem; line-height: 1.5;">
-        This action <strong>cannot be undone</strong>. Deleting your account will permanently remove your username, saved streak, earned points, and district refuge progress from this device.
+        This action cannot be undone. Deleting your account will remove your username, saved streak, earned points, and local logs from this device.
       </p>
 
       <div style="display: flex; gap: 0.75rem; justify-content: center;">
@@ -114,8 +111,8 @@
           Cancel
         </button>
 
-        <button type="button" onclick="confirmDeleteAccount()" style="flex: 1; background-color: #d90429; color: white; border: none; padding: 0.8rem; border-radius: 8px; font-weight: 700; cursor: pointer; font-size: 0.95rem; box-shadow: 0 4px 10px rgba(217, 4, 41, 0.3);">
-          Yes, Delete
+        <button type="button" onclick="confirmDeleteAccount()" style="flex: 1; background-color: #d90429; color: white; border: none; padding: 0.8rem; border-radius: 8px; font-weight: 700; cursor: pointer; font-size: 0.95rem;">
+          Delete Account
         </button>
       </div>
 
