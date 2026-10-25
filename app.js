@@ -919,8 +919,8 @@ function triggerTaskVerification(taskId, taskTitle, pts) {
   if (imgPrev) imgPrev.style.display = "none";
   const photoInput = document.getElementById("photo-input");
   if (photoInput) photoInput.value = "";
-  const verifyBtn = document.getElementById("verify-btn");
-  if (verifyBtn) verifyBtn.disabled = true;
+  const fileNameDisplay = document.getElementById("file-name-display");
+  if (fileNameDisplay) fileNameDisplay.textContent = "No file chosen";
 
   const modal = document.getElementById("ai-modal");
   if (modal) modal.style.display = "flex";
@@ -929,6 +929,9 @@ function triggerTaskVerification(taskId, taskTitle, pts) {
 function previewUserImage(event) {
   const file = event.target.files[0];
   if (file) {
+    const fileNameDisplay = document.getElementById("file-name-display");
+    if (fileNameDisplay) fileNameDisplay.textContent = file.name;
+
     const reader = new FileReader();
     reader.onload = function(e) {
       uploadedPhotoData = e.target.result;
@@ -937,8 +940,6 @@ function previewUserImage(event) {
         img.src = uploadedPhotoData;
         img.style.display = "block";
       }
-      const verifyBtn = document.getElementById("verify-btn");
-      if (verifyBtn) verifyBtn.disabled = false;
     };
     reader.readAsDataURL(file);
   }
@@ -950,6 +951,11 @@ function submitTaskProof() {
 
   if (!noteText) {
     alert("Please enter a short field note describing your activity.");
+    return;
+  }
+
+  if (!uploadedPhotoData) {
+    alert("Please upload a photo proof to earn points for this action.");
     return;
   }
 
