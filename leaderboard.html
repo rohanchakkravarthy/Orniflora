@@ -3,7 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Orniflora - Community Leaderboard</title>
+  <title>Orniflora - Leaderboard</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
   <link rel="stylesheet" href="style.css">
   <script src="app.js" defer></script>
 </head>
@@ -12,20 +17,23 @@
   <!-- Navigation Bar -->
   <header class="navbar">
     <div class="logo">
-      <h1>🌱 Orniflora</h1>
+      <h1>Orniflora</h1>
     </div>
     <nav>
       <a href="dashboard.html">Dashboard</a>
       <a href="actions.html">Log Actions</a>
       <a href="leaderboard.html" class="active">Leaderboard</a>
       
-      <!-- Interactive Profile Dropdown -->
-      <div class="profile-menu-container">
+      <!-- Profile Menu -->
+      <div class="profile-menu-container" style="position: relative; display: inline-block;">
         <button onclick="toggleProfileMenu(event)" class="profile-btn">
-          👤 <span id="nav-username">User</span> ▾
+          <span id="nav-username">User</span> ▾
         </button>
         <div id="profile-dropdown" class="profile-dropdown">
           <a href="accounts.html">Your Account</a>
+          
+          <hr style="border: none; border-top: 1px solid #e0e8e2; margin: 0.3rem 0;">
+          
           <button onclick="logoutApp()" class="dropdown-logout-btn">Log Out</button>
         </div>
       </div>
@@ -35,15 +43,25 @@
   <!-- Main Container -->
   <main class="container">
     
-    <section class="welcome-banner">
-      <h2>🏆 Community Standings</h2>
-      <p>See how your Oasis Impact Score stacks up against other local naturalists in North Carolina.</p>
+    <!-- Hero Banner -->
+    <section class="welcome-banner hero-card">
+      <div class="welcome-text">
+        <span class="location-chip"><span id="user-location-label">Wake County</span></span>
+        <h2>Community Standings</h2>
+        <p>Compare local habitat activity scores among participating naturalists across the region.</p>
+      </div>
     </section>
 
-    <!-- Leaderboard Container -->
-    <section class="activity-section">
-      <h3>Top Biodiversity Contributors</h3>
-      <div id="leaderboard-list" class="leaderboard-container"></div>
+    <!-- Leaderboard Card Section -->
+    <section class="stats-card" style="background: white; border-radius: 12px; padding: 2rem; border: 1px solid #e0e8e2; box-shadow: 0 2px 8px rgba(0,0,0,0.04);">
+      <div class="section-title-group" style="margin-bottom: 1.5rem;">
+        <h3 style="color: #1b4332; margin-bottom: 0.5rem; font-size: 1.35rem; font-weight: 800;">Regional Leaderboard</h3>
+        <p style="color: #666; font-size: 0.9rem;">Rankings based on verified conservation actions and daily activity streaks.</p>
+      </div>
+      
+      <div id="leaderboard-list" class="leaderboard-grid">
+        <!-- Dynamically populated by app.js -->
+      </div>
     </section>
 
   </main>
