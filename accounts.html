@@ -21,7 +21,7 @@
     </div>
     <nav>
       <a href="dashboard.html">Dashboard</a>
-      <a href="actions.html">Log Actions</a>
+      <a href="actions.html">Activities</a>
       <a href="leaderboard.html">Leaderboard</a>
       
       <!-- Profile Menu -->
@@ -48,7 +48,7 @@
       <div class="welcome-text">
         <span class="location-chip"><span id="user-location-label">Wake County</span></span>
         <h2>Account Profile</h2>
-        <p>Review regional location settings, manage logged activity, and update account preferences.</p>
+        <p>Review regional location settings, manage recorded activity, and update account preferences.</p>
       </div>
     </section>
 
@@ -76,7 +76,7 @@
 
     <!-- Activity History Card -->
     <section class="stats-card" style="background: white; border-radius: 12px; padding: 2rem; border: 1px solid #e0e8e2; box-shadow: 0 2px 8px rgba(0,0,0,0.04); margin-bottom: 2rem;">
-      <h3 style="color: #1b4332; margin-bottom: 1rem; font-size: 1.35rem; font-weight: 800;">Recent Activities</h3>
+      <h3 style="color: #1b4332; margin-bottom: 1rem; font-size: 1.35rem; font-weight: 800;">Recent Field Activity</h3>
       <ul id="account-history-list" style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0.75rem;">
         <li class="history-item empty" style="color: #666; font-size: 0.9rem;">Loading recorded activity history...</li>
       </ul>
@@ -84,8 +84,8 @@
 
     <!-- Danger Zone Card -->
     <section class="stats-card" style="background: #fff5f5; border-radius: 12px; padding: 1.8rem; border: 1px solid #ffccd5; box-shadow: 0 2px 8px rgba(217, 4, 41, 0.05);">
-      <h3 style="color: #d90429; margin-bottom: 0.5rem; font-size: 1.25rem; font-weight: 800;">Danger Zone!</h3>
-      <p style="color: #555; font-size: 0.9rem; margin-bottom: 1.25rem;">This will permanently remove your account and saved activity log.</p>
+      <h3 style="color: #d90429; margin-bottom: 0.5rem; font-size: 1.25rem; font-weight: 800;">Danger Zone</h3>
+      <p style="color: #555; font-size: 0.9rem; margin-bottom: 1.25rem;">Permanently remove your user profile and saved activity log from this browser.</p>
       
       <button type="button" onclick="openDeleteAccountModal()" style="background-color: #d90429; color: white; border: none; padding: 0.7rem 1.3rem; font-weight: 700; border-radius: 8px; cursor: pointer; font-size: 0.9rem; transition: background 0.2s ease;">
         Delete Account
