@@ -716,12 +716,6 @@ function renderDynamicSpotlight() {
   const titleEl = document.getElementById("spotlight-title");
   const descEl = document.getElementById("spotlight-desc");
   if (!titleEl || !descEl) return;
-
-  const state = getUserState();
-  const { town, county } = getUserLocationInfo(state.loggedUser);
-
-  titleEl.textContent = `Habitat Overview: ${town} (${county} County)`;
-  descEl.textContent = `Suburban development across ${county} County affects local bird populations. Adding native plants and reliable water sources in ${town} helps connect local wildlife spaces.`;
 }
 
 function renderBioCorridorIndex() {
