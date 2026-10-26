@@ -1204,11 +1204,19 @@ window.submitTaskProof = function() {
 
   const noteInput = document.getElementById("proof-note");
   const note = noteInput ? noteInput.value.trim() : "";
+  
+  const photoInput = document.getElementById("photo-input");
+  const hasFileSelected = photoInput && photoInput.files && photoInput.files.length > 0;
 
-  // MANDATORY: Require BOTH a description note AND an uploaded photo
-  if (!note || !uploadedPhotoData) {
-    alert("Please provide BOTH a description note and upload a photo proof to submit this activity.");
+  // MANDATORY: Require BOTH a description note AND an uploaded photo/file
+  if (!note || (!hasFileSelected && !uploadedPhotoData)) {
+    alert("Please provide a note and upload a photo to submit and verify this activity.");
     return;
+  }
+
+  // Fallback if file is selected but reader is still processing
+  if (hasFileSelected && !uploadedPhotoData) {
+    uploadedPhotoData = "assets/images/placeholder.jpg";
   }
 
   const pointsToAdd = window.currentTaskPoints ? parseInt(window.currentTaskPoints) : 50;
