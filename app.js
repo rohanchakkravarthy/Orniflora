@@ -27,41 +27,6 @@ function getRefugeTierInfo(points) {
   }
 }
 
-// Global Shared Demo Account Sync Seed
-function seedSharedAccounts() {
-  let accounts = JSON.parse(localStorage.getItem("orniflora_accounts") || "{}");
-  let users = JSON.parse(localStorage.getItem("orniflora_users") || "[]");
-
-  const defaultAccounts = {
-    "Rohan": "birdwatching123",
-    "EcoTracker99": "pass123",
-    "NC_BirdWatcher": "pass123",
-    "StudentJudge": "appchallenge2026",
-    "ornitracker32": "pass123"
-  };
-
-  let updated = false;
-  for (const [user, pass] of Object.entries(defaultAccounts)) {
-    if (!accounts[user]) {
-      accounts[user] = { password: pass };
-      if (!users.includes(user)) users.push(user);
-      localStorage.setItem(`orniflora_pass_${user}`, pass);
-      localStorage.setItem(`orniflora_location_${user}`, user === "ornitracker32" ? "Stovall, Granville Co." : "Holly Springs, Wake Co.");
-      if (user === "ornitracker32") {
-        localStorage.setItem(`orniflora_created_${user}`, "Oct 19, 2026");
-      }
-      updated = true;
-    }
-  }
-
-  if (updated) {
-    localStorage.setItem("orniflora_accounts", JSON.stringify(accounts));
-    localStorage.setItem("orniflora_users", JSON.stringify(users));
-  }
-}
-
-seedSharedAccounts();
-
 // Comprehensive Ecosystem Database
 const ECOSYSTEM_MATCHMAKER = {
   "Eastern Bluebird": {
@@ -545,50 +510,50 @@ const TOWN_SPECIES_DATA = {
 
 // Real-World Municipal & Ecological Dataset
 const TOWN_REAL_DATA = {
-  // Wake County
-  "Raleigh": { popDensity: 3150, imperviousPct: 58, canopyPct: 53, migIndex: 88 },
-  "Cary": { popDensity: 2600, imperviousPct: 46, canopyPct: 58, migIndex: 85 },
-  "Apex": { popDensity: 1950, imperviousPct: 42, canopyPct: 55, migIndex: 83 },
-  "Holly Springs": { popDensity: 1620, imperviousPct: 38, canopyPct: 56, migIndex: 81 },
-  "Fuquay-Varina": { popDensity: 1450, imperviousPct: 35, canopyPct: 54, migIndex: 79 },
-  "Garner": { popDensity: 1780, imperviousPct: 41, canopyPct: 50, migIndex: 82 },
-  "Knightdale": { popDensity: 1320, imperviousPct: 36, canopyPct: 57, migIndex: 79 },
-  "Morrisville": { popDensity: 2850, imperviousPct: 52, canopyPct: 48, migIndex: 84 },
-  "Wake Forest": { popDensity: 1890, imperviousPct: 40, canopyPct: 55, migIndex: 83 },
-  "Zebulon": { popDensity: 650, imperviousPct: 22, canopyPct: 62, migIndex: 74 },
+  // Caswell County
+  "Milton": { popDensity: 150, imperviousPct: 6, canopyPct: 80, migIndex: 64 },
+  "Yanceyville": { popDensity: 240, imperviousPct: 10, canopyPct: 77, migIndex: 67 },
+
+  // Franklin County
+  "Bunn": { popDensity: 210, imperviousPct: 9, canopyPct: 76, migIndex: 68 },
+  "Franklinton": { popDensity: 920, imperviousPct: 29, canopyPct: 64, migIndex: 75 },
+  "Louisburg": { popDensity: 780, imperviousPct: 25, canopyPct: 66, migIndex: 72 },
 
   // Granville County
-  "Stovall": { popDensity: 180, imperviousPct: 8, canopyPct: 78, migIndex: 65 },
-  "Oxford": { popDensity: 950, imperviousPct: 28, canopyPct: 65, migIndex: 71 },
   "Butner": { popDensity: 820, imperviousPct: 30, canopyPct: 63, migIndex: 73 },
   "Creedmoor": { popDensity: 1100, imperviousPct: 34, canopyPct: 60, migIndex: 75 },
-
-  // Johnston County
-  "Clayton": { popDensity: 1540, imperviousPct: 44, canopyPct: 52, migIndex: 82 },
-  "Smithfield": { popDensity: 1210, imperviousPct: 37, canopyPct: 55, migIndex: 76 },
-  "Selma": { popDensity: 980, imperviousPct: 31, canopyPct: 58, migIndex: 74 },
-  "Benson": { popDensity: 740, imperviousPct: 24, canopyPct: 61, migIndex: 72 },
+  "Oxford": { popDensity: 950, imperviousPct: 28, canopyPct: 65, migIndex: 71 },
+  "Stovall": { popDensity: 180, imperviousPct: 8, canopyPct: 78, migIndex: 65 },
 
   // Harnett County
-  "Lillington": { popDensity: 690, imperviousPct: 22, canopyPct: 63, migIndex: 74 },
-  "Dunn": { popDensity: 1350, imperviousPct: 38, canopyPct: 51, migIndex: 75 },
   "Angier": { popDensity: 1120, imperviousPct: 33, canopyPct: 56, migIndex: 77 },
+  "Dunn": { popDensity: 1350, imperviousPct: 38, canopyPct: 51, migIndex: 75 },
+  "Lillington": { popDensity: 690, imperviousPct: 22, canopyPct: 63, migIndex: 74 },
+
+  // Johnston County
+  "Benson": { popDensity: 740, imperviousPct: 24, canopyPct: 61, migIndex: 72 },
+  "Clayton": { popDensity: 1540, imperviousPct: 44, canopyPct: 52, migIndex: 82 },
+  "Selma": { popDensity: 980, imperviousPct: 31, canopyPct: 58, migIndex: 74 },
+  "Smithfield": { popDensity: 1210, imperviousPct: 37, canopyPct: 55, migIndex: 76 },
 
   // Lee County
-  "Sanford": { popDensity: 1420, imperviousPct: 39, canopyPct: 57, migIndex: 78 },
   "Broadway": { popDensity: 310, imperviousPct: 12, canopyPct: 72, migIndex: 69 },
+  "Sanford": { popDensity: 1420, imperviousPct: 39, canopyPct: 57, migIndex: 78 },
 
   // Person County
   "Roxboro": { popDensity: 890, imperviousPct: 26, canopyPct: 68, migIndex: 70 },
 
-  // Franklin County
-  "Louisburg": { popDensity: 780, imperviousPct: 25, canopyPct: 66, migIndex: 72 },
-  "Franklinton": { popDensity: 920, imperviousPct: 29, canopyPct: 64, migIndex: 75 },
-  "Bunn": { popDensity: 210, imperviousPct: 9, canopyPct: 76, migIndex: 68 },
-
-  // Caswell County
-  "Yanceyville": { popDensity: 240, imperviousPct: 10, canopyPct: 77, migIndex: 67 },
-  "Milton": { popDensity: 150, imperviousPct: 6, canopyPct: 80, migIndex: 64 }
+  // Wake County
+  "Apex": { popDensity: 1950, imperviousPct: 42, canopyPct: 55, migIndex: 83 },
+  "Cary": { popDensity: 2600, imperviousPct: 46, canopyPct: 58, migIndex: 85 },
+  "Fuquay-Varina": { popDensity: 1450, imperviousPct: 35, canopyPct: 54, migIndex: 79 },
+  "Garner": { popDensity: 1780, imperviousPct: 41, canopyPct: 50, migIndex: 82 },
+  "Holly Springs": { popDensity: 1620, imperviousPct: 38, canopyPct: 56, migIndex: 81 },
+  "Knightdale": { popDensity: 1320, imperviousPct: 36, canopyPct: 57, migIndex: 79 },
+  "Morrisville": { popDensity: 2850, imperviousPct: 52, canopyPct: 48, migIndex: 84 },
+  "Raleigh": { popDensity: 3150, imperviousPct: 58, canopyPct: 53, migIndex: 88 },
+  "Wake Forest": { popDensity: 1890, imperviousPct: 40, canopyPct: 55, migIndex: 83 },
+  "Zebulon": { popDensity: 650, imperviousPct: 22, canopyPct: 62, migIndex: 74 },
 };
 
 const AVAILABLE_TASKS = [
