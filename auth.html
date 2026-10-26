@@ -4,24 +4,22 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Orniflora - Access Portal</title>
-  
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  
   <link rel="stylesheet" href="style.css">
   <script src="app.js" defer></script>
 </head>
 <body data-page="auth" style="background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%); min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 1.5rem;">
 
   <main class="auth-card-container" style="background: white; border-radius: 16px; width: 100%; max-width: 440px; padding: 2.25rem; box-shadow: 0 12px 32px rgba(27, 67, 50, 0.12); border: 1px solid #d8f3dc;">
-    
+
     <div style="text-align: center; margin-bottom: 1.8rem;">
       <h1 style="color: #1b4332; font-size: 2.1rem; font-weight: 800; margin-bottom: 0.3rem;">Orniflora</h1>
       <p style="color: #40916c; font-weight: 600; font-size: 0.95rem;">Habitat & Biodiversity Tracker</p>
     </div>
 
-    <!-- Auth Toggle Tabs -->
+    <!-- Auth toggle tabs -->
     <div style="display: flex; background: #f0f7f4; padding: 0.3rem; border-radius: 10px; margin-bottom: 1.5rem;">
       <button type="button" id="tab-login-btn" onclick="switchAuthTab('login')" style="flex: 1; padding: 0.65rem; border: none; border-radius: 8px; font-weight: 700; font-size: 0.9rem; cursor: pointer; background: white; color: #1b4332; box-shadow: 0 2px 6px rgba(0,0,0,0.06);">
         Log In
@@ -31,7 +29,7 @@
       </button>
     </div>
 
-    <!-- Login Form Section -->
+    <!-- Login form section -->
     <form id="login-form" onsubmit="handleLoginSubmit(event)">
       <div style="margin-bottom: 1rem;">
         <label for="login-username" style="display: block; font-size: 0.85rem; font-weight: 700; color: #2d6a4f; margin-bottom: 0.4rem;">Username</label>
@@ -48,7 +46,7 @@
       </button>
     </form>
 
-    <!-- Sign Up Form Section -->
+    <!-- Sign Up form section -->
     <form id="signup-form" onsubmit="handleSignupSubmit(event)" style="display: none;">
       <div style="margin-bottom: 1rem;">
         <label for="signup-username" style="display: block; font-size: 0.85rem; font-weight: 700; color: #2d6a4f; margin-bottom: 0.4rem;">Username</label>
@@ -156,3 +154,4 @@
   <script defer src="/_vercel/insights/script.js"></script>
 </body>
 </html>
+

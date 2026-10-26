@@ -1,33 +1,32 @@
-// Function to safely check authentication status
+//   check if user logged in
 function checkAuthGuard() {
-  const loggedUser = sessionStorage.getItem("current_logged_user");
-  const currentPage = document.body ? document.body.dataset.page : "";
-
-  if (!loggedUser && currentPage !== "auth" && !window.location.pathname.endsWith("auth.html")) {
+  const currUser = sessionStorage.getItem("current_logged_user");
+  const pg = document.body ? document.body.dataset.page : "";
+  if (!currUser && pg !== "auth" && !window.location.pathname.endsWith("auth.html")) {
     window.location.href = "auth.html";
   }
 }
 
-// 7-Tier Level Progression Calculator
-function getRefugeTierInfo(points) {
-  if (points >= 2500) {
+// figure out refuge tier based on score
+function getRefugeTierInfo(pts) {
+  if (pts >= 2500) {
     return { level: 7, title: "Veteran Habitat", badgeClass: "tier-7" };
-  } else if (points >= 1000) {
+  } else if (pts >= 1000) {
     return { level: 6, title: "Certified Sanctuary", badgeClass: "tier-6" };
-  } else if (points >= 500) {
+  } else if (pts >= 500) {
     return { level: 5, title: "Ginormous Garden", badgeClass: "tier-5" };
-  } else if (points >= 750) {
+  } else if (pts >= 750) {
     return { level: 4, title: "Microhabitat", badgeClass: "tier-4" };
-  } else if (points >= 300) {
+  } else if (pts >= 300) {
     return { level: 3, title: "Beginner Garden", badgeClass: "tier-3" };
-  } else if (points >= 100) {
+  } else if (pts >= 100) {
     return { level: 2, title: "Seedling Sanctuary", badgeClass: "tier-2" };
   } else {
     return { level: 1, title: "Baby Habitat", badgeClass: "tier-1" };
   }
 }
 
-// Comprehensive Ecosystem Database
+//  ecosystem matchmaking database
 const ECOSYSTEM_MATCHMAKER = {
   "Eastern Bluebird": {
     type: "bird",
@@ -361,6 +360,8 @@ const ECOSYSTEM_MATCHMAKER = {
   }
 };
 
+
+// county wildlife data
 const TOWN_SPECIES_DATA = {
   "Caswell": {
     birds: [
@@ -508,42 +509,28 @@ const TOWN_SPECIES_DATA = {
   }
 };
 
-// Real-World Municipal & Ecological Dataset
+
+// town stats
 const TOWN_REAL_DATA = {
-  // Caswell County
   "Milton": { popDensity: 150, imperviousPct: 6, canopyPct: 80, migIndex: 64 },
   "Yanceyville": { popDensity: 240, imperviousPct: 10, canopyPct: 77, migIndex: 67 },
-
-  // Franklin County
   "Bunn": { popDensity: 210, imperviousPct: 9, canopyPct: 76, migIndex: 68 },
   "Franklinton": { popDensity: 920, imperviousPct: 29, canopyPct: 64, migIndex: 75 },
   "Louisburg": { popDensity: 780, imperviousPct: 25, canopyPct: 66, migIndex: 72 },
-
-  // Granville County
   "Butner": { popDensity: 820, imperviousPct: 30, canopyPct: 63, migIndex: 73 },
   "Creedmoor": { popDensity: 1100, imperviousPct: 34, canopyPct: 60, migIndex: 75 },
   "Oxford": { popDensity: 950, imperviousPct: 28, canopyPct: 65, migIndex: 71 },
   "Stovall": { popDensity: 180, imperviousPct: 8, canopyPct: 78, migIndex: 65 },
-
-  // Harnett County
   "Angier": { popDensity: 1120, imperviousPct: 33, canopyPct: 56, migIndex: 77 },
   "Dunn": { popDensity: 1350, imperviousPct: 38, canopyPct: 51, migIndex: 75 },
   "Lillington": { popDensity: 690, imperviousPct: 22, canopyPct: 63, migIndex: 74 },
-
-  // Johnston County
   "Benson": { popDensity: 740, imperviousPct: 24, canopyPct: 61, migIndex: 72 },
   "Clayton": { popDensity: 1540, imperviousPct: 44, canopyPct: 52, migIndex: 82 },
   "Selma": { popDensity: 980, imperviousPct: 31, canopyPct: 58, migIndex: 74 },
   "Smithfield": { popDensity: 1210, imperviousPct: 37, canopyPct: 55, migIndex: 76 },
-
-  // Lee County
   "Broadway": { popDensity: 310, imperviousPct: 12, canopyPct: 72, migIndex: 69 },
   "Sanford": { popDensity: 1420, imperviousPct: 39, canopyPct: 57, migIndex: 78 },
-
-  // Person County
   "Roxboro": { popDensity: 890, imperviousPct: 26, canopyPct: 68, migIndex: 70 },
-
-  // Wake County
   "Apex": { popDensity: 1950, imperviousPct: 42, canopyPct: 55, migIndex: 83 },
   "Cary": { popDensity: 2600, imperviousPct: 46, canopyPct: 58, migIndex: 85 },
   "Fuquay-Varina": { popDensity: 1450, imperviousPct: 35, canopyPct: 54, migIndex: 79 },
@@ -553,9 +540,10 @@ const TOWN_REAL_DATA = {
   "Morrisville": { popDensity: 2850, imperviousPct: 52, canopyPct: 48, migIndex: 84 },
   "Raleigh": { popDensity: 3150, imperviousPct: 58, canopyPct: 53, migIndex: 88 },
   "Wake Forest": { popDensity: 1890, imperviousPct: 40, canopyPct: 55, migIndex: 83 },
-  "Zebulon": { popDensity: 650, imperviousPct: 22, canopyPct: 62, migIndex: 74 },
+  "Zebulon": { popDensity: 650, imperviousPct: 22, canopyPct: 62, migIndex: 74 }
 };
 
+// tasks data
 const AVAILABLE_TASKS = [
   { id: "birdbath", title: "Clean or Refill a Birdbath", pts: 25, desc: "Provide clean water for resident songbirds." },
   { id: "feeder", title: "Maintain a Bird Feeder", pts: 30, desc: "Fill feeders with native seed or suet." },
@@ -564,311 +552,321 @@ const AVAILABLE_TASKS = [
   { id: "remove_invasive", title: "Remove Invasive Vegetation", pts: 40, desc: "Clear non-native weeds to allow native plants to grow." }
 ];
 
+//   grab user stuff
 function getUserState() {
-  const loggedUser = sessionStorage.getItem("current_logged_user") || "";
+  const usr = sessionStorage.getItem("current_logged_user") || "";
   return {
-    loggedUser,
-    points: loggedUser ? parseInt(localStorage.getItem(`orniflora_points_${loggedUser}`) || "0") : 0,
-    streak: loggedUser ? parseInt(localStorage.getItem(`orniflora_streak_${loggedUser}`) || "0") : 0,
-    lastLoggedDate: loggedUser ? localStorage.getItem(`orniflora_lastDate_${loggedUser}`) || "" : "",
-    locationKey: `orniflora_location_${loggedUser}`,
-    pointsKey: `orniflora_points_${loggedUser}`,
-    streakKey: `orniflora_streak_${loggedUser}`,
-    dateKey: `orniflora_lastDate_${loggedUser}`,
-    historyKey: `orniflora_history_${loggedUser}`,
-    createdKey: `orniflora_created_${loggedUser}`
+    loggedUser: usr,
+    points: usr ? parseInt(localStorage.getItem(`orniflora_points_${usr}`) || "0") : 0,
+    streak: usr ? parseInt(localStorage.getItem(`orniflora_streak_${usr}`) || "0") : 0,
+    lastLoggedDate: usr ? localStorage.getItem(`orniflora_lastDate_${usr}`) || "" : "",
+    locationKey: `orniflora_location_${usr}`,
+    pointsKey: `orniflora_points_${usr}`,
+    streakKey: `orniflora_streak_${usr}`,
+    dateKey: `orniflora_lastDate_${usr}`,
+    historyKey: `orniflora_history_${usr}`,
+    createdKey: `orniflora_created_${usr}`
   };
 }
 
+// get town & county
 function getUserLocationInfo(username) {
-  const savedLocation = localStorage.getItem(`orniflora_location_${username}`) || "Holly Springs, Wake Co.";
+  const locStr = localStorage.getItem(`orniflora_location_${username}`) || "Holly Springs, Wake Co.";
   let town = "Holly Springs";
   let county = "Wake";
-
-  if (savedLocation.includes(",")) {
-    const parts = savedLocation.split(",");
-    town = parts[0].trim();
-    if (parts[1]) {
-      county = parts[1].replace("Co.", "").replace("County", "").trim();
+  if (locStr.includes(",")) {
+    const p = locStr.split(",");
+    town = p[0].trim();
+    if (p[1]) {
+      county = p[1].replace("Co.", "").replace("County", "").trim();
     }
   }
-
   return { town, county };
 }
 
+// render birds and plants on dashboard
 function renderTownSpecies() {
-  const state = getUserState();
-  const { town, county } = getUserLocationInfo(state.loggedUser);
-  const speciesData = TOWN_SPECIES_DATA[county] || TOWN_SPECIES_DATA["Wake"];
+  const st = getUserState();
+  const { town, county } = getUserLocationInfo(st.loggedUser);
+  const info = TOWN_SPECIES_DATA[county] || TOWN_SPECIES_DATA["Wake"];
+  
+  const bLbl = document.getElementById("town-birds-label");
+  const pLbl = document.getElementById("town-plants-label");
+  if (bLbl) bLbl.textContent = `${town} (${county} Co.)`;
+  if (pLbl) pLbl.textContent = `${town} (${county} Co.)`;
 
-  const townBirdsLabel = document.getElementById("town-birds-label");
-  const townPlantsLabel = document.getElementById("town-plants-label");
-  if (townBirdsLabel) townBirdsLabel.textContent = `${town} (${county} Co.)`;
-  if (townPlantsLabel) townPlantsLabel.textContent = `${town} (${county} Co.)`;
+  const birdsDiv = document.getElementById("regional-birds-list");
+  const plantsDiv = document.getElementById("regional-plants-list");
 
-  const birdsContainer = document.getElementById("regional-birds-list");
-  const plantsContainer = document.getElementById("regional-plants-list");
-
-  if (birdsContainer) {
-    birdsContainer.innerHTML = speciesData.birds.map(bird => `
-      <div class="species-card" onclick="inspectSpeciesInteraction('${bird.name.replace(/'/g, "\\'")}')">
-        <img src="${bird.img}" alt="${bird.name}" onerror="this.src='assets/images/birds/eastern-bluebird.jpg';">
-        <p>${bird.name}</p>
+  if (birdsDiv) {
+    birdsDiv.innerHTML = info.birds.map(b => `
+      <div class="species-card" onclick="inspectSpeciesInteraction('${b.name.replace(/'/g, "\\'")}')">
+        <img src="${b.img}" alt="${b.name}" onerror="this.src='assets/images/birds/eastern-bluebird.jpg';">
+        <p>${b.name}</p>
       </div>
     `).join("");
   }
 
-  if (plantsContainer) {
-    plantsContainer.innerHTML = speciesData.plants.map(plant => `
-      <div class="species-card" onclick="inspectSpeciesInteraction('${plant.name.replace(/'/g, "\\'")}')">
-        <img src="${plant.img}" alt="${plant.name}" onerror="this.src='assets/images/plants/purple-coneflower.jpg';">
-        <p>${plant.name}</p>
+  if (plantsDiv) {
+    plantsDiv.innerHTML = info.plants.map(p => `
+      <div class="species-card" onclick="inspectSpeciesInteraction('${p.name.replace(/'/g, "\\'")}')">
+        <img src="${p.img}" alt="${p.name}" onerror="this.src='assets/images/plants/purple-coneflower.jpg';">
+        <p>${p.name}</p>
       </div>
     `).join("");
   }
 }
 
-function inspectSpeciesInteraction(speciesName) {
-  const modal = document.getElementById("ecosystem-modal");
-  const titleEl = document.getElementById("eco-modal-title");
-  const descEl = document.getElementById("eco-modal-desc");
-  const chipEl = document.getElementById("eco-modal-chip");
-  const pairingsHeading = document.getElementById("eco-pairings-heading");
-  const pairingsList = document.getElementById("eco-pairings-list");
-  const tipEl = document.getElementById("eco-modal-tip");
+// popup modal for ecosystem
+function inspectSpeciesInteraction(nm) {
+  const mod = document.getElementById("ecosystem-modal");
+  const t = document.getElementById("eco-modal-title");
+  const d = document.getElementById("eco-modal-desc");
+  const c = document.getElementById("eco-modal-chip");
+  const h = document.getElementById("eco-pairings-heading");
+  const lst = document.getElementById("eco-pairings-list");
+  const tp = document.getElementById("eco-modal-tip");
 
-  const data = ECOSYSTEM_MATCHMAKER[speciesName] || {
+  const dat = ECOSYSTEM_MATCHMAKER[nm] || {
     type: "plant",
-    desc: `${speciesName} plays a role in supporting local species diversity in North Carolina.`,
+    desc: `${nm} plays a role in supporting local species diversity in North Carolina.`,
     pairings: ["Eastern Bluebird", "Northern Cardinal", "Carolina Chickadee"],
     tip: "Plant native species in groups to maximize shelter and food."
   };
 
-  if (titleEl) titleEl.textContent = speciesName;
-  if (descEl) descEl.textContent = data.desc;
+  if (t) t.textContent = nm;
+  if (d) d.textContent = dat.desc;
 
-  if (chipEl) {
-    if (data.type === "bird") {
-      chipEl.textContent = "Native Bird Species";
-      chipEl.className = "modal-category-chip chip-bird";
-      if (pairingsHeading) pairingsHeading.textContent = "Supported Plants";
+  if (c) {
+    if (dat.type === "bird") {
+      c.textContent = "Native Bird Species";
+      c.className = "modal-category-chip chip-bird";
+      if (h) h.textContent = "Supported Plants";
     } else {
-      chipEl.textContent = "Native Plant Species";
-      chipEl.className = "modal-category-chip chip-plant";
-      if (pairingsHeading) pairingsHeading.textContent = "Attracted Birds";
+      c.textContent = "Native Plant Species";
+      c.className = "modal-category-chip chip-plant";
+      if (h) h.textContent = "Attracted Birds";
     }
   }
 
-  if (pairingsList) {
-    pairingsList.innerHTML = data.pairings.map(item => `
+  if (lst) {
+    lst.innerHTML = dat.pairings.map(item => `
       <span class="pairing-chip">${item}</span>
     `).join("");
   }
 
-  if (tipEl) {
-    tipEl.innerHTML = `<strong>Yard Action:</strong> ${data.tip}`;
+  if (tp) {
+    tp.innerHTML = `<strong>Yard Action:</strong> ${dat.tip}`;
   }
 
-  if (modal) modal.style.display = "flex";
+  if (mod) mod.style.display = "flex";
 }
 
 function closeEcoModal() {
-  const modal = document.getElementById("ecosystem-modal");
-  if (modal) modal.style.display = "none";
+  const mod = document.getElementById("ecosystem-modal");
+  if (mod) mod.style.display = "none";
 }
 
 function renderDynamicSpotlight() {
-  const titleEl = document.getElementById("spotlight-title");
-  const descEl = document.getElementById("spotlight-desc");
-  if (!titleEl || !descEl) return;
+  const tBox = document.getElementById("spotlight-title");
+  const dBox = document.getElementById("spotlight-desc");
+  if (!tBox || !dBox) return;
 }
 
+// compute migration & stress score
 function renderBioCorridorIndex() {
-  const titleEl = document.getElementById("flyway-title");
-  const densityEl = document.getElementById("flyway-density");
-  const yardLevelEl = document.getElementById("yard-refuge-level");
-  const stressEl = document.getElementById("corridor-stress");
-  const fillEl = document.getElementById("meter-fill");
-  const topActionEl = document.getElementById("top-recommended-action");
+  const titleBox = document.getElementById("flyway-title");
+  const densityBox = document.getElementById("flyway-density");
+  const yardBox = document.getElementById("yard-refuge-level");
+  const stressBox = document.getElementById("corridor-stress");
+  const fillBar = document.getElementById("meter-fill");
+  const topAct = document.getElementById("top-recommended-action");
 
-  if (!densityEl) return;
+  if (!densityBox) return;
 
-  const state = getUserState();
-  const { town } = getUserLocationInfo(state.loggedUser);
-  const points = state.points;
-  const currentMonth = new Date().getMonth();
+  const st = getUserState();
+  const { town } = getUserLocationInfo(st.loggedUser);
+  const pts = st.points;
+  const m = new Date().getMonth();
 
-  // Fetch real-world municipal parameters or fallback to default
-  const townData = TOWN_REAL_DATA[town] || { popDensity: 1000, imperviousPct: 30, canopyPct: 60, migIndex: 75 };
+  const tInfo = TOWN_REAL_DATA[town] || { popDensity: 1000, imperviousPct: 30, canopyPct: 60, migIndex: 75 };
 
-  // 1. Calculate Dynamic Stress Score
-  const stressScore = (0.6 * townData.imperviousPct) + (0.4 * Math.min(100, townData.popDensity / 40));
-  let lossStressLabel = "Moderate Need";
-  if (stressScore >= 75) lossStressLabel = "Critical Need";
-  else if (stressScore >= 50) lossStressLabel = "High Need";
-  else if (stressScore >= 25) lossStressLabel = "Moderate Need";
-  else lossStressLabel = "Low Need";
+  const stScore = (0.6 * tInfo.imperviousPct) + (0.4 * Math.min(100, tInfo.popDensity / 40));
+  let stLbl = "Moderate Need";
+  if (stScore >= 75) stLbl = "Critical Need";
+  else if (stScore >= 50) stLbl = "High Need";
+  else if (stScore >= 25) stLbl = "Moderate Need";
+  else stLbl = "Low Need";
 
-  // 2. Calculate Dynamic Migration Intensity %
-  const isPeakMigration = [2, 3, 4, 6, 7, 8, 9].includes(currentMonth);
-  let seasonalMultiplier = isPeakMigration ? 1.08 : 0.85;
-  let seasonLabel = isPeakMigration ? "Peak Migration Period" : "Off-Peak Season";
-  let canopyFactor = townData.canopyPct / 55; // Normalized baseline
-  let calculatedPercentage = Math.min(98, Math.round(townData.migIndex * canopyFactor * seasonalMultiplier * 0.9));
+  const isPeakTime = [2, 3, 4, 6, 7, 8, 9].includes(m);
+  let mult = isPeakTime ? 1.08 : 0.85;
+  let seasonTxt = isPeakTime ? "Peak Migration Period" : "Off-Peak Season";
+  let canopyF = tInfo.canopyPct / 55;
+  let migVal = Math.min(98, Math.round(tInfo.migIndex * canopyF * mult * 0.9));
 
-  // 3. Determine Dynamic Recommended Activity
-  let recommendedAction = "Fill Seed Feeder";
-  if (townData.imperviousPct >= 40) {
-    recommendedAction = "Clean Water Source";
-  } else if (townData.canopyPct < 55) {
-    recommendedAction = "Plant Native Species";
-  } else if (townData.popDensity < 300) {
-    recommendedAction = "Protect Native Berry Shrubs";
+  let recAct = "Fill Seed Feeder";
+  if (tInfo.imperviousPct >= 40) {
+    recAct = "Clean Water Source";
+  } else if (tInfo.canopyPct < 55) {
+    recAct = "Plant Native Species";
+  } else if (tInfo.popDensity < 300) {
+    recAct = "Protect Native Berry Shrubs";
   } else {
-    recommendedAction = "Retain Seed Heads";
+    recAct = "Retain Seed Heads";
   }
 
-  const tierInfo = getRefugeTierInfo(points);
+  const tierObj = getRefugeTierInfo(pts);
 
-  // Render metrics to DOM
-  if (titleEl) titleEl.textContent = `${town} Migration Status`;
-  if (densityEl) densityEl.textContent = `${seasonLabel} (${calculatedPercentage}%)`;
-  if (fillEl) fillEl.style.width = `${calculatedPercentage}%`;
-  if (stressEl) stressEl.textContent = lossStressLabel;
-  if (yardLevelEl) yardLevelEl.textContent = tierInfo.title;
-  if (topActionEl) topActionEl.textContent = recommendedAction;
+  if (titleBox) titleBox.textContent = `${town} Migration Status`;
+  if (densityBox) densityBox.textContent = `${seasonTxt} (${migVal}%)`;
+  if (fillBar) fillBar.style.width = `${migVal}%`;
+  if (stressBox) stressBox.textContent = stLbl;
+  if (yardBox) yardBox.textContent = tierObj.title;
+  if (topAct) topAct.textContent = recAct;
 }
 
-// Unified Login Handler
-function handleLoginSubmit(event) {
-  if (event) event.preventDefault();
-  const usernameInput = document.getElementById("login-username");
-  const passwordInput = document.getElementById("login-password");
-  if (!usernameInput || !passwordInput) return;
+// handle login
+function handleLoginSubmit(e) {
+  if (e) e.preventDefault();
+  const uInput = document.getElementById("login-username");
+  const pInput = document.getElementById("login-password");
 
-  const username = usernameInput.value.trim();
-  const pass = passwordInput.value;
+  if (!uInput || !pInput) return;
+  const usr = uInput.value.trim();
+  const pwd = pInput.value;
 
-  if (!username || !pass) {
+  if (!usr || !pwd) {
     alert("Please enter both a username and password.");
     return;
   }
 
-  const accounts = JSON.parse(localStorage.getItem("orniflora_accounts") || "{}");
-  const fallbackPass = localStorage.getItem(`orniflora_pass_${username}`);
+  const allAccs = JSON.parse(localStorage.getItem("orniflora_accounts") || "{}");
+  const oldPwd = localStorage.getItem(`orniflora_pass_${usr}`);
+  const ok = (allAccs[usr] && allAccs[usr].password === pwd) || (oldPwd === pwd);
 
-  const isValidAccount = (accounts[username] && accounts[username].password === pass) || (fallbackPass === pass);
-
-  if (!isValidAccount) {
+  if (!ok) {
     alert("Incorrect username or password.");
     return;
   }
 
-  sessionStorage.setItem("current_logged_user", username);
+  sessionStorage.setItem("current_logged_user", usr);
   window.location.href = "dashboard.html";
 }
 
-function handleSignupSubmit(event) {
-  if (event) event.preventDefault();
-  const usernameInput = document.getElementById("signup-username");
-  const passwordInput = document.getElementById("signup-password");
-  const confirmPasswordInput = document.getElementById("signup-confirm-password");
-  const countySelect = document.getElementById("countySelect");
-  const citySelect = document.getElementById("citySelect");
-  
-  if (!usernameInput || !passwordInput) return;
-  const username = usernameInput.value.trim();
-  const pass = passwordInput.value;
-  const confirmPass = confirmPasswordInput ? confirmPasswordInput.value : pass;
-  const county = countySelect && countySelect.value ? countySelect.value : "Wake";
-  const city = citySelect && citySelect.value ? citySelect.value : "Holly Springs";
-  
-  if (!username || !pass) {
+// handle signup
+function handleSignupSubmit(e) {
+  if (e) e.preventDefault();
+  const uInput = document.getElementById("signup-username");
+  const pInput = document.getElementById("signup-password");
+  const cpInput = document.getElementById("signup-confirm-password");
+  const countySel = document.getElementById("countySelect");
+  const citySel = document.getElementById("citySelect");
+
+  if (!uInput || !pInput) return;
+  const usr = uInput.value.trim();
+  const pwd = pInput.value;
+  const cpwd = cpInput ? cpInput.value : pwd;
+  const county = countySel && countySel.value ? countySel.value : "Wake";
+  const city = citySel && citySel.value ? citySel.value : "Holly Springs";
+
+  if (!usr || !pwd) {
     alert("Please fill in all required fields.");
     return;
   }
-  if (pass !== confirmPass) {
+
+  if (pwd !== cpwd) {
     alert("Passwords do not match. Please try again.");
     return;
   }
 
-  // WIPE ALL STALE DATA: Ensure a freshly registered account starts completely clean
-  localStorage.removeItem(`orniflora_points_${username}`);
-  localStorage.removeItem(`orniflora_streak_${username}`);
-  localStorage.removeItem(`orniflora_lastDate_${username}`);
-  localStorage.removeItem(`orniflora_history_${username}`);
-  localStorage.removeItem(`orniflora_created_${username}`);
-  localStorage.removeItem(`orniflora_location_${username}`);
-  localStorage.removeItem(`orniflora_pass_${username}`);
-  
-  // Clear any task-specific daily lock keys tied to this username
-  const keysToRemove = [];
+  // clear old data if name reused
+  localStorage.removeItem(`orniflora_points_${usr}`);
+  localStorage.removeItem(`orniflora_score_${usr}`);
+  localStorage.removeItem(`orniflora_streak_${usr}`);
+  localStorage.removeItem(`orniflora_lastDate_${usr}`);
+  localStorage.removeItem(`orniflora_history_${usr}`);
+  localStorage.removeItem(`orniflora_created_${usr}`);
+  localStorage.removeItem(`orniflora_location_${usr}`);
+  localStorage.removeItem(`orniflora_pass_${usr}`);
+
+  const oldKeys = [];
   for (let i = 0; i < localStorage.length; i++) {
-    const key = localStorage.key(i);
-    if (key && key.includes(`_${username}`) && key.startsWith("orniflora_task_")) {
-      keysToRemove.push(key);
+    const k = localStorage.key(i);
+    if (k && k.includes(`_${usr}`) && k.startsWith("orniflora_task_")) {
+      oldKeys.push(k);
     }
   }
-  keysToRemove.forEach(k => localStorage.removeItem(k));
+  oldKeys.forEach(k => localStorage.removeItem(k));
 
-  let accounts = JSON.parse(localStorage.getItem("orniflora_accounts") || "{}");
-  accounts[username] = { password: pass };
-  localStorage.setItem("orniflora_accounts", JSON.stringify(accounts));
-  
-  let users = JSON.parse(localStorage.getItem("orniflora_users") || "[]");
-  if (!users.includes(username)) {
-    users.push(username);
-    localStorage.setItem("orniflora_users", JSON.stringify(users));
+  let allAccs = JSON.parse(localStorage.getItem("orniflora_accounts") || "{}");
+  if (allAccs[usr]) {
+    alert("This username is already taken on this browser. Please select another.");
+    return;
   }
-  
-  localStorage.setItem(`orniflora_pass_${username}`, pass);
-  localStorage.setItem(`orniflora_location_${username}`, `${city}, ${county} Co.`);
-  
-  const today = new Date().toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" });
-  localStorage.setItem(`orniflora_created_${username}`, today);
-  
-  sessionStorage.setItem("current_logged_user", username);
+
+  allAccs[usr] = { password: pwd };
+  localStorage.setItem("orniflora_accounts", JSON.stringify(allAccs));
+
+  let usersArr = JSON.parse(localStorage.getItem("orniflora_users") || "[]");
+  if (!usersArr.includes(usr)) {
+    usersArr.push(usr);
+    localStorage.setItem("orniflora_users", JSON.stringify(usersArr));
+  }
+
+  localStorage.setItem(`orniflora_pass_${usr}`, pwd);
+  localStorage.setItem(`orniflora_location_${usr}`, `${city}, ${county} Co.`);
+
+  const dtStr = new Date().toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" });
+  localStorage.setItem(`orniflora_created_${usr}`, dtStr);
+
+  sessionStorage.setItem("current_logged_user", usr);
   window.location.href = "dashboard.html";
 }
 
-function toggleProfileMenu(event) {
-  if (event) event.stopPropagation();
-  const dropdown = document.getElementById("profile-dropdown");
-  if (dropdown) dropdown.classList.toggle("show");
+function toggleProfileMenu(e) {
+  if (e) e.stopPropagation();
+  const drop = document.getElementById("profile-dropdown");
+  if (drop) drop.classList.toggle("show");
 }
 
 document.addEventListener("click", (e) => {
-  const dropdown = document.getElementById("profile-dropdown");
-  if (dropdown && dropdown.classList.contains("show")) {
-    const profileBtn = document.querySelector(".profile-btn");
-    if (!profileBtn || !profileBtn.contains(e.target)) {
-      dropdown.classList.remove("show");
+  const drop = document.getElementById("profile-dropdown");
+  if (drop && drop.classList.contains("show")) {
+    const pBtn = document.querySelector(".profile-btn");
+    if (!pBtn || !pBtn.contains(e.target)) {
+      drop.classList.remove("show");
     }
   }
 });
 
+// render tasks
 function renderTasksPage() {
-  const tasksContainer = document.getElementById("tasks-list");
-  if (!tasksContainer) return;
-  
-  const state = getUserState();
-  const today = new Date().toISOString().split("T")[0];
-  
-  tasksContainer.innerHTML = AVAILABLE_TASKS.map(task => {
-    const taskLastDone = localStorage.getItem(`orniflora_task_${task.id}_lastDate_${state.loggedUser}`);
-    const isCompletedToday = (taskLastDone === today);
-    
+  const listEl = document.getElementById("tasks-list");
+  if (!listEl) return;
+
+  const st = getUserState();
+  if (!st.loggedUser) {
+    listEl.innerHTML = '<p style="text-align: center; color: #666; padding: 2rem;">Please log in to view and complete daily tasks.</p>';
+    return;
+  }
+
+  const dtToday = new Date().toISOString().split("T")[0];
+
+  listEl.innerHTML = AVAILABLE_TASKS.map(t => {
+    const lastDone = localStorage.getItem(`orniflora_task_${t.id}_lastDate_${st.loggedUser}`);
+    const isDoneToday = (lastDone === dtToday);
+
     return `
-      <div class="task-card ${isCompletedToday ? 'completed-card' : ''}">
+      <div class="task-card ${isDoneToday ? 'completed-card' : ''}">
         <div class="task-info">
-          <h4>${task.title} <span class="task-badge">+${task.pts} Pts</span></h4>
-          <p>${task.desc}</p>
+          <h4>${t.title} <span class="task-badge">+${t.pts} Pts</span></h4>
+          <p>${t.desc}</p>
         </div>
         <button
-          onclick="triggerTaskVerification('${task.id}', '${task.title}', ${task.pts})"
+          onclick="triggerTaskVerification('${t.id}', '${t.title}', ${t.pts})"
           class="btn-task"
-          ${isCompletedToday ? 'disabled' : ''}>
-          ${isCompletedToday ? 'Logged Today' : 'Record Activity'}
+          ${isDoneToday ? 'disabled' : ''}>
+          ${isDoneToday ? 'Logged Today' : 'Record Activity'}
         </button>
       </div>
     `;
@@ -880,163 +878,239 @@ let activeTaskTitle = "";
 let activeTaskPts = 0;
 let uploadedPhotoData = "";
 
-function triggerTaskVerification(taskId, taskTitle, pts) {
-  const state = getUserState();
-  if (!state.loggedUser) {
+function triggerTaskVerification(tid, title, ptsVal) {
+  const st = getUserState();
+  if (!st.loggedUser) {
     alert("Please log in to record activities.");
     window.location.href = "auth.html";
     return;
   }
 
-  const today = new Date().toISOString().split("T")[0];
-  const taskLastDone = localStorage.getItem(`orniflora_task_${taskId}_lastDate_${state.loggedUser}`);
-  
-  if (taskLastDone === today) {
+  const dtToday = new Date().toISOString().split("T")[0];
+  const lastDone = localStorage.getItem(`orniflora_task_${tid}_lastDate_${st.loggedUser}`);
+
+  if (lastDone === dtToday) {
     alert("You have already logged this activity today. Come back tomorrow!");
     return;
   }
 
-  window.currentTaskId = taskId;
-  window.currentActiveTask = taskTitle;
-  window.currentTaskPoints = pts;
+  activeTaskId = tid;
+  activeTaskTitle = title;
+  activeTaskPts = ptsVal;
 
-  const titleModal = document.getElementById("modal-task-title");
-  if (titleModal) titleModal.textContent = `Log: ${taskTitle}`;
-  
-  const noteInput = document.getElementById("proof-note");
-  if (noteInput) noteInput.value = "";
-  
+  window.currentTaskId = tid;
+  window.currentActiveTask = title;
+  window.currentTaskPoints = ptsVal;
+
+  const mTitle = document.getElementById("modal-task-title");
+  if (mTitle) mTitle.textContent = `Log: ${title}`;
+
+  const noteBox = document.getElementById("proof-note");
+  if (noteBox) noteBox.value = "";
+
   const imgPrev = document.getElementById("image-preview");
   if (imgPrev) imgPrev.style.display = "none";
-  
-  const photoInput = document.getElementById("photo-input");
-  if (photoInput) photoInput.value = "";
-  
-  const fileNameDisplay = document.getElementById("file-name-display");
-  if (fileNameDisplay) fileNameDisplay.textContent = "No file chosen";
-  
-  const modal = document.getElementById("ai-modal");
-  if (modal) modal.style.display = "flex";
+
+  const fileIn = document.getElementById("photo-input");
+  if (fileIn) fileIn.value = "";
+
+  const fileLbl = document.getElementById("file-name-display");
+  if (fileLbl) fileLbl.textContent = "No file chosen";
+
+  const mod = document.getElementById("ai-modal");
+  if (mod) mod.style.display = "flex";
 }
 
-function previewUserImage(event) {
-  const file = event.target.files[0];
-  if (file) {
-    const fileNameDisplay = document.getElementById("file-name-display");
-    if (fileNameDisplay) fileNameDisplay.textContent = file.name;
+window.previewUserImage = function(e) {
+  const f = e.target.files[0];
+  const fileLbl = document.getElementById("file-name-display");
+  const imgPrev = document.getElementById("image-preview");
 
+  if (f) {
+    if (fileLbl) fileLbl.textContent = f.name;
     const reader = new FileReader();
-    reader.onload = function(e) {
-      uploadedPhotoData = e.target.result;
-      const img = document.getElementById("image-preview");
-      if (img) {
-        img.src = uploadedPhotoData;
-        img.style.display = "block";
+    reader.onload = function(evt) {
+      uploadedPhotoData = evt.target.result;
+      if (imgPrev) {
+        imgPrev.src = uploadedPhotoData;
+        imgPrev.style.display = "block";
       }
     };
-    reader.readAsDataURL(file);
+    reader.readAsDataURL(f);
+  } else {
+    if (fileLbl) fileLbl.textContent = "No file chosen";
+    if (imgPrev) {
+      imgPrev.src = "";
+      imgPrev.style.display = "none";
+    }
   }
-}
+};
 
-function renderTasksPage() {
-  const tasksContainer = document.getElementById("tasks-list");
-  if (!tasksContainer) return;
-  
-  const state = getUserState();
-  if (!state.loggedUser) {
-    tasksContainer.innerHTML = '<p style="text-align: center; color: #666; padding: 2rem;">Please log in to view and complete daily tasks.</p>';
+window.submitTaskProof = function() {
+  const usr = sessionStorage.getItem("current_logged_user");
+  if (!usr) {
+    alert("Error: No active user session found. Please log in again.");
+    window.location.href = "auth.html";
     return;
   }
 
-  const today = new Date().toISOString().split("T")[0];
-  
-  tasksContainer.innerHTML = AVAILABLE_TASKS.map(task => {
-    // Key is now explicitly unique per logged-in user
-    const taskLastDone = localStorage.getItem(`orniflora_task_${task.id}_lastDate_${state.loggedUser}`);
-    const isCompletedToday = (taskLastDone === today);
-    
-    return `
-      <div class="task-card ${isCompletedToday ? 'completed-card' : ''}">
-        <div class="task-info">
-          <h4>${task.title} <span class="task-badge">+${task.pts} Pts</span></h4>
-          <p>${task.desc}</p>
-        </div>
-        <button
-          onclick="triggerTaskVerification('${task.id}', '${task.title}', ${task.pts})"
-          class="btn-task"
-          ${isCompletedToday ? 'disabled' : ''}>
-          ${isCompletedToday ? 'Logged Today' : 'Record Activity'}
-        </button>
-      </div>
-    `;
-  }).join("");
-}
+  const noteBox = document.getElementById("proof-note");
+  const txtNote = noteBox ? noteBox.value.trim() : "";
+
+  const fileIn = document.getElementById("photo-input");
+  const hasFile = fileIn && fileIn.files && fileIn.files.length > 0;
+
+  // need both note and pic
+  if (!txtNote || (!hasFile && !uploadedPhotoData)) {
+    alert("Please provide BOTH a description note and upload a photo proof to submit this activity.");
+    return;
+  }
+
+  if (hasFile && !uploadedPhotoData) {
+    uploadedPhotoData = "assets/images/placeholder.jpg";
+  }
+
+  const ptsToAdd = window.currentTaskPoints ? parseInt(window.currentTaskPoints) : 50;
+
+  const st = getUserState();
+  let currentScore = parseInt(localStorage.getItem(st.pointsKey) || "0");
+  let updatedScore = currentScore + ptsToAdd;
+
+  localStorage.setItem(st.pointsKey, updatedScore.toString());
+  localStorage.setItem(`orniflora_score_${usr}`, updatedScore.toString());
+
+  const dtToday = new Date().toISOString().split("T")[0];
+  if (window.currentTaskId) {
+    localStorage.setItem(`orniflora_task_${window.currentTaskId}_lastDate_${usr}`, dtToday);
+  }
+
+  const lastDate = localStorage.getItem(st.dateKey);
+  let streakCnt = parseInt(localStorage.getItem(st.streakKey) || "0");
+
+  if (lastDate !== dtToday) {
+    if (lastDate) {
+      const yesterday = new Date();
+      yesterday.setDate(yesterday.getDate() - 1);
+      const yStr = yesterday.toISOString().split("T")[0];
+      if (lastDate === yStr) {
+        streakCnt += 1;
+      } else {
+        streakCnt = 1;
+      }
+    } else {
+      streakCnt = 1;
+    }
+    localStorage.setItem(st.streakKey, streakCnt.toString());
+    localStorage.setItem(st.dateKey, dtToday);
+  }
+
+  let hist = JSON.parse(localStorage.getItem(st.historyKey) || "[]");
+  const tName = window.currentActiveTask || "Field Conservation Activity";
+  const dateStr = new Date().toLocaleDateString("en-US", { month: "short", day: "numeric", hour: "2-digit", minute: "2-digit" });
+
+  hist.push({
+    action: tName,
+    pts: ptsToAdd,
+    date: dateStr
+  });
+  localStorage.setItem(st.historyKey, JSON.stringify(hist));
+
+  let usersArr = JSON.parse(localStorage.getItem("orniflora_users") || "[]");
+  if (!usersArr.includes(usr)) {
+    usersArr.push(usr);
+    localStorage.setItem("orniflora_users", JSON.stringify(usersArr));
+  }
+
+  const mod = document.getElementById("ai-modal");
+  if (mod) mod.style.display = "none";
+
+  if (noteBox) noteBox.value = "";
+  uploadedPhotoData = "";
+
+  const fileLbl = document.getElementById("file-name-display");
+  if (fileLbl) fileLbl.textContent = "No file chosen";
+
+  const imgPrev = document.getElementById("image-preview");
+  if (imgPrev) {
+    imgPrev.src = "";
+    imgPrev.style.display = "none";
+  }
+
+  if (typeof renderTasksPage === "function") renderTasksPage();
+  if (typeof renderLeaderboard === "function") renderLeaderboard();
+  if (typeof renderAccountPage === "function") renderAccountPage();
+  if (typeof renderBioCorridorIndex === "function") renderBioCorridorIndex();
+
+  alert(`Activity submitted successfully! +${ptsToAdd} points added to your score.`);
+};
 
 function closeAIModal() {
-  const modal = document.getElementById("ai-modal");
-  if (modal) modal.style.display = "none";
+  const mod = document.getElementById("ai-modal");
+  if (mod) mod.style.display = "none";
 }
 
+// leaderboard rendering
 function renderLeaderboard() {
-  const leaderboardContainer = document.getElementById("leaderboard-list");
-  if (!leaderboardContainer) return;
+  const box = document.getElementById("leaderboard-list");
+  if (!box) return;
 
-  const state = getUserState();
-  let registeredUsers = JSON.parse(localStorage.getItem("orniflora_users") || "[]");
-  
-  if (state.loggedUser && !registeredUsers.includes(state.loggedUser)) {
-    registeredUsers.push(state.loggedUser);
-    localStorage.setItem("orniflora_users", JSON.stringify(registeredUsers));
+  const st = getUserState();
+  let usersArr = JSON.parse(localStorage.getItem("orniflora_users") || "[]");
+
+  if (st.loggedUser && !usersArr.includes(st.loggedUser)) {
+    usersArr.push(st.loggedUser);
+    localStorage.setItem("orniflora_users", JSON.stringify(usersArr));
   }
 
-  let userList = registeredUsers.map(username => {
-    const uPoints = parseInt(localStorage.getItem(`orniflora_points_${username}`) || "0");
-    const uStreak = parseInt(localStorage.getItem(`orniflora_streak_${username}`) || "0");
-    const uTier = getRefugeTierInfo(uPoints);
-    return { name: username, score: uPoints, streak: uStreak, tier: uTier };
+  let sortedUsers = usersArr.map(u => {
+    const p = parseInt(localStorage.getItem(`orniflora_points_${u}`) || "0");
+    const s = parseInt(localStorage.getItem(`orniflora_streak_${u}`) || "0");
+    const tr = getRefugeTierInfo(p);
+    return { name: u, score: p, streak: s, tier: tr };
   });
 
-  if (userList.length === 0) {
-    userList.push({ name: "EcoTracker99", score: 850, streak: 18, tier: getRefugeTierInfo(850) });
-    userList.push({ name: "NC_BirdWatcher", score: 420, streak: 9, tier: getRefugeTierInfo(420) });
+  if (sortedUsers.length === 0) {
+    sortedUsers.push({ name: "EcoTracker99", score: 850, streak: 18, tier: getRefugeTierInfo(850) });
+    sortedUsers.push({ name: "NC_BirdWatcher", score: 420, streak: 9, tier: getRefugeTierInfo(420) });
   }
 
-  userList.sort((a, b) => b.score - a.score);
+  sortedUsers.sort((a, b) => b.score - a.score);
 
-  leaderboardContainer.innerHTML = userList.map((user, idx) => `
-    <div class="leaderboard-row ${user.name === state.loggedUser ? 'highlight-user' : ''}">
+  box.innerHTML = sortedUsers.map((userObj, idx) => `
+    <div class="leaderboard-row ${userObj.name === st.loggedUser ? 'highlight-user' : ''}">
       <div class="user-meta">
         <span class="rank-num">#${idx + 1}</span>
         <div>
-          <strong class="user-name">${user.name}</strong>
-          <div class="tier-pill-badge ${user.tier.badgeClass}">${user.tier.title}</div>
+          <strong class="user-name">${userObj.name}</strong>
+          <div class="tier-pill-badge ${userObj.tier.badgeClass}">${userObj.tier.title}</div>
         </div>
       </div>
       <div class="user-score-info">
-        <span class="score-num">${user.score} pts</span>
-        <span class="streak-count">${user.streak}d streak</span>
+        <span class="score-num">${userObj.score} pts</span>
+        <span class="streak-count">${userObj.streak}d streak</span>
       </div>
     </div>
   `).join("");
 }
 
+// account profile rendering
 function renderAccountPage() {
-  const state = getUserState();
-  const usernameEl = document.getElementById("acc-username");
-  const createdEl = document.getElementById("acc-created");
-  const locationEl = document.getElementById("acc-location");
-  const historyListEl = document.getElementById("account-history-list");
+  const st = getUserState();
+  const uEl = document.getElementById("acc-username");
+  const cEl = document.getElementById("acc-created");
+  const lEl = document.getElementById("acc-location");
+  const hBox = document.getElementById("account-history-list");
 
-  if (usernameEl) usernameEl.textContent = state.loggedUser || "User";
-  if (createdEl) createdEl.textContent = localStorage.getItem(state.createdKey) || "Today";
-  if (locationEl) locationEl.textContent = localStorage.getItem(state.locationKey) || "Holly Springs, Wake Co.";
+  if (uEl) uEl.textContent = st.loggedUser || "User";
+  if (cEl) cEl.textContent = localStorage.getItem(st.createdKey) || "Today";
+  if (lEl) lEl.textContent = localStorage.getItem(st.locationKey) || "Holly Springs, Wake Co.";
 
-  if (historyListEl) {
-    const history = JSON.parse(localStorage.getItem(state.historyKey) || "[]");
-    if (history.length === 0) {
-      historyListEl.innerHTML = `<li class="history-item empty" style="color: #666; font-size: 0.9rem;">No recorded activity yet. Complete a task on the Log Actions page to record activity.</li>`;
+  if (hBox) {
+    const hist = JSON.parse(localStorage.getItem(st.historyKey) || "[]");
+    if (hist.length === 0) {
+      hBox.innerHTML = `<li class="history-item empty" style="color: #666; font-size: 0.9rem;">No recorded activity yet. Complete a task on the Log Actions page to record activity.</li>`;
     } else {
-      historyListEl.innerHTML = history.slice().reverse().map(item => `
+      hBox.innerHTML = hist.slice().reverse().map(item => `
         <li class="history-item" style="display: flex; justify-content: space-between; align-items: center; padding: 0.75rem 1rem; background: #f8faf9; border-radius: 8px; border: 1px solid #e8f0ea;">
           <div>
             <strong style="color: #1b4332; font-size: 0.95rem;">${item.action}</strong>
@@ -1049,46 +1123,48 @@ function renderAccountPage() {
   }
 }
 
-function saveUserScore(newPoints, actionTitle = "Earned Points") {
-  const state = getUserState();
-  let newTotalPoints = state.points + newPoints;
-  let newStreak = state.streak;
-  const today = new Date().toISOString().split("T")[0];
+function saveUserScore(ptsAdded, actTitle = "Earned Points") {
+  const st = getUserState();
+  let total = st.points + ptsAdded;
+  let strk = st.streak;
 
-  if (state.lastLoggedDate !== today) {
-    newStreak += 1;
-    localStorage.setItem(state.dateKey, today);
-    localStorage.setItem(state.streakKey, newStreak.toString());
+  const dtToday = new Date().toISOString().split("T")[0];
+  if (st.lastLoggedDate !== dtToday) {
+    strk += 1;
+    localStorage.setItem(st.dateKey, dtToday);
+    localStorage.setItem(st.streakKey, strk.toString());
   }
 
-  const history = JSON.parse(localStorage.getItem(state.historyKey) || "[]");
-  const formattedDate = new Date().toLocaleDateString("en-US", { month: "short", day: "numeric", hour: "2-digit", minute: "2-digit" });
-  history.push({ action: actionTitle, pts: newPoints, date: formattedDate });
-  
-  localStorage.setItem(state.historyKey, JSON.stringify(history));
-  localStorage.setItem(state.pointsKey, newTotalPoints.toString());
-  
-  const pointsEl = document.getElementById("user-points");
-  if (pointsEl) pointsEl.textContent = newTotalPoints;
+  const hist = JSON.parse(localStorage.getItem(st.historyKey) || "[]");
+  const dateStr = new Date().toLocaleDateString("en-US", { month: "short", day: "numeric", hour: "2-digit", minute: "2-digit" });
+
+  hist.push({ action: actTitle, pts: ptsAdded, date: dateStr });
+
+  localStorage.setItem(st.historyKey, JSON.stringify(hist));
+  localStorage.setItem(st.pointsKey, total.toString());
+
+  const ptsBox = document.getElementById("user-points");
+  if (ptsBox) ptsBox.textContent = total;
 }
 
+// page startup init
 function initPage(pageType = "dashboard") {
-  const state = getUserState();
-  const profileDisplay = document.getElementById("nav-username");
-  const dashUserDisplay = document.getElementById("dashUser");
-  const locationLabel = document.getElementById("user-location-label");
+  const st = getUserState();
+  const navUser = document.getElementById("nav-username");
+  const dashUser = document.getElementById("dashUser");
+  const locLbl = document.getElementById("user-location-label");
 
-  if (profileDisplay) profileDisplay.textContent = state.loggedUser || "Guest";
-  if (dashUserDisplay) dashUserDisplay.textContent = state.loggedUser || "Guest";
+  if (navUser) navUser.textContent = st.loggedUser || "Guest";
+  if (dashUser) dashUser.textContent = st.loggedUser || "Guest";
 
-  const savedLoc = localStorage.getItem(state.locationKey) || "Holly Springs, Wake Co.";
-  if (locationLabel) locationLabel.textContent = savedLoc;
+  const savedLoc = localStorage.getItem(st.locationKey) || "Holly Springs, Wake Co.";
+  if (locLbl) locLbl.textContent = savedLoc;
 
-  const pointsEl = document.getElementById("user-points");
-  const streakEl = document.getElementById("user-streak");
+  const ptsBox = document.getElementById("user-points");
+  const strkBox = document.getElementById("user-streak");
 
-  if (pointsEl) pointsEl.textContent = state.points;
-  if (streakEl) streakEl.textContent = state.streak;
+  if (ptsBox) ptsBox.textContent = st.points;
+  if (strkBox) strkBox.textContent = st.streak;
 
   if (pageType === "dashboard") {
     renderTownSpecies();
@@ -1110,217 +1186,60 @@ function logoutApp() {
 
 document.addEventListener("DOMContentLoaded", () => {
   checkAuthGuard();
-  const currentPage = document.body ? (document.body.dataset.page || "dashboard") : "dashboard";
-  if (currentPage !== "auth") {
-    initPage(currentPage);
+  const pg = document.body ? (document.body.dataset.page || "dashboard") : "dashboard";
+  if (pg !== "auth") {
+    initPage(pg);
   }
 });
 
+// quick login for testing/judges
 function quickJudgeLogin() {
-  const accounts = JSON.parse(localStorage.getItem("orniflora_accounts") || "{}");
-  accounts["StudentJudge"] = { password: "appchallenge2026" };
-  localStorage.setItem("orniflora_accounts", JSON.stringify(accounts));
+  const allAccs = JSON.parse(localStorage.getItem("orniflora_accounts") || "{}");
+  allAccs["StudentJudge"] = { password: "appchallenge2026" };
+  localStorage.setItem("orniflora_accounts", JSON.stringify(allAccs));
   localStorage.setItem("orniflora_pass_StudentJudge", "appchallenge2026");
   localStorage.setItem("orniflora_points_StudentJudge", "750");
   localStorage.setItem("orniflora_streak_StudentJudge", "14");
   localStorage.setItem("orniflora_location_StudentJudge", "Holly Springs, Wake Co.");
-  
+
   sessionStorage.setItem("current_logged_user", "StudentJudge");
   window.location.href = "dashboard.html";
 }
 
-// Two-Step Account Deletion Handlers
+// delete account actions
 function openDeleteAccountModal() {
-  const modal = document.getElementById("delete-account-modal");
-  if (modal) modal.style.display = "flex";
+  const mod = document.getElementById("delete-account-modal");
+  if (mod) mod.style.display = "flex";
 }
 
 function closeDeleteAccountModal() {
-  const modal = document.getElementById("delete-account-modal");
-  if (modal) modal.style.display = "none";
+  const mod = document.getElementById("delete-account-modal");
+  if (mod) mod.style.display = "none";
 }
 
 function confirmDeleteAccount() {
-  const currentUser = sessionStorage.getItem("current_logged_user");
-  if (!currentUser) return;
+  const usr = sessionStorage.getItem("current_logged_user");
+  if (!usr) return;
 
-  let accounts = JSON.parse(localStorage.getItem("orniflora_accounts") || "{}");
-  delete accounts[currentUser];
-  localStorage.setItem("orniflora_accounts", JSON.stringify(accounts));
+  let allAccs = JSON.parse(localStorage.getItem("orniflora_accounts") || "{}");
+  delete allAccs[usr];
+  localStorage.setItem("orniflora_accounts", JSON.stringify(allAccs));
 
-  let users = JSON.parse(localStorage.getItem("orniflora_users") || "[]");
-  users = users.filter(user => user !== currentUser);
-  localStorage.setItem("orniflora_users", JSON.stringify(users));
+  let usersArr = JSON.parse(localStorage.getItem("orniflora_users") || "[]");
+  usersArr = usersArr.filter(u => u !== usr);
+  localStorage.setItem("orniflora_users", JSON.stringify(usersArr));
 
-  localStorage.removeItem(`orniflora_pass_${currentUser}`);
-  localStorage.removeItem(`orniflora_points_${currentUser}`);
-  localStorage.removeItem(`orniflora_streak_${currentUser}`);
-  localStorage.removeItem(`orniflora_location_${currentUser}`);
-  localStorage.removeItem(`orniflora_created_${currentUser}`);
-  localStorage.removeItem(`orniflora_lastDate_${currentUser}`);
-  localStorage.removeItem(`orniflora_history_${currentUser}`);
+  localStorage.removeItem(`orniflora_pass_${usr}`);
+  localStorage.removeItem(`orniflora_points_${usr}`);
+  localStorage.removeItem(`orniflora_score_${usr}`);
+  localStorage.removeItem(`orniflora_streak_${usr}`);
+  localStorage.removeItem(`orniflora_location_${usr}`);
+  localStorage.removeItem(`orniflora_created_${usr}`);
+  localStorage.removeItem(`orniflora_lastDate_${usr}`);
+  localStorage.removeItem(`orniflora_history_${usr}`);
 
   sessionStorage.removeItem("current_logged_user");
   alert("Your account has been deleted.");
   window.location.href = "auth.html";
 }
 
-// ==========================================================================
-// CORRECTED DYNAMIC POINTS & SUBMISSION FIX
-// ==========================================================================
-
-window.previewUserImage = function(event) {
-  const file = event.target.files[0];
-  const fileNameDisplay = document.getElementById("file-name-display");
-  const imgPreview = document.getElementById("image-preview");
-  
-  if (file) {
-    if (fileNameDisplay) fileNameDisplay.textContent = file.name;
-    
-    const reader = new FileReader();
-    reader.onload = function(e) {
-      if (imgPreview) {
-        imgPreview.src = e.target.result;
-        imgPreview.style.display = "block";
-      }
-    };
-    reader.readAsDataURL(file);
-  } else {
-    if (fileNameDisplay) fileNameDisplay.textContent = "No file chosen";
-    if (imgPreview) {
-      imgPreview.src = "";
-      imgPreview.style.display = "none";
-    }
-  }
-};
-
-window.submitTaskProof = function() {
-  const currentUser = sessionStorage.getItem("current_logged_user");
-  if (!currentUser) {
-    alert("Error: No active user session found. Please log in again.");
-    window.location.href = "auth.html";
-    return;
-  }
-
-  const noteInput = document.getElementById("proof-note");
-  const note = noteInput ? noteInput.value.trim() : "";
-  
-  const photoInput = document.getElementById("photo-input");
-  const hasFileSelected = photoInput && photoInput.files && photoInput.files.length > 0;
-
-  // MANDATORY: Require BOTH a description note AND an uploaded photo/file
-  if (!note || (!hasFileSelected && !uploadedPhotoData)) {
-    alert("Please provide a note and upload a photo to submit and verify this activity.");
-    return;
-  }
-
-  // Fallback if file is selected but reader is still processing
-  if (hasFileSelected && !uploadedPhotoData) {
-    uploadedPhotoData = "assets/images/placeholder.jpg";
-  }
-
-  const pointsToAdd = window.currentTaskPoints ? parseInt(window.currentTaskPoints) : 50;
-
-  const state = getUserState();
-  let currentPoints = parseInt(localStorage.getItem(state.pointsKey) || "0");
-  let newTotal = currentPoints + pointsToAdd;
-  localStorage.setItem(state.pointsKey, newTotal.toString());
-  localStorage.setItem(`orniflora_score_${currentUser}`, newTotal.toString());
-
-  // Lock task for today specifically for THIS user only
-  const todayStr = new Date().toISOString().split("T")[0];
-  if (window.currentTaskId) {
-    localStorage.setItem(`orniflora_task_${window.currentTaskId}_lastDate_${currentUser}`, todayStr);
-  }
-
-  // Update streak and last active date
-  const lastDate = localStorage.getItem(state.dateKey);
-  let currentStreak = parseInt(localStorage.getItem(state.streakKey) || "0");
-
-  if (lastDate !== todayStr) {
-    if (lastDate) {
-      const yesterday = new Date();
-      yesterday.setDate(yesterday.getDate() - 1);
-      const yesterdayStr = yesterday.toISOString().split("T")[0];
-      if (lastDate === yesterdayStr) {
-        currentStreak += 1;
-      } else {
-        currentStreak = 1;
-      }
-    } else {
-      currentStreak = 1;
-    }
-    localStorage.setItem(state.streakKey, currentStreak.toString());
-    localStorage.setItem(state.dateKey, todayStr);
-  }
-
-  // Save to user history log
-  let history = JSON.parse(localStorage.getItem(state.historyKey) || "[]");
-  const taskTitle = window.currentActiveTask || "Field Conservation Activity";
-  const formattedDate = new Date().toLocaleDateString("en-US", { month: "short", day: "numeric", hour: "2-digit", minute: "2-digit" });
-
-  history.push({
-    action: taskTitle,
-    pts: pointsToAdd,
-    date: formattedDate
-  });
-  localStorage.setItem(state.historyKey, JSON.stringify(history));
-
-  // Ensure user is tracked in global user list
-  let users = JSON.parse(localStorage.getItem("orniflora_users") || "[]");
-  if (!users.includes(currentUser)) {
-    users.push(currentUser);
-    localStorage.setItem("orniflora_users", JSON.stringify(users));
-  }
-
-  // Close modal & reset inputs
-  const modal = document.getElementById("ai-modal");
-  if (modal) modal.style.display = "none";
-
-  if (noteInput) noteInput.value = "";
-  uploadedPhotoData = "";
-  
-  const fileNameDisplay = document.getElementById("file-name-display");
-  if (fileNameDisplay) fileNameDisplay.textContent = "No file chosen";
-  const imgPreview = document.getElementById("image-preview");
-  if (imgPreview) {
-    imgPreview.src = "";
-    imgPreview.style.display = "none";
-  }
-
-  // Refresh UI components
-  if (typeof renderTasksPage === "function") renderTasksPage();
-  if (typeof renderLeaderboard === "function") renderLeaderboard();
-  if (typeof renderAccountPage === "function") renderAccountPage();
-  if (typeof renderBioCorridorIndex === "function") renderBioCorridorIndex();
-
-  alert(`Activity submitted successfully! +${pointsToAdd} points added to your score.`);
-};
-
-window.previewUserImage = function(event) {
-  const file = event.target.files[0];
-  const fileNameDisplay = document.getElementById("file-name-display");
-  const imgPreview = document.getElementById("image-preview");
-  
-  if (file) {
-    if (fileNameDisplay) fileNameDisplay.textContent = file.name;
-    const reader = new FileReader();
-    reader.onload = function(e) {
-      if (imgPreview) {
-        imgPreview.src = e.target.result;
-        imgPreview.style.display = "block";
-      }
-    };
-    reader.readAsDataURL(file);
-  } else {
-    if (fileNameDisplay) fileNameDisplay.textContent = "No file chosen";
-    if (imgPreview) {
-      imgPreview.src = "";
-      imgPreview.style.display = "none";
-    }
-  }
-};
-
-// Make globally available
-window.triggerTaskVerification = triggerTaskVerification;
-window.submitTaskProof = submitTaskProof;

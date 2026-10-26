@@ -4,36 +4,34 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Orniflora - Habitat Dashboard</title>
-  
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  
   <link rel="stylesheet" href="style.css">
   <script src="app.js" defer></script>
 </head>
+
 <body data-page="dashboard">
 
-  <!-- Navigation Bar -->
+  <!-- Navigation bar -->
   <header class="navbar">
     <div class="logo">
       <h1>Orniflora</h1>
     </div>
+
     <nav>
       <a href="dashboard.html" class="active">Dashboard</a>
       <a href="actions.html">Activities</a>
       <a href="leaderboard.html">Leaderboard</a>
-      
-      <!-- Profile Menu -->
+
+      <!--Profile Menu -->
       <div class="profile-menu-container" style="position: relative; display: inline-block;">
         <button onclick="toggleProfileMenu(event)" class="profile-btn">
           <span id="nav-username">User</span> ▾
         </button>
         <div id="profile-dropdown" class="profile-dropdown">
           <a href="accounts.html">Your Account</a>
-          
           <hr style="border: none; border-top: 1px solid #e0e8e2; margin: 0.3rem 0;">
-          
           <button onclick="logoutApp()" class="dropdown-logout-btn">Log Out</button>
         </div>
       </div>
@@ -42,8 +40,7 @@
 
   <!-- Main Container -->
   <main class="container">
-    
-    <!-- Hero Banner -->
+    <!-- Dashboard -->
     <section class="welcome-banner hero-card">
       <div class="welcome-text">
         <span class="location-chip"><span id="user-location-label">Wake County</span></span>
@@ -52,7 +49,7 @@
       </div>
     </section>
 
-    <!-- Impact Score Card -->
+    <!-- Habitat Activity Points card -->
     <section class="stats-card score-card">
       <div class="score-header">
         <h3>Habitat Activity Points</h3>
@@ -64,7 +61,7 @@
       </div>
     </section>
 
-    <!-- Migration Index Card -->
+    <!-- Migration Index card -->
     <section class="activity-section corridor-card">
       <div class="corridor-header">
         <div>
@@ -73,7 +70,7 @@
         </div>
       </div>
 
-      <!-- Meter Bar -->
+      <!-- Migration bar -->
       <div class="meter-wrapper">
         <div class="meter-labels">
           <span>Migration Intensity</span>
@@ -84,7 +81,7 @@
         </div>
       </div>
 
-      <!-- Stat Grid -->
+      <!-- Stats Grid -->
       <div class="corridor-grid">
         <div class="corridor-stat stat-loss">
           <div>
@@ -107,6 +104,7 @@
       </div>
     </section>
 
+
     <!-- Town Species Grid -->
     <section class="species-section">
       <div class="section-title-group">
@@ -123,6 +121,7 @@
     </section>
 
   </main>
+
 
   <!-- Ecosystem Matchmaker Modal -->
   <div id="ecosystem-modal" class="modal-overlay" style="display: none;">

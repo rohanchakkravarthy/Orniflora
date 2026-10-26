@@ -1,4 +1,4 @@
-// CD-13 Specific Counties and Cities Mapping
+// NC-13 counties & citites
 const CD13_DATA = {
   "Caswell": ["Milton", "Yanceyville"],
   "Franklin": ["Bunn", "Franklinton", "Louisburg", "Youngsville"],
@@ -19,7 +19,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // Clear existing options
   countySelect.innerHTML = '<option value="">-- Choose County --</option>';
 
-  // Populate CD-13 Counties
+  // Populate CD-13 counties
   Object.keys(CD13_DATA).sort().forEach(county => {
     const opt = document.createElement("option");
     opt.value = county;
@@ -27,7 +27,7 @@ document.addEventListener("DOMContentLoaded", () => {
     countySelect.appendChild(opt);
   });
 
-  // Handle Dynamic City Population
+  // Handle dynamic city population 
   countySelect.addEventListener("change", () => {
     const selectedCounty = countySelect.value;
     if (citySelect) {
@@ -50,3 +50,5 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 });
+
+
