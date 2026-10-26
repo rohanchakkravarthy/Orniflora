@@ -1205,9 +1205,9 @@ window.submitTaskProof = function() {
   const noteInput = document.getElementById("proof-note");
   const note = noteInput ? noteInput.value.trim() : "";
 
-  // MANDATORY PROOF VALIDATION: Prevent submission if neither a description nor an image is provided
-  if (!note && !uploadedPhotoData) {
-    alert("Please provide a description note or upload a photo proof before submitting your activity.");
+  // MANDATORY: Require BOTH a description note AND an uploaded photo
+  if (!note || !uploadedPhotoData) {
+    alert("Please provide BOTH a description note and upload a photo proof to submit this activity.");
     return;
   }
 
