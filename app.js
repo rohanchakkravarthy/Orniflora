@@ -704,10 +704,10 @@ function renderBioCorridorIndex() {
   // 1. Calculate Dynamic Stress Score
   const stressScore = (0.6 * townData.imperviousPct) + (0.4 * Math.min(100, townData.popDensity / 40));
   let lossStressLabel = "Moderate Need";
-  if (stressScore >= 75) lossStressLabel = "Critical Need (Urban Dense)";
-  else if (stressScore >= 50) lossStressLabel = "High Need (Suburban Development)";
-  else if (stressScore >= 25) lossStressLabel = "Moderate Need (Transition Corridor)";
-  else lossStressLabel = "Low Need (Rural Forest Basin)";
+  if (stressScore >= 75) lossStressLabel = "Critical Need";
+  else if (stressScore >= 50) lossStressLabel = "High Need";
+  else if (stressScore >= 25) lossStressLabel = "Moderate Need";
+  else lossStressLabel = "Low Need";
 
   // 2. Calculate Dynamic Migration Intensity %
   const isPeakMigration = [2, 3, 4, 6, 7, 8, 9].includes(currentMonth);
