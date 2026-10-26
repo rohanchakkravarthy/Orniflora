@@ -10,20 +10,20 @@ function checkAuthGuard() {
 
 // 7-Tier Level Progression Calculator
 function getRefugeTierInfo(points) {
-  if (points >= 1200) {
-    return { level: 7, title: "Established Sanctuary Area", badgeClass: "tier-7" };
-  } else if (points >= 800) {
-    return { level: 6, title: "Certified Wildlife Haven", badgeClass: "tier-6" };
+  if (points >= 2500) {
+    return { level: 7, title: "Veteran Habitat", badgeClass: "tier-7" };
+  } else if (points >= 1000) {
+    return { level: 6, title: "Certified Sanctuary", badgeClass: "tier-6" };
   } else if (points >= 500) {
-    return { level: 5, title: "Active Migratory Refuge", badgeClass: "tier-5" };
+    return { level: 5, title: "Ginormous Garden", badgeClass: "tier-5" };
+  } else if (points >= 750) {
+    return { level: 4, title: "Microhabitat", badgeClass: "tier-4" };
   } else if (points >= 300) {
-    return { level: 4, title: "Suburban Habitat Zone", badgeClass: "tier-4" };
-  } else if (points >= 150) {
-    return { level: 3, title: "Active Water Stop", badgeClass: "tier-3" };
-  } else if (points >= 50) {
-    return { level: 2, title: "Native Garden Plot", badgeClass: "tier-2" };
+    return { level: 3, title: "Beginner Garden", badgeClass: "tier-3" };
+  } else if (points >= 100) {
+    return { level: 2, title: "Seedling Sanctuary", badgeClass: "tier-2" };
   } else {
-    return { level: 1, title: "Initial Habitat", badgeClass: "tier-1" };
+    return { level: 1, title: "Baby Habitat", badgeClass: "tier-1" };
   }
 }
 
