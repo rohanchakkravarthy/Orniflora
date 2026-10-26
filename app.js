@@ -839,24 +839,23 @@ document.addEventListener("click", (e) => {
 function renderTasksPage() {
   const tasksContainer = document.getElementById("tasks-list");
   if (!tasksContainer) return;
-
+  
   const state = getUserState();
   const today = new Date().toISOString().split("T")[0];
-
+  
   tasksContainer.innerHTML = AVAILABLE_TASKS.map(task => {
     const taskLastDone = localStorage.getItem(`orniflora_task_${task.id}_lastDate_${state.loggedUser}`);
     const isCompletedToday = (taskLastDone === today);
-
+    
     return `
       <div class="task-card ${isCompletedToday ? 'completed-card' : ''}">
         <div class="task-info">
           <h4>${task.title} <span class="task-badge">+${task.pts} Pts</span></h4>
           <p>${task.desc}</p>
-          ${isCompletedToday ? '<span class="status-done">Completed Today</span>' : ''}
         </div>
-        <button 
-          onclick="triggerTaskVerification('${task.id}', '${task.title}', ${task.pts})" 
-          class="btn-task" 
+        <button
+          onclick="triggerTaskVerification('${task.id}', '${task.title}', ${task.pts})"
+          class="btn-task"
           ${isCompletedToday ? 'disabled' : ''}>
           ${isCompletedToday ? 'Logged Today' : 'Record Activity'}
         </button>
