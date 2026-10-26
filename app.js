@@ -870,34 +870,31 @@ let activeTaskTitle = "";
 let activeTaskPts = 0;
 let uploadedPhotoData = "";
 
-function triggerTaskVerification(taskId, taskTitle, pts) {
-  const state = getUserState();
-  const today = new Date().toISOString().split("T")[0];
-  const taskLastDone = localStorage.getItem(`orniflora_task_${taskId}_lastDate_${state.loggedUser}`);
+function triggerTaskVerification(taskId) {
+  const tasks = {
+    'birdbath': { title: 'Clean or Refill a Birdbath', points: 25 },
+    'feeder': { title: 'Maintain a Bird Feeder', points: 30 },
+    'plant_native': { title: 'Plant a Native Species', points: 50 },
+    'water_plant': { title: 'Water Native Gardens', points: 15 },
+    'remove_invasive': { title: 'Remove Invasive Vegetation', points: 40 }
+  };
 
-  if (taskLastDone === today) {
-    alert("You have already logged this activity today.");
-    return;
+  const task = tasks[taskId] || { title: 'Field Conservation Activity', points: 50 };
+
+  window.currentTaskId = taskId;
+  window.currentActiveTask = task.title;
+  window.currentTaskPoints = task.points;
+
+  // Open verification modal
+  const modal = document.getElementById("ai-modal");
+  if (modal) {
+    modal.style.display = "flex";
   }
 
-  activeTaskId = taskId;
-  activeTaskTitle = taskTitle;
-  activeTaskPts = pts;
-  uploadedPhotoData = "";
-
-  const titleModal = document.getElementById("modal-task-title");
-  if (titleModal) titleModal.textContent = `Log: ${taskTitle}`;
-  const noteInput = document.getElementById("proof-note");
-  if (noteInput) noteInput.value = "";
-  const imgPrev = document.getElementById("image-preview");
-  if (imgPrev) imgPrev.style.display = "none";
-  const photoInput = document.getElementById("photo-input");
-  if (photoInput) photoInput.value = "";
-  const fileNameDisplay = document.getElementById("file-name-display");
-  if (fileNameDisplay) fileNameDisplay.textContent = "No file chosen";
-
-  const modal = document.getElementById("ai-modal");
-  if (modal) modal.style.display = "flex";
+  const modalTitle = document.getElementById("modal-task-title");
+  if (modalTitle) {
+    modalTitle.textContent = `Verify: ${task.title} (+${task.points} pts)`;
+  }
 }
 
 function previewUserImage(event) {
@@ -1142,7 +1139,7 @@ function confirmDeleteAccount() {
 }
 
 // ==========================================================================
-// BULLETPROOF ACTIVITY SUBMISSION & IMAGE PREVIEW FIX
+// CORRECTED DYNAMIC POINTS & SUBMISSION FIX
 // ==========================================================================
 
 window.previewUserImage = function(event) {
@@ -1170,49 +1167,87 @@ window.previewUserImage = function(event) {
   }
 };
 
-window.submitTaskProof = function() {
+function submitTaskProof() {
+  const currentUser = localStorage.getItem("orniflora_current_user") || "Rohan";
   const noteInput = document.getElementById("proof-note");
   const note = noteInput ? noteInput.value.trim() : "";
-  
-  // Get active user or fallback to Rohan
-  const currentUser = localStorage.getItem("orniflora_current_user") || "Rohan";
-  
-  // Award points (+50 points)
-  let userPoints = parseInt(localStorage.getItem(`orniflora_points_${currentUser}`) || "0");
-  userPoints += 50;
-  localStorage.setItem(`orniflora_points_${currentUser}`, userPoints);
 
-  // Save to activity history log
+  // 1. Get exact task points (defaults to 50 if omitted)
+  const pointsToAdd = window.currentTaskPoints ? parseInt(window.currentTaskPoints) : 50;
+
+  // 2. Calculate and save updated point total across all keys
+  let currentPoints = parseInt(
+    localStorage.getItem(`orniflora_points_${currentUser}`) || 
+    localStorage.getItem(`orniflora_score_${currentUser}`) || "0"
+  );
+  let newTotal = currentPoints + pointsToAdd;
+
+  localStorage.setItem(`orniflora_points_${currentUser}`, newTotal);
+  localStorage.setItem(`orniflora_score_${currentUser}`, newTotal);
+
+  // 3. Update user streak
+  const todayStr = new Date().toISOString().split("T")[0];
+  const lastDate = localStorage.getItem(`orniflora_lastDate_${currentUser}`);
+  let currentStreak = parseInt(localStorage.getItem(`orniflora_streak_${currentUser}`) || "1");
+
+  if (lastDate !== todayStr) {
+    if (lastDate) {
+      const yesterday = new Date();
+      yesterday.setDate(yesterday.getDate() - 1);
+      const yesterdayStr = yesterday.toISOString().split("T")[0];
+      if (lastDate === yesterdayStr) {
+        currentStreak += 1;
+      } else {
+        currentStreak = 1;
+      }
+    } else {
+      currentStreak = 1;
+    }
+    localStorage.setItem(`orniflora_streak_${currentUser}`, currentStreak);
+    localStorage.setItem(`orniflora_lastDate_${currentUser}`, todayStr);
+  }
+
+  // 4. Save entry to activity history log
   let history = JSON.parse(localStorage.getItem(`orniflora_history_${currentUser}`) || "[]");
   const taskTitle = window.currentActiveTask || "Field Conservation Activity";
-  
+
   history.unshift({
     title: taskTitle,
     note: note || "Completed field observation and habitat tracking.",
-    date: new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })
+    date: new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }),
+    points: pointsToAdd
   });
   localStorage.setItem(`orniflora_history_${currentUser}`, JSON.stringify(history));
 
-  // Close the modal
+  // 5. Ensure user exists in the main user list for the Leaderboard
+  let users = JSON.parse(localStorage.getItem("orniflora_users") || "[]");
+  if (!users.includes(currentUser)) {
+    users.push(currentUser);
+    localStorage.setItem("orniflora_users", JSON.stringify(users));
+  }
+
+  // 6. Close modal & reset form
   const modal = document.getElementById("ai-modal");
   if (modal) modal.style.display = "none";
 
-  // Reset form fields
   if (noteInput) noteInput.value = "";
-  
   const fileNameDisplay = document.getElementById("file-name-display");
   if (fileNameDisplay) fileNameDisplay.textContent = "No file chosen";
-  
   const imgPreview = document.getElementById("image-preview");
   if (imgPreview) {
     imgPreview.src = "";
     imgPreview.style.display = "none";
   }
 
-  // Refresh view if function exists
-  if (typeof loadTasks === "function") {
-    loadTasks();
-  }
+  // 7. Refresh all page components immediately
+  if (typeof loadTasks === "function") loadTasks();
+  if (typeof renderLeaderboard === "function") renderLeaderboard();
+  if (typeof renderAccountPage === "function") renderAccountPage();
+  if (typeof updateDashboardStats === "function") updateDashboardStats();
 
-  alert("Activity submitted successfully! +50 points added to your score.");
-};
+  alert(`Activity submitted! You earned +${pointsToAdd} points!`);
+}
+
+// Make globally available
+window.triggerTaskVerification = triggerTaskVerification;
+window.submitTaskProof = submitTaskProof;
