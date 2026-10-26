@@ -775,47 +775,58 @@ function handleSignupSubmit(event) {
   const confirmPasswordInput = document.getElementById("signup-confirm-password");
   const countySelect = document.getElementById("countySelect");
   const citySelect = document.getElementById("citySelect");
-
+  
   if (!usernameInput || !passwordInput) return;
-
   const username = usernameInput.value.trim();
   const pass = passwordInput.value;
   const confirmPass = confirmPasswordInput ? confirmPasswordInput.value : pass;
   const county = countySelect && countySelect.value ? countySelect.value : "Wake";
   const city = citySelect && citySelect.value ? citySelect.value : "Holly Springs";
-
+  
   if (!username || !pass) {
     alert("Please fill in all required fields.");
     return;
   }
-
   if (pass !== confirmPass) {
     alert("Passwords do not match. Please try again.");
     return;
   }
 
-  let accounts = JSON.parse(localStorage.getItem("orniflora_accounts") || "{}");
-
-  if (accounts[username]) {
-    alert("This username is already taken on this browser. Please select another.");
-    return;
+  // WIPE ALL STALE DATA: Ensure a freshly registered account starts completely clean
+  localStorage.removeItem(`orniflora_points_${username}`);
+  localStorage.removeItem(`orniflora_streak_${username}`);
+  localStorage.removeItem(`orniflora_lastDate_${username}`);
+  localStorage.removeItem(`orniflora_history_${username}`);
+  localStorage.removeItem(`orniflora_created_${username}`);
+  localStorage.removeItem(`orniflora_location_${username}`);
+  localStorage.removeItem(`orniflora_pass_${username}`);
+  
+  // Clear any task-specific daily lock keys tied to this username
+  const keysToRemove = [];
+  for (let i = 0; i < localStorage.length; i++) {
+    const key = localStorage.key(i);
+    if (key && key.includes(`_${username}`) && key.startsWith("orniflora_task_")) {
+      keysToRemove.push(key);
+    }
   }
+  keysToRemove.forEach(k => localStorage.removeItem(k));
 
+  let accounts = JSON.parse(localStorage.getItem("orniflora_accounts") || "{}");
   accounts[username] = { password: pass };
   localStorage.setItem("orniflora_accounts", JSON.stringify(accounts));
-
+  
   let users = JSON.parse(localStorage.getItem("orniflora_users") || "[]");
   if (!users.includes(username)) {
     users.push(username);
     localStorage.setItem("orniflora_users", JSON.stringify(users));
   }
-
+  
   localStorage.setItem(`orniflora_pass_${username}`, pass);
   localStorage.setItem(`orniflora_location_${username}`, `${city}, ${county} Co.`);
   
   const today = new Date().toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" });
   localStorage.setItem(`orniflora_created_${username}`, today);
-
+  
   sessionStorage.setItem("current_logged_user", username);
   window.location.href = "dashboard.html";
 }
@@ -871,16 +882,14 @@ let uploadedPhotoData = "";
 
 function triggerTaskVerification(taskId, taskTitle, pts) {
   const state = getUserState();
-  const loggedUser = sessionStorage.getItem("current_logged_user");
-  
-  if (!loggedUser) {
+  if (!state.loggedUser) {
     alert("Please log in to record activities.");
     window.location.href = "auth.html";
     return;
   }
 
   const today = new Date().toISOString().split("T")[0];
-  const taskLastDone = localStorage.getItem(`orniflora_task_${taskId}_lastDate_${loggedUser}`);
+  const taskLastDone = localStorage.getItem(`orniflora_task_${taskId}_lastDate_${state.loggedUser}`);
   
   if (taskLastDone === today) {
     alert("You have already logged this activity today. Come back tomorrow!");
@@ -932,24 +941,29 @@ function previewUserImage(event) {
 function renderTasksPage() {
   const tasksContainer = document.getElementById("tasks-list");
   if (!tasksContainer) return;
-
+  
   const state = getUserState();
-  const today = new Date().toISOString().split("T")[0];
+  if (!state.loggedUser) {
+    tasksContainer.innerHTML = '<p style="text-align: center; color: #666; padding: 2rem;">Please log in to view and complete daily tasks.</p>';
+    return;
+  }
 
+  const today = new Date().toISOString().split("T")[0];
+  
   tasksContainer.innerHTML = AVAILABLE_TASKS.map(task => {
+    // Key is now explicitly unique per logged-in user
     const taskLastDone = localStorage.getItem(`orniflora_task_${task.id}_lastDate_${state.loggedUser}`);
     const isCompletedToday = (taskLastDone === today);
-
+    
     return `
       <div class="task-card ${isCompletedToday ? 'completed-card' : ''}">
         <div class="task-info">
           <h4>${task.title} <span class="task-badge">+${task.pts} Pts</span></h4>
           <p>${task.desc}</p>
-          ${isCompletedToday ? '<span class="status-done">Completed Today</span>' : ''}
         </div>
-        <button 
-          onclick="triggerTaskVerification('${task.id}', '${task.title}', ${task.pts})" 
-          class="btn-task" 
+        <button
+          onclick="triggerTaskVerification('${task.id}', '${task.title}', ${task.pts})"
+          class="btn-task"
           ${isCompletedToday ? 'disabled' : ''}>
           ${isCompletedToday ? 'Logged Today' : 'Record Activity'}
         </button>
@@ -1190,22 +1204,28 @@ window.submitTaskProof = function() {
 
   const noteInput = document.getElementById("proof-note");
   const note = noteInput ? noteInput.value.trim() : "";
+
+  // MANDATORY PROOF VALIDATION: Prevent submission if neither a description nor an image is provided
+  if (!note && !uploadedPhotoData) {
+    alert("Please provide a description note or upload a photo proof before submitting your activity.");
+    return;
+  }
+
   const pointsToAdd = window.currentTaskPoints ? parseInt(window.currentTaskPoints) : 50;
 
-  // 1. Update user points correctly using getUserState keys
   const state = getUserState();
   let currentPoints = parseInt(localStorage.getItem(state.pointsKey) || "0");
   let newTotal = currentPoints + pointsToAdd;
   localStorage.setItem(state.pointsKey, newTotal.toString());
   localStorage.setItem(`orniflora_score_${currentUser}`, newTotal.toString());
 
-  // 2. Lock task for today so it cannot be repeated until tomorrow
+  // Lock task for today specifically for THIS user only
   const todayStr = new Date().toISOString().split("T")[0];
   if (window.currentTaskId) {
     localStorage.setItem(`orniflora_task_${window.currentTaskId}_lastDate_${currentUser}`, todayStr);
   }
 
-  // 3. Update streak and last active date
+  // Update streak and last active date
   const lastDate = localStorage.getItem(state.dateKey);
   let currentStreak = parseInt(localStorage.getItem(state.streakKey) || "0");
 
@@ -1226,7 +1246,7 @@ window.submitTaskProof = function() {
     localStorage.setItem(state.dateKey, todayStr);
   }
 
-  // 4. Save entry to history log matching your profile schema ({ action, pts, date })
+  // Save to user history log
   let history = JSON.parse(localStorage.getItem(state.historyKey) || "[]");
   const taskTitle = window.currentActiveTask || "Field Conservation Activity";
   const formattedDate = new Date().toLocaleDateString("en-US", { month: "short", day: "numeric", hour: "2-digit", minute: "2-digit" });
@@ -1238,18 +1258,20 @@ window.submitTaskProof = function() {
   });
   localStorage.setItem(state.historyKey, JSON.stringify(history));
 
-  // 5. Ensure user is tracked in global user list
+  // Ensure user is tracked in global user list
   let users = JSON.parse(localStorage.getItem("orniflora_users") || "[]");
   if (!users.includes(currentUser)) {
     users.push(currentUser);
     localStorage.setItem("orniflora_users", JSON.stringify(users));
   }
 
-  // 6. Close modal & reset inputs
+  // Close modal & reset inputs
   const modal = document.getElementById("ai-modal");
   if (modal) modal.style.display = "none";
 
   if (noteInput) noteInput.value = "";
+  uploadedPhotoData = "";
+  
   const fileNameDisplay = document.getElementById("file-name-display");
   if (fileNameDisplay) fileNameDisplay.textContent = "No file chosen";
   const imgPreview = document.getElementById("image-preview");
@@ -1258,7 +1280,7 @@ window.submitTaskProof = function() {
     imgPreview.style.display = "none";
   }
 
-  // 7. Refresh UI components
+  // Refresh UI components
   if (typeof renderTasksPage === "function") renderTasksPage();
   if (typeof renderLeaderboard === "function") renderLeaderboard();
   if (typeof renderAccountPage === "function") renderAccountPage();
