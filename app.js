@@ -870,31 +870,45 @@ let activeTaskTitle = "";
 let activeTaskPts = 0;
 let uploadedPhotoData = "";
 
-function triggerTaskVerification(taskId) {
-  const tasks = {
-    'birdbath': { title: 'Clean or Refill a Birdbath', points: 25 },
-    'feeder': { title: 'Maintain a Bird Feeder', points: 30 },
-    'plant_native': { title: 'Plant a Native Species', points: 50 },
-    'water_plant': { title: 'Water Native Gardens', points: 15 },
-    'remove_invasive': { title: 'Remove Invasive Vegetation', points: 40 }
-  };
+function triggerTaskVerification(taskId, taskTitle, pts) {
+  const state = getUserState();
+  const loggedUser = sessionStorage.getItem("current_logged_user");
+  
+  if (!loggedUser) {
+    alert("Please log in to record activities.");
+    window.location.href = "auth.html";
+    return;
+  }
 
-  const task = tasks[taskId] || { title: 'Field Conservation Activity', points: 50 };
+  const today = new Date().toISOString().split("T")[0];
+  const taskLastDone = localStorage.getItem(`orniflora_task_${taskId}_lastDate_${loggedUser}`);
+  
+  if (taskLastDone === today) {
+    alert("You have already logged this activity today. Come back tomorrow!");
+    return;
+  }
 
   window.currentTaskId = taskId;
-  window.currentActiveTask = task.title;
-  window.currentTaskPoints = task.points;
+  window.currentActiveTask = taskTitle;
+  window.currentTaskPoints = pts;
 
-  // Open verification modal
+  const titleModal = document.getElementById("modal-task-title");
+  if (titleModal) titleModal.textContent = `Log: ${taskTitle}`;
+  
+  const noteInput = document.getElementById("proof-note");
+  if (noteInput) noteInput.value = "";
+  
+  const imgPrev = document.getElementById("image-preview");
+  if (imgPrev) imgPrev.style.display = "none";
+  
+  const photoInput = document.getElementById("photo-input");
+  if (photoInput) photoInput.value = "";
+  
+  const fileNameDisplay = document.getElementById("file-name-display");
+  if (fileNameDisplay) fileNameDisplay.textContent = "No file chosen";
+  
   const modal = document.getElementById("ai-modal");
-  if (modal) {
-    modal.style.display = "flex";
-  }
-
-  const modalTitle = document.getElementById("modal-task-title");
-  if (modalTitle) {
-    modalTitle.textContent = `Verify: ${task.title} (+${task.points} pts)`;
-  }
+  if (modal) modal.style.display = "flex";
 }
 
 function previewUserImage(event) {
@@ -1167,28 +1181,34 @@ window.previewUserImage = function(event) {
   }
 };
 
-function submitTaskProof() {
-  const currentUser = localStorage.getItem("orniflora_current_user") || "Rohan";
+window.submitTaskProof = function() {
+  const currentUser = sessionStorage.getItem("current_logged_user");
+  if (!currentUser) {
+    alert("Error: No active user session found. Please log in again.");
+    window.location.href = "auth.html";
+    return;
+  }
+
   const noteInput = document.getElementById("proof-note");
   const note = noteInput ? noteInput.value.trim() : "";
-
-  // 1. Get exact task points (defaults to 50 if omitted)
   const pointsToAdd = window.currentTaskPoints ? parseInt(window.currentTaskPoints) : 50;
 
-  // 2. Calculate and save updated point total across all keys
-  let currentPoints = parseInt(
-    localStorage.getItem(`orniflora_points_${currentUser}`) || 
-    localStorage.getItem(`orniflora_score_${currentUser}`) || "0"
-  );
+  // 1. Update user points correctly using getUserState keys
+  const state = getUserState();
+  let currentPoints = parseInt(localStorage.getItem(state.pointsKey) || "0");
   let newTotal = currentPoints + pointsToAdd;
+  localStorage.setItem(state.pointsKey, newTotal.toString());
+  localStorage.setItem(`orniflora_score_${currentUser}`, newTotal.toString());
 
-  localStorage.setItem(`orniflora_points_${currentUser}`, newTotal);
-  localStorage.setItem(`orniflora_score_${currentUser}`, newTotal);
-
-  // 3. Update user streak
+  // 2. Lock task for today so it cannot be repeated until tomorrow
   const todayStr = new Date().toISOString().split("T")[0];
-  const lastDate = localStorage.getItem(`orniflora_lastDate_${currentUser}`);
-  let currentStreak = parseInt(localStorage.getItem(`orniflora_streak_${currentUser}`) || "1");
+  if (window.currentTaskId) {
+    localStorage.setItem(`orniflora_task_${window.currentTaskId}_lastDate_${currentUser}`, todayStr);
+  }
+
+  // 3. Update streak and last active date
+  const lastDate = localStorage.getItem(state.dateKey);
+  let currentStreak = parseInt(localStorage.getItem(state.streakKey) || "0");
 
   if (lastDate !== todayStr) {
     if (lastDate) {
@@ -1203,30 +1223,30 @@ function submitTaskProof() {
     } else {
       currentStreak = 1;
     }
-    localStorage.setItem(`orniflora_streak_${currentUser}`, currentStreak);
-    localStorage.setItem(`orniflora_lastDate_${currentUser}`, todayStr);
+    localStorage.setItem(state.streakKey, currentStreak.toString());
+    localStorage.setItem(state.dateKey, todayStr);
   }
 
-  // 4. Save entry to activity history log
-  let history = JSON.parse(localStorage.getItem(`orniflora_history_${currentUser}`) || "[]");
+  // 4. Save entry to history log matching your profile schema ({ action, pts, date })
+  let history = JSON.parse(localStorage.getItem(state.historyKey) || "[]");
   const taskTitle = window.currentActiveTask || "Field Conservation Activity";
+  const formattedDate = new Date().toLocaleDateString("en-US", { month: "short", day: "numeric", hour: "2-digit", minute: "2-digit" });
 
-  history.unshift({
-    title: taskTitle,
-    note: note || "Completed field observation and habitat tracking.",
-    date: new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }),
-    points: pointsToAdd
+  history.push({
+    action: taskTitle,
+    pts: pointsToAdd,
+    date: formattedDate
   });
-  localStorage.setItem(`orniflora_history_${currentUser}`, JSON.stringify(history));
+  localStorage.setItem(state.historyKey, JSON.stringify(history));
 
-  // 5. Ensure user exists in the main user list for the Leaderboard
+  // 5. Ensure user is tracked in global user list
   let users = JSON.parse(localStorage.getItem("orniflora_users") || "[]");
   if (!users.includes(currentUser)) {
     users.push(currentUser);
     localStorage.setItem("orniflora_users", JSON.stringify(users));
   }
 
-  // 6. Close modal & reset form
+  // 6. Close modal & reset inputs
   const modal = document.getElementById("ai-modal");
   if (modal) modal.style.display = "none";
 
@@ -1239,14 +1259,38 @@ function submitTaskProof() {
     imgPreview.style.display = "none";
   }
 
-  // 7. Refresh all page components immediately
-  if (typeof loadTasks === "function") loadTasks();
+  // 7. Refresh UI components
+  if (typeof renderTasksPage === "function") renderTasksPage();
   if (typeof renderLeaderboard === "function") renderLeaderboard();
   if (typeof renderAccountPage === "function") renderAccountPage();
-  if (typeof updateDashboardStats === "function") updateDashboardStats();
+  if (typeof renderBioCorridorIndex === "function") renderBioCorridorIndex();
 
-  alert(`Activity submitted! You earned +${pointsToAdd} points!`);
-}
+  alert(`Activity submitted successfully! +${pointsToAdd} points added to your score.`);
+};
+
+window.previewUserImage = function(event) {
+  const file = event.target.files[0];
+  const fileNameDisplay = document.getElementById("file-name-display");
+  const imgPreview = document.getElementById("image-preview");
+  
+  if (file) {
+    if (fileNameDisplay) fileNameDisplay.textContent = file.name;
+    const reader = new FileReader();
+    reader.onload = function(e) {
+      if (imgPreview) {
+        imgPreview.src = e.target.result;
+        imgPreview.style.display = "block";
+      }
+    };
+    reader.readAsDataURL(file);
+  } else {
+    if (fileNameDisplay) fileNameDisplay.textContent = "No file chosen";
+    if (imgPreview) {
+      imgPreview.src = "";
+      imgPreview.style.display = "none";
+    }
+  }
+};
 
 // Make globally available
 window.triggerTaskVerification = triggerTaskVerification;
