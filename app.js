@@ -1140,3 +1140,79 @@ function confirmDeleteAccount() {
   alert("Your account has been deleted.");
   window.location.href = "auth.html";
 }
+
+// ==========================================================================
+// BULLETPROOF ACTIVITY SUBMISSION & IMAGE PREVIEW FIX
+// ==========================================================================
+
+window.previewUserImage = function(event) {
+  const file = event.target.files[0];
+  const fileNameDisplay = document.getElementById("file-name-display");
+  const imgPreview = document.getElementById("image-preview");
+  
+  if (file) {
+    if (fileNameDisplay) fileNameDisplay.textContent = file.name;
+    
+    const reader = new FileReader();
+    reader.onload = function(e) {
+      if (imgPreview) {
+        imgPreview.src = e.target.result;
+        imgPreview.style.display = "block";
+      }
+    };
+    reader.readAsDataURL(file);
+  } else {
+    if (fileNameDisplay) fileNameDisplay.textContent = "No file chosen";
+    if (imgPreview) {
+      imgPreview.src = "";
+      imgPreview.style.display = "none";
+    }
+  }
+};
+
+window.submitTaskProof = function() {
+  const noteInput = document.getElementById("proof-note");
+  const note = noteInput ? noteInput.value.trim() : "";
+  
+  // Get active user or fallback to Rohan
+  const currentUser = localStorage.getItem("orniflora_current_user") || "Rohan";
+  
+  // Award points (+50 points)
+  let userPoints = parseInt(localStorage.getItem(`orniflora_points_${currentUser}`) || "0");
+  userPoints += 50;
+  localStorage.setItem(`orniflora_points_${currentUser}`, userPoints);
+
+  // Save to activity history log
+  let history = JSON.parse(localStorage.getItem(`orniflora_history_${currentUser}`) || "[]");
+  const taskTitle = window.currentActiveTask || "Field Conservation Activity";
+  
+  history.unshift({
+    title: taskTitle,
+    note: note || "Completed field observation and habitat tracking.",
+    date: new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })
+  });
+  localStorage.setItem(`orniflora_history_${currentUser}`, JSON.stringify(history));
+
+  // Close the modal
+  const modal = document.getElementById("ai-modal");
+  if (modal) modal.style.display = "none";
+
+  // Reset form fields
+  if (noteInput) noteInput.value = "";
+  
+  const fileNameDisplay = document.getElementById("file-name-display");
+  if (fileNameDisplay) fileNameDisplay.textContent = "No file chosen";
+  
+  const imgPreview = document.getElementById("image-preview");
+  if (imgPreview) {
+    imgPreview.src = "";
+    imgPreview.style.display = "none";
+  }
+
+  // Refresh view if function exists
+  if (typeof loadTasks === "function") {
+    loadTasks();
+  }
+
+  alert("Activity submitted successfully! +50 points added to your score.");
+};
