@@ -552,7 +552,7 @@ const AVAILABLE_TASKS = [
   { id: "remove_invasive", title: "Remove Invasive Vegetation", pts: 40, desc: "Clear non-native weeds to allow native plants to grow." }
 ];
 
-//   grab user stuff
+// grab user info
 function getUserState() {
   const usr = sessionStorage.getItem("current_logged_user") || "";
   return {
@@ -617,7 +617,7 @@ function renderTownSpecies() {
   }
 }
 
-// popup modal for ecosystem
+//  popup modal for ecosystem
 function inspectSpeciesInteraction(nm) {
   const mod = document.getElementById("ecosystem-modal");
   const t = document.getElementById("eco-modal-title");
@@ -962,7 +962,7 @@ window.submitTaskProof = function() {
 
   // need both note and pic
   if (!txtNote || (!hasFile && !uploadedPhotoData)) {
-    alert("Please provide BOTH a description note and upload a photo proof to submit this activity.");
+    alert("Please provide a note and upload a photo to submit this activity.");
     return;
   }
 
